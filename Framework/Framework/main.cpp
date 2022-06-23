@@ -1,6 +1,8 @@
-// 2022.06.23 Framework Ver 0.4
+// 2022.06.23 Framework Ver 1.1
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
+#include "Headers.h"
+#include "MainUpdate.h"
 
 using namespace std;
 
@@ -31,9 +33,64 @@ using namespace std;
 	값을 복사하는 것이 아닌 그 자체를 가져와서 사용하는 것이다.
 */
 
+// GetTickCount 대략 49일
+// GetTickCount64 대략 5억년
+
+// Singleton
+/*
+	데이터가 한 곳에만 있고 어디에서나 사용할 수 있어야 하는 것
+	관리자처럼 사용한다. 그래서 하나만 만들고 생성자를 private으로 만든다
+*/
+
+class Singleton
+{
+private:
+	static Singleton* Instance; // 포인터를 정적인 변수로 사용
+public:
+	static Singleton* GetInstance()
+	{
+		if (Instance == nullptr)
+			Instance = new Singleton;
+
+		return Instance;
+	}
+private:
+	int Number;
+public:
+	int GetNumber() const { return Number; }
+	void SetNumber(const int& _Number) { Number = _Number; }
+private:
+	Singleton() : Number(0) {}
+public:
+	~Singleton() {}
+};
+
+Singleton* Singleton::Instance = nullptr;
+
 int main(void)
 {
-	
+	Singleton::GetInstance()->SetNumber(10);
+	cout << Singleton::GetInstance()->GetNumber() << endl;
+	/*
+	MainUpdate Main;
+	Main.Initialize();
 
+	ULONGLONG Time = GetTickCount64(); // 1 / 1000 
+
+	int Count = 0;
+
+	while (true)
+	{
+		if (Time + 50 < GetTickCount64())
+		{
+			Time = GetTickCount64();
+
+			system("cls");
+
+			Main.Update();
+			Main.Render();
+		}
+	}
+	*/
 	return 0;
 }

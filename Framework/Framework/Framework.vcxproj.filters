@@ -13,21 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="소스 파일\Parent">
-      <UniqueIdentifier>{b31af0d0-a571-466c-b2ac-92e7c1126eac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Parent\Child">
-      <UniqueIdentifier>{05335fde-95b7-4614-a571-6bd575757540}</UniqueIdentifier>
+    <Filter Include="소스 파일\MainUpdate">
+      <UniqueIdentifier>{6fd2b630-0fed-453b-b4b9-4066f86626d7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="MainUpdate.cpp">
+      <Filter>소스 파일\MainUpdate</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers.h">
-      <Filter>소스 파일</Filter>
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MainUpdate.h">
+      <Filter>소스 파일\MainUpdate</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
