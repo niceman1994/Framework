@@ -1,9 +1,10 @@
 #pragma once
+
 class MainUpdate
 {
 private:
 	int Count;
-	SCENEID State;
+	int SceneState;
 public:
 	void Initialize();
 	void Update();

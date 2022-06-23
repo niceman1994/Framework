@@ -42,6 +42,7 @@ using namespace std;
 	관리자처럼 사용한다. 그래서 하나만 만들고 생성자를 private으로 만든다
 */
 
+/*
 class Singleton
 {
 private:
@@ -66,18 +67,20 @@ public:
 };
 
 Singleton* Singleton::Instance = nullptr;
+*/
 
 int main(void)
 {
+	/*
 	Singleton::GetInstance()->SetNumber(10);
 	cout << Singleton::GetInstance()->GetNumber() << endl;
-	/*
+	*/
+
+
 	MainUpdate Main;
 	Main.Initialize();
 
 	ULONGLONG Time = GetTickCount64(); // 1 / 1000 
-
-	int Count = 0;
 
 	while (true)
 	{
@@ -91,6 +94,5 @@ int main(void)
 			Main.Render();
 		}
 	}
-	*/
 	return 0;
 }

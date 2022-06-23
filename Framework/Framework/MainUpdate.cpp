@@ -1,8 +1,7 @@
 #include "MainUpdate.h"
 #include "SceneManager.h"
 
-MainUpdate::MainUpdate() : Count() {}
-
+MainUpdate::MainUpdate() : Count(0) {}
 MainUpdate::~MainUpdate() { Release(); }
 
 void MainUpdate::Initialize()
@@ -15,9 +14,12 @@ void MainUpdate::Update()
 {
 	++Count;
 
-	if (Count <= 100)
+	if (Count <= 1000)
 	{
 		Count = 0;
+		SceneState++;
+
+		SceneManager::GetInstance()->SetScene(SceneState);
 	}
 }
 

@@ -14,9 +14,9 @@ public:
 		return Instance;
 	}
 private:
-	SCENEID SceneState;
+
 public:
-	void SetScene(SCENEID _SceneState);
+	void SetScene(int _SceneState);
 private:
 	SceneManager();
 public:

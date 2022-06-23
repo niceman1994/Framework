@@ -50,5 +50,8 @@
     <ClInclude Include="Enum.h">
       <Filter>헤더 파일\include</Filter>
     </ClInclude>
+    <ClInclude Include="Constant.h">
+      <Filter>헤더 파일\include</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

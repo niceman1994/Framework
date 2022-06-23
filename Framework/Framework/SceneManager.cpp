@@ -8,15 +8,10 @@ SceneManager::SceneManager()
 
 SceneManager::~SceneManager()
 {
-	
 }
 
-//const LOGO 
-//const MENU
-//const STAGE
-//const EXIT
 
-void SceneManager::SetScene(SCENEID _SceneState)
+void SceneManager::SetScene(int _SceneState)
 {
 	switch (_SceneState)
 	{
@@ -36,4 +31,6 @@ void SceneManager::SetScene(SCENEID _SceneState)
 		cout << "EXIT" << endl;
 		break;
 	}
+
+	system("pause");
 }
