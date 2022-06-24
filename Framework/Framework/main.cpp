@@ -1,4 +1,4 @@
-// 2022.06.23 Framework Ver 1.2
+// 2022.06.24 Framework Ver 2.1
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include "Headers.h"
@@ -6,35 +6,25 @@
 
 using namespace std;
 
-// 클래스 내부에서 함수를 선언하면 인라인 함수처럼 사용된다.
+// Input
 
-// 11. 포인터 (복습) & 캡슐화
-// 캡슐화 - 기능(함수)과 데이터를 묶어놓은 상태
+// 00000001 = 1
+// 00000010 = 2
+// 00000100 = 4
+// 00001000 = 8
+// 00010000 = 16
+// 00100000 = 32
+// 01000000 = 64
+// 10000000 = 128
 
-// [포인터]
-/*
-	1. * : 데이터, & : 주소반환 연산자
-	2. 포인터변수라면 [동적할당] - 확신이 없다면 동적할당부터 하는편이 좋다.
-	3. 클래스와 구조체는 [.](점) 아니면 [->](화살표)로 접근
-	4. [동적할당] 했다면 반드시 [할당해제] => 하지 않으면 메모리 누수가 발생한다.
-*/
-
-// inline 함수 - 먼저 실행시킬 수 있도록 도와주는 예약어
-// const - 상수화 키워드, 값 변경을 하지 말라는 의미이기도 하다.
-// & 사용 시기
-/*
-	※ 2항 연산일 경우
-	1. &는 비트연산자의 역할을 하게된다.
-	2. &&일 경우는 논리연산자 and의 역할을 하게 된다.
-
-	※ 단항일 경우
-	1. 항목 앞쪽에 쓰일 경우 주소 반환 연산자가 된다.
-	2. 레퍼런스 연산자 - Call by Reference에서 파생된 의미
-	값을 복사하는 것이 아닌 그 자체를 가져와서 사용하는 것이다.
-*/
-
-// GetTickCount 대략 49일
-// GetTickCount64 대략 5억년
+const DWORD KEY_UP = 1;
+const DWORD KEY_DOWN = 2;
+const DWORD KEY_LEFT = 4;
+const DWORD KEY_RIGHT = 8;
+const DWORD KEY_SPACE = 16;
+const DWORD KEY_ENTER = 32;
+const DWORD KEY_CTRL = 64;
+const DWORD KEY_ALT = 128;
 
 // Singleton
 /*
@@ -42,41 +32,39 @@ using namespace std;
 	관리자처럼 사용한다. 그래서 하나만 만들고 생성자를 private으로 만든다
 */
 
-/*
-class Singleton
-{
-private:
-	static Singleton* Instance; // 포인터를 정적인 변수로 사용
-public:
-	static Singleton* GetInstance()
-	{
-		if (Instance == nullptr)
-			Instance = new Singleton;
-
-		return Instance;
-	}
-private:
-	int Number;
-public:
-	int GetNumber() const { return Number; }
-	void SetNumber(const int& _Number) { Number = _Number; }
-private:
-	Singleton() : Number(0) {}
-public:
-	~Singleton() {}
-};
-
-Singleton* Singleton::Instance = nullptr;
-*/
-
 int main(void)
 {
 	/*
-	Singleton::GetInstance()->SetNumber(10);
-	cout << Singleton::GetInstance()->GetNumber() << endl;
+	DWORD InputKey = 0;
+
+	cout << "입력 : "; cin >> InputKey;
+
+	if (InputKey & KEY_UP)
+		cout << "KEY_UP" << endl;
+
+	if (InputKey & KEY_DOWN)
+		cout << "KEY_DOWN" << endl;
+
+	if (InputKey & KEY_LEFT)
+		cout << "KEY_LEFT" << endl;
+
+	if (InputKey & KEY_RIGHT)
+		cout << "KEY_RIGHT" << endl;
+
+	if (InputKey & KEY_SPACE)
+		cout << "KEY_SPACE" << endl;
+
+	if (InputKey & KEY_ENTER)
+		cout << "KEY_ENTER" << endl;
+
+	if (InputKey & KEY_CTRL)
+		cout << "KEY_CTRL" << endl;
+
+	if (InputKey & KEY_ALT)
+		cout << "KEY_ALT" << endl;
 	*/
 
-
+	
 	MainUpdate Main;
 	Main.Initialize();
 
@@ -94,5 +82,6 @@ int main(void)
 			Main.Render();
 		}
 	}
+	
 	return 0;
 }

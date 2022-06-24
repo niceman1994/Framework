@@ -1,5 +1,6 @@
 #include "MainUpdate.h"
 #include "SceneManager.h"
+#include "InputManager.h"
 
 MainUpdate::MainUpdate() : Count(0) {}
 MainUpdate::~MainUpdate() { Release(); }
@@ -12,15 +13,19 @@ void MainUpdate::Initialize()
 
 void MainUpdate::Update()
 {
+	InputManager::GetInstance()->InputKey();
+
+	/*
 	++Count;
 
-	if (Count <= 1000)
+	if (Count > 10)
 	{
 		Count = 0;
 		SceneState++;
 
 		SceneManager::GetInstance()->SetScene(SceneState);
 	}
+	*/
 }
 
 void MainUpdate::Render()

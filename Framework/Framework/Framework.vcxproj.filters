@@ -25,6 +25,9 @@
     <Filter Include="헤더 파일\include">
       <UniqueIdentifier>{582eddd2-6588-41ba-bcac-bd4f5f1a8c47}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\99. Manager\InputManager">
+      <UniqueIdentifier>{4954e1b0-a81c-4571-b042-53a841776d02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -35,6 +38,9 @@
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>소스 파일\99. Manager\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>소스 파일\99. Manager\InputManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="Constant.h">
       <Filter>헤더 파일\include</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>소스 파일\99. Manager\InputManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
