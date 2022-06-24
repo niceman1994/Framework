@@ -10,5 +10,5 @@ public:
 	virtual void Release() override;
 public:
 	Logo();
-	~Logo();
+	virtual ~Logo();
 };

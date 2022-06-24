@@ -4,9 +4,7 @@
 
 Logo::Logo() : Scene("") { }
 
-Logo::~Logo()
-{
-}
+Logo::~Logo() { }
 
 void Logo::Initialize()
 {

@@ -10,5 +10,5 @@ public:
 	virtual void Release()PURE;
 public:
 	Object();
-	~Object();
+	virtual ~Object();
 };

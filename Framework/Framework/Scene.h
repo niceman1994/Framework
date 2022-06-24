@@ -13,5 +13,5 @@ public:
 public:
 	Scene();
 	Scene(string _str);
-	~Scene();
+	virtual ~Scene();
 };
