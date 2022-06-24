@@ -7,14 +7,14 @@ MainUpdate::~MainUpdate() { Release(); }
 
 void MainUpdate::Initialize()
 {
-	//SceneState = LOGO;
-	SceneManager::GetInstance()->SetScene(SceneState);
+	SceneManager::GetInstance()->SetScene(LOGO);
 }
 
 void MainUpdate::Update()
 {
 	InputManager::GetInstance()->InputKey();
-
+	SceneManager::GetInstance()->Update();
+	/*
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
 	if (dwKey & KEY_UP)
@@ -35,11 +35,6 @@ void MainUpdate::Update()
 	if (dwKey & KEY_ENTER)
 	{
 		//cout << "KEY_ENTER" << endl;
-		SceneManager::GetInstance()->SetScene(SceneState);
-		SceneState++;
-
-		if (SceneState > EXIT)
-			SceneState = 0;
 	}
 
 	if (dwKey & KEY_CTRL)
@@ -47,12 +42,12 @@ void MainUpdate::Update()
 
 	if (dwKey & KEY_ALT)
 		cout << "KEY_ALT" << endl;
-	
+	*/
 }
 
 void MainUpdate::Render()
 {
-
+	SceneManager::GetInstance()->Render();
 }
 
 void MainUpdate::Release()

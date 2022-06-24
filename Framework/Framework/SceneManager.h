@@ -1,6 +1,7 @@
 #pragma once
 #include "Headers.h"
 
+class Scene; // 정의 없이 만든 클래스다. 수학적으로 보면 허수와 같다.
 class SceneManager
 {
 private:
@@ -14,9 +15,12 @@ public:
 		return Instance;
 	}
 private:
-
+	Scene* SceneState;
 public:
-	void SetScene(int _SceneState);
+	void SetScene(SCENEID _SceneState);
+	void Update();
+	void Render();
+	void Release();
 private:
 	SceneManager();
 public:
