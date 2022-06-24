@@ -8,27 +8,29 @@ InputManager::~InputManager() {}
 
 void InputManager::InputKey()
 {
-	if (GetAsyncKeyState(VK_UP))
-		cout << "KEY_UP" << endl;
+	Key = 0;
 
-	if (GetAsyncKeyState(VK_DOWN))
-		cout << "KEY_DOWN" << endl;
+	if (GetAsyncKeyState(VK_UP) || GetAsyncKeyState('W'))
+		Key |= KEY_UP;
 
-	if (GetAsyncKeyState(VK_LEFT))
-		cout << "KEY_LEFT" << endl;
+	if (GetAsyncKeyState(VK_DOWN) || GetAsyncKeyState('A'))
+		Key |= KEY_DOWN;
 
-	if (GetAsyncKeyState(VK_RIGHT))
-		cout << "KEY_RIGHT" << endl;
+	if (GetAsyncKeyState(VK_LEFT) || GetAsyncKeyState('S'))
+		Key |= KEY_LEFT;
+
+	if (GetAsyncKeyState(VK_RIGHT) || GetAsyncKeyState('D'))
+		Key |= KEY_RIGHT;
 
 	if (GetAsyncKeyState(VK_SPACE))
-		cout << "KEY_SPACE" << endl;
+		Key |= KEY_SPACE;
 
 	if (GetAsyncKeyState(VK_RETURN))
-		cout << "KEY_ENTER" << endl;
+		Key |= KEY_ENTER;
 
 	if (GetAsyncKeyState(VK_CONTROL))
-		cout << "KEY_CTRL" << endl;
+		Key |= KEY_CTRL;
 
 	if (GetAsyncKeyState(VK_MENU))
-		cout << "KEY_ALT" << endl;
+		Key |= KEY_ALT;
 }
