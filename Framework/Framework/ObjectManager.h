@@ -18,9 +18,10 @@ private:
 	map<string, list<Object*>> ObjectList;
 public:
 	void AddObject(Object* _Object);
-	void Render();
-public:
+
 	list<Object*>* GetObjectList(string _strKey);
+	void Update();
+	void Render();
 private:
 	ObjectManager();
 public:

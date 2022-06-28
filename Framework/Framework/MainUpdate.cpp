@@ -14,7 +14,6 @@ void MainUpdate::Update()
 {
 	InputManager::GetInstance()->InputKey();
 	SceneManager::GetInstance()->Update();
-	
 }
 
 void MainUpdate::Render()
