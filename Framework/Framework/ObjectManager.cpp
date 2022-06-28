@@ -34,7 +34,7 @@ list<Object*>* ObjectManager::GetObjectList(string _strKey) // µ•¿Ã≈Õ ∞¸∏Æ∏¶ ¿ß«
 
 void ObjectManager::Update()
 {
-	for (map<string, list<Object*>>::iterator iter = ObjectList.begin(); iter != ObjectList.end(); ++iter)
+	for (map<string, list<Object*>>::iterator iter = ObjectList.begin(); iter != ObjectList.end(); ++iter) // ObjectManager∑Œ ¥„¿∫ Enemy∏¶ ªË¡¶
 	{
 		for (list<Object*>::iterator iter2 = iter->second.begin(); iter2 != iter->second.end();)
 		{

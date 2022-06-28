@@ -43,8 +43,6 @@ int Player::Update()
 		pBullet->SetPosition(TransInfo.Position);
 
 		ObjectManager::GetInstance()->AddObject(pBullet);
-
-		//::Safe_Delete(pBullet);
 	}
 
 	return 0;
