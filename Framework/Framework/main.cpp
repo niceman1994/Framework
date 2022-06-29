@@ -1,4 +1,4 @@
-// 2022.06.29 Framework Ver 6.0
+// 2022.06.29 Framework Ver 6.1
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include "Headers.h"
