@@ -2,11 +2,12 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "SceneManager.h"
+#include "CollisionManager.h"
 #include "CursorManager.h"
 #include "ObjectManager.h"
-#include "CollisionManager.h"
 
-Stage::Stage() : pPlayer(nullptr) {}
+
+Stage::Stage() {}
 
 Stage::~Stage() { Release(); }
 
@@ -37,13 +38,14 @@ void Stage::Update()
 {	// l 벨류, r 벨류
 	ObjectManager::GetInstance()->Update();
 
-	Object* pPlayer = ObjectManager::GetInstance()->GetObjectList("○")->front();
-	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObjectList("＊");
-	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObjectList("★");
+	Object* pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
+	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObjectList("Bullet");
+	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObjectList("Enemy");
 
 	if (pBulletList != nullptr)
 	{
-		for (list<Object*>::iterator iter = pBulletList->begin(); iter != pBulletList->end();)
+		for (list<Object*>::iterator iter = pBulletList->begin();
+			iter != pBulletList->end();)
 		{
 			if ((*iter)->GetPosition().x >= 120.0f)
 				iter = pBulletList->erase(iter); // 120.0f 의 위치에 있는걸 지우고 뒤쪽에 있는걸 붙여준 상태
@@ -60,7 +62,7 @@ void Stage::Update()
 			{
 				if (CollisionManager::Collision(*Bulletiter, *Enemyiter))
 				{
-					CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
+					CursorManager::Draw(50.0f, 2.0f, "충돌입니다.");
 				}
 			}
 		}
@@ -72,7 +74,7 @@ void Stage::Update()
 		{
 			if (CollisionManager::Collision(pPlayer, *Enemyiter))
 			{
-				CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
+				CursorManager::Draw(50.0f, 2.0f, "충돌입니다.");
 			}
 		}
 	
@@ -86,5 +88,5 @@ void Stage::Render()
 
 void Stage::Release()
 {
-	::Safe_Delete(pPlayer);
+	
 }
