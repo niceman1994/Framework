@@ -1,8 +1,10 @@
 #include "Stage.h"
+#include "Player.h"
 #include "Enemy.h"
 #include "SceneManager.h"
 #include "CursorManager.h"
 #include "ObjectManager.h"
+#include "CollisionManager.h"
 
 Stage::Stage() : pPlayer(nullptr) {}
 
@@ -24,7 +26,8 @@ void Stage::Initialize()
 		srand(DWORD(GetTickCount64() * (i + 1))); // 8바이트에 4바이트를 캐스트해서 뜨는 경고
 
 		Object* pEnemy = pEnemyProto->Clone();
-		pEnemy->SetPosition(118.0f, float(rand() % 30));
+		//pEnemy->SetPosition(118.0f, float(rand() % 30));
+		pEnemy->SetPosition(float(rand() % 118), float(rand() % 30));
 
 		ObjectManager::GetInstance()->AddObject(pEnemy);
 	}
@@ -34,7 +37,9 @@ void Stage::Update()
 {	// l 벨류, r 벨류
 	ObjectManager::GetInstance()->Update();
 
+	Object* pPlayer = ObjectManager::GetInstance()->GetObjectList("○")->front();
 	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObjectList("＊");
+	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObjectList("★");
 
 	if (pBulletList != nullptr)
 	{
@@ -45,6 +50,32 @@ void Stage::Update()
 			else
 				++iter; // 미리 iter를 증가시키면 120.0f를 넘는지 확인할 방법이 없다.
 		}
+	}
+
+	if (pEnemyList != nullptr && pBulletList != nullptr)
+	{
+		for (list<Object*>::iterator Bulletiter = pBulletList->begin(); Bulletiter != pBulletList->end(); ++Bulletiter)
+		{
+			for (list<Object*>::iterator Enemyiter = pEnemyList->begin(); Enemyiter != pEnemyList->end(); ++Enemyiter)
+			{
+				if (CollisionManager::Collision(*Bulletiter, *Enemyiter))
+				{
+					CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
+				}
+			}
+		}
+	}
+
+	if (pPlayer != nullptr && pEnemyList != nullptr)
+	{
+		for (list<Object*>::iterator Enemyiter = pEnemyList->begin(); Enemyiter != pEnemyList->end(); ++Enemyiter)
+		{
+			if (CollisionManager::Collision(pPlayer, *Enemyiter))
+			{
+				CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
+			}
+		}
+	
 	}
 }
 
