@@ -62,7 +62,7 @@ void Stage::Update()
 			{
 				if (CollisionManager::Collision(*Bulletiter, *Enemyiter))
 				{
-					CursorManager::Draw(50.0f, 2.0f, "충돌입니다.");
+					CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
 				}
 			}
 		}
@@ -74,7 +74,7 @@ void Stage::Update()
 		{
 			if (CollisionManager::Collision(pPlayer, *Enemyiter))
 			{
-				CursorManager::Draw(50.0f, 2.0f, "충돌입니다.");
+				CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
 			}
 		}
 	
