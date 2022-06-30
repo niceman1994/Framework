@@ -6,9 +6,9 @@
 #include "Player.h"
 #include "Enemy.h"
 
-Logo::Logo() { }
+Logo::Logo() {}
 
-Logo::~Logo() { }
+Logo::~Logo() {}
 
 void Logo::Initialize()
 {

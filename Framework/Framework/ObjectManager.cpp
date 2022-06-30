@@ -34,24 +34,24 @@ list<Object*>* ObjectManager::GetObjectList(string _strKey) // µ¥ÀÌÅÍ °ü¸®¸¦ À§Ç
 }
 
 void ObjectManager::Update()
-{
-	for (map<string, list<Object*>>::iterator iter = ObjectList.begin(); iter != ObjectList.end(); ++iter) // ObjectManager·Î ´ãÀº Enemy¸¦ »èÁ¦
+{	// ObjectManager·Î ´ãÀº Enemy¸¦ »èÁ¦
+	for (map<string, list<Object*>>::iterator iter = ObjectList.begin(); iter != ObjectList.end(); ++iter) // mapÀ¸·Î ¸¸µç ObjectList¿¡ iter ¹İº¹ÀÚ·Î Á¢±Ù
 	{
-		for (list<Object*>::iterator iter2 = iter->second.begin(); iter2 != iter->second.end();)
+		for (list<Object*>::iterator iter2 = iter->second.begin(); iter2 != iter->second.end();) // map µÎ¹øÂ°ÀÎ Value¿¡ iter2 ¹İº¹ÀÚ¸¦ ¸¸µé¾î iterÀÇ µÎ¹øÂ°¿¡ Á¢±Ù
 		{
-			int result = (*iter2)->Update();
+			int result = (*iter2)->Update(); // Update() ÇÔ¼ö·Î EnemyÀÇ À§Ä¡°¡ °è¼Ó ¿ŞÂÊÀ¸·Î ÀÌµ¿ÇÏ±â ¶§¹®¿¡ 0ÀÌÇÏ°¡ µÇ´Â °æ¿ì°¡ »ı±â´Âµ¥ ±×¶§ ¼ıÀÚ 1(BUFFER_OVER)À» ¹İÈ¯ÇÑ´Ù.
 
-			if (result == 1)
+			if (result == BUFFER_OVER) // ¹İÈ¯µÈ ¼ıÀÚ°¡ 1(BUFFER_OVER)ÀÏ °æ¿ì ½ÇÇàµÇ´Â »èÁ¦ Á¶°Ç¹®
 			{
-				Object* Temp = *iter2;
+				Object* Temp = *iter2; // iter2¸¦ ÀÓ½Ã ¿ÀºêÁ§Æ® Temp¿¡ ´ëÀÔ
 
-				iter2 = iter->second.erase(iter2);
+				iter2 = iter->second.erase(iter2); // ¹İº¹ÀÚ iter2 Á¢±ÙÇÑ 1¹øÂ° ¸®½ºÆ®¸¦ »èÁ¦ÇÏ°í iter2¿¡ ´ëÀÔ
 
 				delete Temp;
-				Temp = nullptr;
+				Temp = nullptr; // ÀÓ½Ã ¿ÀºêÁ§Æ® Temp¸¦ »èÁ¦ ÈÄ ÃÊ±âÈ­
 			}
 			else
-				++iter2;
+				++iter2; // ¾Æ´Ò°æ¿ì iter2 Áõ°¡
 		}
 	}
 }
