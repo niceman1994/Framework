@@ -1,26 +1,27 @@
 #include "Stage.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "ScrollBox.h"
 #include "SceneManager.h"
+#include "InputManager.h"
 #include "CollisionManager.h"
 #include "CursorManager.h"
 #include "ObjectManager.h"
+#include "ObjectFactory.h"
 
 
-Stage::Stage() {}
+Stage::Stage() : Check(0) {}
 
 Stage::~Stage() { Release(); }
 
 void Stage::Initialize()
 {
-	// 1. 반환형태가 Object* 이거나 && list<Object*>
-	// 2. Key 가 전달되어야 함.
-	//list<Object*>* pPlayerList = ObjectManager::GetInstance()->GetObjectList("Player");
-	//
-	//if(pPlayerList != nullptr)
-	//	pPlayer = pPlayerList->front();
-	Object* pEnemyProto = new Enemy;
-	pEnemyProto->Initialize();
+	Check = 0;
+
+	Object* pEnemyProto = ObjectFactory<Enemy>::CreateObject();
+
+	pUI = new ScrollBox;
+	pUI->Initialize();
 
 	for (int i = 0; i < 5; ++i)
 	{
@@ -36,6 +37,11 @@ void Stage::Initialize()
 
 void Stage::Update()
 {	// l 벨류, r 벨류
+	DWORD dwKey = InputManager::GetInstance()->GetKey();
+
+	if (dwKey & KEY_TAB)
+		Enable_UI();
+
 	ObjectManager::GetInstance()->Update();
 
 	Object* pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
@@ -54,39 +60,49 @@ void Stage::Update()
 		}
 	}
 
-	if (pEnemyList != nullptr && pBulletList != nullptr) // ObjectManager에 pEnemyList와 pBulletList가 있을 경우
+	if (pPlayer != nullptr)
 	{
-		for (list<Object*>::iterator Bulletiter = pBulletList->begin(); Bulletiter != pBulletList->end(); ++Bulletiter) // Bulletiter로 pBulletList에 접근
+		if (pEnemyList != nullptr)
 		{
 			for (list<Object*>::iterator Enemyiter = pEnemyList->begin(); Enemyiter != pEnemyList->end(); ++Enemyiter) // Enemyiter로 pEnemyList에 접근
 			{
-				if (CollisionManager::Collision(*Bulletiter, *Enemyiter)) // Bulletiter와 Enemyiter의 충돌여부 검사
+				if (CollisionManager::Collision(pPlayer, *Enemyiter)) // pPlayer와 Enemyiter의 충돌여부 검사
 				{
 					CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
+				}
+
+				if (pBulletList != nullptr)
+				{
+					for (list<Object*>::iterator Bulletiter = pBulletList->begin(); Bulletiter != pBulletList->end(); ++Bulletiter) // Bulletiter로 pBulletList에 접근
+					{
+						if (CollisionManager::Collision(*Bulletiter, *Enemyiter)) // pPlayer와 *Enemyiter의 충돌여부 검사
+						{
+							CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
+						}
+					}
 				}
 			}
 		}
 	}
 
-	if (pPlayer != nullptr && pEnemyList != nullptr) // pPlayer와 pEnemyList가 있을 경우
-	{
-		for (list<Object*>::iterator Enemyiter = pEnemyList->begin(); Enemyiter != pEnemyList->end(); ++Enemyiter) // Enemyiter로 pEnemyList에 접근
-		{
-			if (CollisionManager::Collision(pPlayer, *Enemyiter)) // pPlayer와 *Enemyiter의 충돌여부 검사
-			{
-				CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
-			}
-		}
-	
-	}
+	if (Check)
+		pUI->Update();
 }
 
 void Stage::Render()
 {
 	ObjectManager::GetInstance()->Render();
+
+	if (Check)
+		pUI->Render();
 }
 
 void Stage::Release()
 {
 	
+}
+
+void Stage::Enable_UI()
+{
+	Check = !Check;
 }

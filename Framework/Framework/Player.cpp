@@ -3,6 +3,7 @@
 #include "CursorManager.h"
 #include "Bullet.h"
 #include "ObjectManager.h"
+#include "ObjectFactory.h"
 
 Player::Player() 
 	: Horizontal(0), Vertical(0) { }
@@ -41,11 +42,8 @@ int Player::Update()
 
 	if (dwKey & KEY_SPACE)
 	{
-		Object* pBullet = new Bullet;
-		pBullet->Initialize();
-		pBullet->SetPosition(TransInfo.Position);
-
-		ObjectManager::GetInstance()->AddObject(pBullet);
+		ObjectManager::GetInstance()->AddObject(
+			ObjectFactory<Bullet>::CreateObject(TransInfo.Position));
 	}
 
 	return 0;

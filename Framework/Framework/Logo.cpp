@@ -5,6 +5,7 @@
 #include "ObjectManager.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "ObjectFactory.h"
 
 Logo::Logo() {}
 
@@ -12,14 +13,7 @@ Logo::~Logo() {}
 
 void Logo::Initialize()
 {
-	Object* pPlayer = new Player;
-	pPlayer->Initialize();
-
-	//Object* pEnemy = new Enemy;
-	//pEnemy->Initialize();
-
-	ObjectManager::GetInstance()->AddObject(pPlayer);
-	//ObjectManager::GetInstance()->AddObject(pEnemy);
+	ObjectManager::GetInstance()->AddObject(ObjectFactory<Player>::CreateObject());
 }
 
 void Logo::Update()

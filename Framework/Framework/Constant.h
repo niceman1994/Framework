@@ -13,6 +13,7 @@ const DWORD KEY_SPACE = 16;
 const DWORD KEY_ENTER = 32;
 const DWORD KEY_CTRL = 64;
 const DWORD KEY_ALT = 128;
+const DWORD KEY_TAB = 256;
 
 const int BUFFER_OVER = 1;
 
