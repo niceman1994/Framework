@@ -1,7 +1,7 @@
 #include "BackGround.h"
 
 BackGround::BackGround() {}
-BackGround::BackGround(Transform _TransInfo) {}
+BackGround::BackGround(Transform _TransInfo) : Object(_TransInfo) {}
 BackGround::~BackGround() {}
 
 void BackGround::Initialize()

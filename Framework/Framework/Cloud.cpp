@@ -1,16 +1,8 @@
 #include "Cloud.h"
 
-Cloud::Cloud()
-{
-}
-
-Cloud::Cloud(Transform _TransInfo)
-{
-}
-
-Cloud::~Cloud()
-{
-}
+Cloud::Cloud() {}
+Cloud::Cloud(Transform _TransInfo) : Object(_TransInfo) {}
+Cloud::~Cloud() {}
 
 void Cloud::Initialize()
 {
