@@ -76,6 +76,9 @@
     <Filter Include="소스 파일\02. Object\BackGround">
       <UniqueIdentifier>{57fee578-aa61-4c61-ae36-3dc702eb9a86}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\99. Manager\MathManager">
+      <UniqueIdentifier>{2a6225bc-df93-4e94-956c-4ccf9b09bf77}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -202,6 +205,9 @@
     </ClInclude>
     <ClInclude Include="BackGround.h">
       <Filter>소스 파일\02. Object\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="MathManager.h">
+      <Filter>소스 파일\99. Manager\MathManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

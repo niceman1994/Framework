@@ -1,4 +1,4 @@
-// 2022.07.01 Framework Ver 7.1-2
+// 2022.07.01 Framework Ver 8.0 Bullet Direction
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include "Headers.h"
