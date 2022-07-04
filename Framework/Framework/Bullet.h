@@ -3,6 +3,8 @@
 
 class Bullet : public Object
 {
+private:
+	int b;
 public:
 	virtual void Initialize() override;
 	virtual int Update() override;
@@ -10,6 +12,8 @@ public:
 	virtual void Release() override;
 
 	virtual Object* Clone() override { return new Bullet(*this); }
+public:
+	void SetDirection();
 public:
 	Bullet();
 	Bullet(Transform _TransInfo);

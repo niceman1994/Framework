@@ -1,4 +1,4 @@
-// 2022.07.01 Framework Ver 8.1 Bullet TransInfo.Direction
+// 2022.07.04 Framework Ver 8.1-1 Bullet TransInfo.Direction
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include "Headers.h"
