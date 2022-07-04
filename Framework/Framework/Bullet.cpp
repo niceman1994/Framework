@@ -24,7 +24,16 @@ void Bullet::Initialize()
 
 int Bullet::Update()
 {
-	if (b == 0) SetDirection();
+	Vector3 Target = Vector3(60.0f, 15.0f);
+
+	float Width = Target.x - TransInfo.Position.x;
+	float Height = Target.y - TransInfo.Position.y;
+
+	float Distance = sqrt((Width * Width) + (Height * Height));
+
+	TransInfo.Direction = Vector3(Width / Distance, Height / Distance);
+
+	TransInfo.Position += TransInfo.Direction;
 
 	// Target의 좌표 - 나의 좌표 => 나와 타겟 사이의 길이
 	// 1보다 작아져야 비율로 바뀌니 관리가 편하다(피타고라스의 정리)
@@ -34,27 +43,10 @@ int Bullet::Update()
 	return 0;
 }
 
-void Bullet::SetDirection()
-{
-	Vector3 Target = Vector3(60.0f, 15.0f);
-
-	Vector3 Result = Target - TransInfo.Position;
-
-	float Distance = sqrt((Result.x * Result.x) + (Result.y * Result.y));
-
-	TransInfo.Direction.x = Result.x / Distance;
-	TransInfo.Direction.y = Result.y / Distance;
-}
-
 void Bullet::Render()
 {
-	/*for (int i = 0; i < MAX_SIZE; ++i)
-	{
-		CursorManager::Draw(
-			TransInfo.Position.x - (TransInfo.Scale.x * 0.5f),
-			TransInfo.Position.y - (TransInfo.Scale.y * 0.5f) + i,
-			Buffer[i]);
-	}*/
+	CursorManager::GetInstance()->WriteBuffer(
+		TransInfo.Position, (char*)"ABCDEFG");
 }
 
 void Bullet::Release()

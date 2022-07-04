@@ -13,8 +13,6 @@ public:
 
 	virtual Object* Clone() override { return new Bullet(*this); }
 public:
-	void SetDirection();
-public:
 	Bullet();
 	Bullet(Transform _TransInfo);
 	virtual ~Bullet();

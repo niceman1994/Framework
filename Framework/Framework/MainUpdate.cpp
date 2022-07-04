@@ -1,15 +1,14 @@
 #include "MainUpdate.h"
 #include "SceneManager.h"
-#include "InputManager.h"
 #include "CursorManager.h"
+#include "InputManager.h"
 
 MainUpdate::MainUpdate() {}
 MainUpdate::~MainUpdate() { Release(); }
 
 void MainUpdate::Initialize()
 {
-	CursorManager::GetInstance()->CreateBuffer(120.0f, 30.0f);
-
+	CursorManager::GetInstance()->CreateBuffer(ConsoleHeightSize, ConsoleWidthSize);
 	SceneManager::GetInstance()->SetScene(LOGO);
 }
 

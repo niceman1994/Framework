@@ -1,4 +1,4 @@
-// 2022.07.04 Framework Ver 9-1 Bullet TransInfo.Direction
+// 2022.07.04 Framework Ver 9-3
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include "Headers.h"
@@ -8,7 +8,7 @@ using namespace std;
 
 int main(void)
 {
-	system("title 홍길동 - 플래시게임");
+	system("title 홍길동 - 플래시");
 
 	system("mode con cols=120 lines=30"); // 강제로 120, 30 사이즈로 맞춰주는 것
 
