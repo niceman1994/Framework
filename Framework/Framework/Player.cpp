@@ -5,8 +5,7 @@
 #include "ObjectManager.h"
 #include "ObjectFactory.h"
 
-Player::Player() 
-	: Horizontal(0), Vertical(0) { }
+Player::Player() { }
 
 Player::Player(Transform _TransInfo) : Object(_TransInfo) {}
 
@@ -51,14 +50,16 @@ int Player::Update()
 
 void Player::Render()
 {
-	for (int i = 0; i < MAX_SIZE; ++i)
+	/*for (int i = 0; i < MAX_SIZE; ++i)
 	{
 		CursorManager::Draw(
 			TransInfo.Position.x - (TransInfo.Scale.x * 0.5f),
 			TransInfo.Position.y - (TransInfo.Scale.y * 0.5f) + i,
 			Buffer[i]);
-	}
-	
+	}*/
+
+	CursorManager::GetInstance()->WriteBuffer(
+		TransInfo.Position, (char*)"ABCEDFG", 0);
 }
 
 void Player::Release()

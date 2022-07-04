@@ -31,13 +31,13 @@ int Enemy::Update()
 
 void Enemy::Render()
 {
-	for (int i = 0; i < MAX_SIZE; ++i)
+	/*for (int i = 0; i < MAX_SIZE; ++i)
 	{
 		CursorManager::Draw(
 			TransInfo.Position.x - (TransInfo.Scale.x * 0.5f),
 			TransInfo.Position.y - (TransInfo.Scale.y * 0.5f) + i,
 			Buffer[i]);
-	}
+	}*/
 }
 
 void Enemy::Release()

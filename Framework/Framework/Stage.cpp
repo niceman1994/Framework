@@ -9,7 +9,6 @@
 #include "ObjectManager.h"
 #include "ObjectFactory.h"
 
-
 Stage::Stage() : Check(0) {}
 
 Stage::~Stage() { Release(); }
@@ -55,6 +54,8 @@ void Stage::Update()
 		{
 			if ((*iter)->GetPosition().x >= 120.0f)
 				iter = pBulletList->erase(iter); // 120.0f 의 위치에 있는걸 지우고 뒤쪽에 있는걸 붙여준 상태
+			else if ((*iter)->GetPosition().x >= 59.5f && (*iter)->GetPosition().y >= 14.5f)
+				iter = pBulletList->erase(iter);
 			else
 				++iter; // 미리 iter를 증가시키면 120.0f를 넘는지 확인할 방법이 없다.
 		}
@@ -68,7 +69,7 @@ void Stage::Update()
 			{
 				if (CollisionManager::Collision(pPlayer, *Enemyiter)) // pPlayer와 Enemyiter의 충돌여부 검사
 				{
-					CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
+					//CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
 				}
 
 				if (pBulletList != nullptr)
@@ -77,7 +78,7 @@ void Stage::Update()
 					{
 						if (CollisionManager::Collision(*Bulletiter, *Enemyiter)) // pPlayer와 *Enemyiter의 충돌여부 검사
 						{
-							CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
+							//CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
 						}
 					}
 				}

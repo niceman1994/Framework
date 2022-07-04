@@ -26,9 +26,6 @@ int Bullet::Update()
 {
 	if (b == 0) SetDirection();
 
-	cout << TransInfo.Direction.x << endl;
-	cout << TransInfo.Direction.y << endl;
-
 	// Target의 좌표 - 나의 좌표 => 나와 타겟 사이의 길이
 	// 1보다 작아져야 비율로 바뀌니 관리가 편하다(피타고라스의 정리)
 
@@ -51,13 +48,13 @@ void Bullet::SetDirection()
 
 void Bullet::Render()
 {
-	for (int i = 0; i < MAX_SIZE; ++i)
+	/*for (int i = 0; i < MAX_SIZE; ++i)
 	{
 		CursorManager::Draw(
 			TransInfo.Position.x - (TransInfo.Scale.x * 0.5f),
 			TransInfo.Position.y - (TransInfo.Scale.y * 0.5f) + i,
 			Buffer[i]);
-	}
+	}*/
 }
 
 void Bullet::Release()
