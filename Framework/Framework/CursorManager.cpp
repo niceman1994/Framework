@@ -2,9 +2,15 @@
 
 CursorManager* CursorManager::Instance = nullptr;
 
-CursorManager::CursorManager() : BufferIndex(0) {}
+CursorManager::CursorManager() : BufferIndex(0) 
+{
 
-CursorManager::~CursorManager() { DestroyBuffer(); }
+}
+
+CursorManager::~CursorManager() 
+{ 
+	DestroyBuffer(); 
+}
 
 void CursorManager::CreateBuffer(const int& _Width, const int& _Height)
 {
@@ -94,8 +100,8 @@ void CursorManager::ClearBuffer()
 
 void CursorManager::DestroyBuffer()
 {
-	CloseHandle(hBuffer[0]);
-	CloseHandle(hBuffer[1]);
+	for(int i = 0 ; i < 2; ++i)
+		CloseHandle(hBuffer[i]);
 }
 
 void CursorManager::SetColor(int _Color)

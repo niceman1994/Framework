@@ -5,11 +5,12 @@
 #include "ObjectManager.h"
 #include "Player.h"
 #include "Enemy.h"
+
 #include "ObjectFactory.h"
 
-Logo::Logo() {}
+Logo::Logo() { }
+Logo::~Logo() { }
 
-Logo::~Logo() {}
 
 void Logo::Initialize()
 {
@@ -32,4 +33,5 @@ void Logo::Render()
 
 void Logo::Release()
 {
+
 }

@@ -2,16 +2,13 @@
 #include "SceneManager.h"
 #include "InputManager.h"
 
-Menu::Menu()
-{
-}
+Menu::Menu() { }
+Menu::~Menu() { }
 
-Menu::~Menu()
-{
-}
 
 void Menu::Initialize()
 {
+
 }
 
 void Menu::Update()
@@ -29,4 +26,5 @@ void Menu::Render()
 
 void Menu::Release()
 {
+
 }

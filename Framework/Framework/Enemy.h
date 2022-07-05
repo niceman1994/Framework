@@ -13,5 +13,5 @@ public:
 public:
 	Enemy();
 	Enemy(Transform _TransInfo);
-	~Enemy();
+	virtual ~Enemy();
 };

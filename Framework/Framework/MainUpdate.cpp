@@ -3,12 +3,13 @@
 #include "CursorManager.h"
 #include "InputManager.h"
 
-MainUpdate::MainUpdate() {}
+MainUpdate::MainUpdate() { }
 MainUpdate::~MainUpdate() { Release(); }
+
 
 void MainUpdate::Initialize()
 {
-	CursorManager::GetInstance()->CreateBuffer(ConsoleHeightSize, ConsoleWidthSize);
+	CursorManager::GetInstance()->CreateBuffer(ConsoleWidthSize, ConsoleHeightSize);
 	SceneManager::GetInstance()->SetScene(LOGO);
 }
 

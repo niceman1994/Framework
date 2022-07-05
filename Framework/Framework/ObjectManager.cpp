@@ -29,8 +29,8 @@ list<Object*>* ObjectManager::GetObjectList(string _strKey) // µ¥ÀÌÅÍ °ü¸®¸¦ À§Ç
 
 	if (iter == ObjectList.end())
 		return nullptr;
-	else
-		return &iter->second;
+	
+	return &iter->second;
 }
 
 void ObjectManager::Update()

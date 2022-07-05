@@ -3,8 +3,6 @@
 
 class Bullet : public Object
 {
-private:
-	int b;
 public:
 	virtual void Initialize() override;
 	virtual int Update() override;

@@ -6,10 +6,9 @@
 #include "ObjectFactory.h"
 
 Player::Player() { }
-
-Player::Player(Transform _TransInfo) : Object(_TransInfo) {}
-
+Player::Player(Transform _TransInfo) : Object(_TransInfo) { }
 Player::~Player() { }
+
 
 void Player::Initialize()
 {
@@ -21,6 +20,8 @@ void Player::Initialize()
 	TransInfo.Position = Vector3(20.0f, 15.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
 	TransInfo.Scale = Vector3(2.0f, 2.0f);
+
+	Color = 15;
 }
 
 int Player::Update()
@@ -56,4 +57,5 @@ void Player::Render()
 
 void Player::Release()
 {
+
 }

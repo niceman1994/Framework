@@ -9,7 +9,7 @@ public:
 	static CursorManager* GetInstance()
 	{
 		if (Instance == nullptr)
-			Instance = new CursorManager();
+			Instance = new CursorManager;
 
 		return Instance;
 	}
