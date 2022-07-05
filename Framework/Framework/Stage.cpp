@@ -8,6 +8,7 @@
 #include "CursorManager.h"
 #include "ObjectManager.h"
 #include "ObjectFactory.h"
+#include "ObjectPool.h"
 
 Stage::Stage() : Check(0), Score(0) { }
 Stage::~Stage() { Release(); }
@@ -16,6 +17,7 @@ Stage::~Stage() { Release(); }
 void Stage::Initialize()
 {
 	Check = 0;
+	Score = 0;
 
 	Object* pEnemyProto = ObjectFactory<Enemy>::CreateObject();
 
@@ -54,7 +56,7 @@ void Stage::Update()
 		for (list<Object*>::iterator iter = pBulletList->begin();
 			iter != pBulletList->end(); )
 		{
-			if ((*iter)->GetPosition().x >= 119.0f)
+			if ((*iter)->GetPosition().x >= 119.5f)
 				iter = pBulletList->erase(iter);
 			//else if ((*iter)->GetPosition().x >= 59.5f && (*iter)->GetPosition().x <= 60.5f)
 			//	iter = pBulletList->erase(iter);

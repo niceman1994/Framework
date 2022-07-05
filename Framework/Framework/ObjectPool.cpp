@@ -22,25 +22,25 @@ void ObjectPool::Update()
 
 			switch (result)
 			{
-			case BUFFER_OVER:
-			{
-				map<string, list<Object*>>::iterator Disableiter = DisableList.find((*iter2)->GetKey());
-
-				if (Disableiter == DisableList.end())
+				case BUFFER_OVER:
 				{
-					list<Object*> TempList;
-					TempList.push_back((*iter2));
-					DisableList.insert(make_pair((*iter2)->GetKey(), TempList));
+					map<string, list<Object*>>::iterator Disableiter = DisableList.find((*iter2)->GetKey());
+
+					if (Disableiter == DisableList.end())
+					{
+						list<Object*> TempList;
+						TempList.push_back((*iter2));
+						DisableList.insert(make_pair((*iter2)->GetKey(), TempList));
+					}
+					else
+						Disableiter->second.push_back((*iter2));
+
+					(*iter).second.erase(iter2);
 				}
-				else
-					Disableiter->second.push_back((*iter2));
+					break;
 
-				(*iter).second.erase(iter2);
-			}
-			break;
-
-			default:
-				++iter2;
+				default:
+					++iter2;
 			}
 		}
 	}

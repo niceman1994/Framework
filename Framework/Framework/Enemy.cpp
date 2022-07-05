@@ -1,5 +1,6 @@
 #include "Enemy.h"
 #include "CursorManager.h"
+#include "ObjectPool.h"
 
 Enemy::Enemy() { }
 
@@ -23,10 +24,13 @@ void Enemy::Initialize()
 
 int Enemy::Update()
 {
-	TransInfo.Position.x -= 0.8f;
+	TransInfo.Position.x -= 1.1f;
 
 	if (TransInfo.Position.x <= 0)
+	{
+		ObjectPool::GetInstance()->Update();
 		return BUFFER_OVER;
+	}
 
 	return 0;
 }
