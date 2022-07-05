@@ -8,6 +8,7 @@ class Stage : public Scene
 private:
 	UserInterface* pUI;
 	int Check;
+	int Score;
 public:
 	virtual void Initialize()override;
 	virtual void Update()override;
@@ -16,6 +17,8 @@ public:
 public:
 	void Enable_UI();
 
+	void SetScore(int _Score) { Score = _Score; }
+	int GetScore() const { return Score; }
 public:
 	Stage();
 	virtual ~Stage();

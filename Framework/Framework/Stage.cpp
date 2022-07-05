@@ -9,7 +9,7 @@
 #include "ObjectManager.h"
 #include "ObjectFactory.h"
 
-Stage::Stage() : Check(0) { }
+Stage::Stage() : Check(0), Score(0) { }
 Stage::~Stage() { Release(); }
 
 
@@ -28,7 +28,7 @@ void Stage::Initialize()
 
 		Object* pEnemy = pEnemyProto->Clone();
 		//pEnemy->SetPosition(118.0f, float(rand() % 30));
-		pEnemy->SetPosition(float(rand() % 118), float(rand() % 30));
+		pEnemy->SetPosition(float(rand() % 25 + 60), float(rand() % 23 + i));
 
 		ObjectManager::GetInstance()->AddObject(pEnemy);
 	}
@@ -54,8 +54,10 @@ void Stage::Update()
 		for (list<Object*>::iterator iter = pBulletList->begin();
 			iter != pBulletList->end(); )
 		{
-			if ((*iter)->GetPosition().x >= 120.0f)
+			if ((*iter)->GetPosition().x >= 119.0f)
 				iter = pBulletList->erase(iter);
+			//else if ((*iter)->GetPosition().x >= 59.5f && (*iter)->GetPosition().x <= 60.5f)
+			//	iter = pBulletList->erase(iter);
 			else
 				++iter;
 		}
@@ -70,25 +72,28 @@ void Stage::Update()
 			{
 				if (CollisionManager::Collision(pPlayer, *Enemyiter))
 				{
-
-
-
-
+					//pPlayer->SetColor(25);
 				}
+			}
+		}
 
-				if (pBulletList != nullptr)
+		if (pBulletList != nullptr && pEnemyList != nullptr)
+		{
+			for (list<Object*>::iterator Bulletiter = pBulletList->begin();
+				Bulletiter != pBulletList->end(); ++Bulletiter)
+			{
+				for (list<Object*>::iterator Enemyiter = pEnemyList->begin(); Enemyiter != pEnemyList->end();)
 				{
-					for (list<Object*>::iterator Bulletiter = pBulletList->begin();
-						Bulletiter != pBulletList->end(); ++Bulletiter)
+					if (CollisionManager::Collision(*Bulletiter, *Enemyiter))
 					{
-						if (CollisionManager::Collision(*Bulletiter, *Enemyiter))
-						{
+						Object* EnemyTemp = *Enemyiter;
+						Enemyiter = pEnemyList->erase(Enemyiter);
 
-
-
-
-						}
+						delete EnemyTemp;
+						EnemyTemp = nullptr;
 					}
+					else
+						++Enemyiter;
 				}
 			}
 		}

@@ -43,7 +43,7 @@ int Player::Update()
 	if (dwKey & KEY_SPACE)
 	{
 		ObjectManager::GetInstance()->AddObject(
-			ObjectFactory<Bullet>::CreateObject(TransInfo.Position));
+			ObjectFactory<Bullet>::CreateObject(TransInfo.Position.x , TransInfo.Position.y + 0.5f));
 	}
 
 	return 0;
@@ -51,8 +51,13 @@ int Player::Update()
 
 void Player::Render()
 {
-	CursorManager::GetInstance()->WriteBuffer(
-		TransInfo.Position, (char*)"ABCDEFG", Color);
+	for (int i = 0 ; i < MAX_SIZE; ++i)
+	{
+		CursorManager::GetInstance()->WriteBuffer(
+			TransInfo.Position.x - (TransInfo.Scale.x * 0.5f),
+			TransInfo.Position.y - (TransInfo.Scale.y * 0.5f) + i, 
+			Buffer[i], Color);
+	}
 }
 
 void Player::Release()

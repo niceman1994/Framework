@@ -1,5 +1,6 @@
 #include "Bullet.h"
 #include "CursorManager.h"
+#include "ObjectManager.h"
 
 Bullet::Bullet() { }
 Bullet::Bullet(Transform _TransInfo) : Object(_TransInfo) { }
@@ -26,16 +27,18 @@ int Bullet::Update()
 	// Target의 좌표 - 나의 좌표 => 나와 타겟 사이의 길이
 	// 1보다 작아져야 비율로 바뀌니 관리가 편하다(피타고라스의 정리)
 
-	Vector3 Target = Vector3(60.0f, 15.0f);
+	//Vector3 Target = Vector3(60.0f, 15.0f);
+	//
+	//float Width = Target.x - TransInfo.Position.x;
+	//float Height = Target.y - TransInfo.Position.y;
+	//
+	//float Distance = sqrt((Width * Width) + (Height * Height));
+	//
+	//TransInfo.Direction = Vector3(Width / Distance, Height / Distance);
+	//
+	//TransInfo.Position += TransInfo.Direction;
 
-	float Width = Target.x - TransInfo.Position.x;
-	float Height = Target.y - TransInfo.Position.y;
-
-	float Distance = sqrt((Width * Width) + (Height * Height));
-
-	TransInfo.Direction = Vector3(Width / Distance, Height / Distance);
-
-	TransInfo.Position += TransInfo.Direction;
+	TransInfo.Position.x += 2.0;
 
 	return 0;
 }
@@ -43,7 +46,7 @@ int Bullet::Update()
 void Bullet::Render()
 {
 	CursorManager::GetInstance()->WriteBuffer(
-		TransInfo.Position, (char*)"ABCDEFG");
+		TransInfo.Position, (char*)"＊");
 }
 
 void Bullet::Release()
