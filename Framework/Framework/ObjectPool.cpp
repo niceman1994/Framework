@@ -2,6 +2,7 @@
 #include "Object.h"
 
 ObjectPool* ObjectPool::Instance = nullptr;
+map<string, list<Object*>> ObjectPool::EnableList;
 
 ObjectPool::ObjectPool()
 {
@@ -43,14 +44,4 @@ void ObjectPool::Update()
 			}
 		}
 	}
-}
-
-void ObjectPool::AddObject(string _Key, list<Object*> _List)
-{
-	EnableList.insert(make_pair(_Key, _List));
-}
-
-void ObjectPool::AddObject(Object* _Object)
-{
-	
 }

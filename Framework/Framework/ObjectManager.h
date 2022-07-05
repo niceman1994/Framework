@@ -15,7 +15,7 @@ public:
 		return Instance;
 	}
 private:
-	map<string, list<Object*>> ObjectList;
+	map<string, list<Object*>>* EnableList;
 public:
 	void AddObject(Object* _Object);
 
