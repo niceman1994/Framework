@@ -1,6 +1,5 @@
 #include "Bullet.h"
 #include "CursorManager.h"
-#include "ObjectManager.h"
 #include "MathManager.h"
 
 Bullet::Bullet() { }

@@ -41,4 +41,18 @@ public:
 		// 아니라면
 		return false;
 	}
+
+	static bool Delete(Object* _ObjA, Vector3 _Position)
+	{
+		Vector3 Position_A = _ObjA->GetPosition();
+	
+		if ((Position_A.x > _Position.x + 0.5f && Position_A.x < _Position.x - 0.5f) &&
+			(Position_A.y > _Position.y + 0.5f && Position_A.y < _Position.y - 0.5f))
+		{
+			::Safe_Delete(_ObjA);
+			return true;
+		}
+
+		return false;
+	}
 };
