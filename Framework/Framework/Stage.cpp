@@ -30,7 +30,7 @@ void Stage::Initialize()
 
 		Object* pEnemy = pEnemyProto->Clone();
 		//pEnemy->SetPosition(118.0f, float(rand() % 30));
-		pEnemy->SetPosition(float(rand() % 25 + 60), float(rand() % 23 + i));
+		pEnemy->SetPosition(float(rand() % 15 + 80), float(rand() % 27 + 3));
 
 		ObjectManager::GetInstance()->AddObject(pEnemy);
 	}

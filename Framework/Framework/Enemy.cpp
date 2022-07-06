@@ -24,13 +24,10 @@ void Enemy::Initialize()
 
 int Enemy::Update()
 {
-	TransInfo.Position.x -= 1.1f;
+	//TransInfo.Position.x -= 1.1f;
 
 	if (TransInfo.Position.x <= 0)
-	{
-		ObjectPool::GetInstance()->Update();
 		return BUFFER_OVER;
-	}
 
 	return 0;
 }
