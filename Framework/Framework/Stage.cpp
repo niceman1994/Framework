@@ -31,7 +31,7 @@ void Stage::Initialize()
 
 		Object* pEnemy = pEnemyProto->Clone();
 		//pEnemy->SetPosition(118.0f, float(rand() % 30));
-		pEnemy->SetPosition(float(rand() % 15 + 80), float(rand() % 27 + 3));
+		pEnemy->SetPosition(float(rand() % 110), float(rand() % 27 + 3));
 
 		ObjectManager::GetInstance()->AddObject(pEnemy);
 	}
@@ -47,6 +47,7 @@ void Stage::Update()
 	}
 
 	ObjectManager::GetInstance()->Update();
+	
 
 	Object* pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
 	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObjectList("Bullet");
@@ -75,17 +76,26 @@ void Stage::Update()
 			{
 				if (CollisionManager::CircleCollision(pPlayer, *Enemyiter))
 				{
-					
+					//(*Enemyiter)->GetKey();
+
+					ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
+					continue;
 				}
 
 				if (pBulletList != nullptr)
 				{
-					for (list<Object*>::iterator Bulletiter = pBulletList->begin(); Bulletiter != pBulletList->end(); ++Bulletiter)
+					for (list<Object*>::iterator Bulletiter = pBulletList->begin(); Bulletiter != pBulletList->end();)
 					{
-						if (CollisionManager::CircleCollision(*Bulletiter, *Enemyiter))
-						{
+						
 
+						if (CollisionManager::Collision(*Bulletiter, *Enemyiter))
+						{
+							Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, (*Bulletiter));
 						}
+						else
+							++Bulletiter;
+
+						ObjectManager::GetInstance()->GetDisObjectList("Bullet");
 					}
 				}
 			}

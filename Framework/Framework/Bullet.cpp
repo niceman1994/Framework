@@ -16,9 +16,11 @@ void Bullet::Initialize()
 
 	TransInfo.Position = Vector3(0.0f, 0.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
-	TransInfo.Scale = Vector3(1.0f, 1.0f);
+	TransInfo.Scale = Vector3(float(strlen(Buffer[0])), (float)MAX_SIZE);
 
 	TransInfo.Direction = Vector3(0.0f, 0.0f);
+
+	Color = 12;
 }
 
 int Bullet::Update()
@@ -45,8 +47,13 @@ int Bullet::Update()
 
 void Bullet::Render()
 {
-	CursorManager::GetInstance()->WriteBuffer(
-		TransInfo.Position - (TransInfo.Scale * 0.5f),(char*)"£ª");
+	for (int i = 0; i < MAX_SIZE; ++i)
+	{
+		CursorManager::GetInstance()->WriteBuffer(
+			TransInfo.Position.x,
+			TransInfo.Position.y + i,
+			Buffer[i], Color);
+	}
 }
 
 void Bullet::Release()

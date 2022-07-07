@@ -52,12 +52,7 @@ int Player::Update()
 void Player::Render()
 {
 	for (int i = 0 ; i < MAX_SIZE; ++i)
-	{
-		CursorManager::GetInstance()->WriteBuffer(
-			TransInfo.Position.x - (TransInfo.Scale.x * 0.5f),
-			TransInfo.Position.y - (TransInfo.Scale.y * 0.5f) + i, 
-			Buffer[i], Color);
-	}
+		CursorManager::GetInstance()->WriteBuffer(TransInfo.Position, (char*)"ABCEDEFG", Color);
 }
 
 void Player::Release()

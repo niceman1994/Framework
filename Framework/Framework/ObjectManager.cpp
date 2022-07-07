@@ -7,6 +7,7 @@ ObjectManager* ObjectManager::Instance = nullptr;
 ObjectManager::ObjectManager() 
 {
 	EnableList = ObjectPool::GetEnableList();
+	DisableList = ObjectPool::GetInstance()->GetDisableList();
 }
 
 ObjectManager::~ObjectManager() {}
@@ -32,19 +33,33 @@ list<Object*>* ObjectManager::GetObjectList(string _strKey) // µ¥ÀÌÅÍ °ü¸®¸¦ À§Ç
 
 	if (iter == EnableList->end())
 		return nullptr;
-	
+
 	return &iter->second;
 }
 
-void ObjectManager::ThrowObject(Object* _Object)
+list<Object*>::iterator ObjectManager::ThrowObject(list<Object*>::iterator _Where, Object* _Object)
 {
 	map<string, list<Object*>>::iterator iter = EnableList->find(_Object->GetKey());
-
+	
 	if (iter == EnableList->end())
-		return;
+		return _Where;
 
+	ObjectPool::GetInstance()->CatchObject(_Object);
 
-	EnableList->erase(iter);
+	return iter->second.erase(_Where);
+}
+
+list<Object*>* ObjectManager::GetDisObjectList(string _strKey)
+{
+	map<string, list<Object*>>::iterator Disiter = DisableList->find(_strKey);
+	map<string, list<Object*>>::iterator Eniter = EnableList->find(_strKey);
+
+	if (Disiter->second.size() >= 20)
+	{
+		Disiter->second = Eniter->second;
+
+		return &Disiter->second;
+	}
 }
 
 void ObjectManager::Update()
