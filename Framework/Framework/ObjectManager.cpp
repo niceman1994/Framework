@@ -36,6 +36,17 @@ list<Object*>* ObjectManager::GetObjectList(string _strKey) // µ¥ÀÌÅÍ °ü¸®¸¦ À§Ç
 	return &iter->second;
 }
 
+void ObjectManager::ThrowObject(Object* _Object)
+{
+	map<string, list<Object*>>::iterator iter = EnableList->find(_Object->GetKey());
+
+	if (iter == EnableList->end())
+		return;
+
+
+	EnableList->erase(iter);
+}
+
 void ObjectManager::Update()
 {	
 	ObjectPool::GetInstance()->Update();

@@ -15,5 +15,6 @@ public:
 	int GetScore() const { return Score; }
 public:
 	Scene();
+	Scene(int _Score);
 	virtual ~Scene();
 };

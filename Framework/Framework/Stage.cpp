@@ -10,7 +10,8 @@
 #include "ObjectFactory.h"
 #include "ObjectPool.h"
 
-Stage::Stage() : Check(0), Score(0) { }
+Stage::Stage() : Check(0) { }
+Stage::Stage(int _Score) : Scene(_Score) {}
 Stage::~Stage() { Release(); }
 
 
@@ -24,7 +25,7 @@ void Stage::Initialize()
 	pUI = new ScrollBox;
 	pUI->Initialize();
 
-	for (int i = 0; i < 5; ++i)
+	for (int i = 0; i < 7; ++i)
 	{
 		srand(DWORD(GetTickCount64() * (i + 1)));
 
@@ -72,14 +73,25 @@ void Stage::Update()
 			for (list<Object*>::iterator Enemyiter = pEnemyList->begin();
 				Enemyiter != pEnemyList->end(); ++Enemyiter)
 			{
-				if (CollisionManager::Collision(pPlayer, *Enemyiter))
+				if (CollisionManager::CircleCollision(pPlayer, *Enemyiter))
 				{
-					//pPlayer->SetColor(25);
+					
+				}
+
+				if (pBulletList != nullptr)
+				{
+					for (list<Object*>::iterator Bulletiter = pBulletList->begin(); Bulletiter != pBulletList->end(); ++Bulletiter)
+					{
+						if (CollisionManager::CircleCollision(*Bulletiter, *Enemyiter))
+						{
+
+						}
+					}
 				}
 			}
 		}
 
-		if (pBulletList != nullptr && pEnemyList != nullptr)
+		/*if (pBulletList != nullptr && pEnemyList != nullptr)
 		{
 			for (list<Object*>::iterator Bulletiter = pBulletList->begin();
 				Bulletiter != pBulletList->end(); ++Bulletiter)
@@ -98,7 +110,7 @@ void Stage::Update()
 						++Enemyiter;
 				}
 			}
-		}
+		}*/
 	}
 
 	if (Check)

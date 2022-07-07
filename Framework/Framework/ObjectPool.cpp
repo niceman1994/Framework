@@ -14,12 +14,36 @@ ObjectPool::~ObjectPool()
 {
 }
 
+void ObjectPool::CatchObject(Object* _Object)
+{
+	map<string, list<Object*>>::iterator Disableiter = DisableList.find(_Object->GetKey());
+
+	if (Disableiter == DisableList.end())
+	{
+		list<Object*> TempList;
+		TempList.push_back(_Object);
+		DisableList.insert(make_pair(_Object->GetKey(), TempList));
+	}
+	else
+		Disableiter->second.push_back(_Object);
+}
+
 void ObjectPool::Update()
 {
+	for (map<string, list<Object*>>::iterator iter = DisableList.begin();
+		iter != DisableList.end(); ++iter)
+	{
+		CursorManager::GetInstance()->WriteBuffer(0.0f, 0.0f, (char*)"DisableList : ");
+		CursorManager::GetInstance()->WriteBuffer(15.0f, 0.0f, iter->second.size());
+	}
+
 	for (map<string, list<Object*>>::iterator iter = EnableList.begin(); iter != EnableList.end(); ++iter)
 	{
 		for (list<Object*>::iterator iter2 = iter->second.begin(); iter2 != iter->second.end();)
 		{
+			CursorManager::GetInstance()->WriteBuffer(0.0f, 1.0f, (char*)"EnableList : ");
+			CursorManager::GetInstance()->WriteBuffer(14.0f, 1.0f, iter->second.size());
+
 			int result = (*iter2)->Update();
 
 			switch (result)
@@ -43,8 +67,6 @@ void ObjectPool::Update()
 				case 2:
 				{
 					CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다.");
-
-					CollisionManager::Delete(*iter2, Vector3(60.0f, 15.0f));
 					++iter2;
 				}
 					break;

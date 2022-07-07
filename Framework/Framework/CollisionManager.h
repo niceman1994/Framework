@@ -1,6 +1,7 @@
 #pragma once
 #include "Headers.h"
 #include "Object.h"
+#include "MathManager.h"
 
 class CollisionManager
 {
@@ -24,34 +25,33 @@ public:
 		*/
 
 		// 횡스크롤 게임에서의 폭이 있는 게임일 경우
-		/*
 		if ((Position_A.x + (Scale_A.x * 0.5f)) > (Position_B.x - (Scale_B.x * 0.5f)) &&
 			(Position_B.x + (Scale_B.x * 0.5f)) > (Position_A.x - (Scale_A.x * 0.5f)) &&
 			(Position_A.y + (Scale_A.y * 0.5f)) == (Position_B.y + (Scale_B.y * 0.5f)))
 			return true;
-		*/
 
 		// 사이드뷰 게임
+		/*
 		if ((Position_A.x + (Scale_A.x * 0.5f)) > (Position_B.x - (Scale_B.x * 0.5f)) &&
 			(Position_B.x + (Scale_B.x * 0.5f)) > (Position_A.x - (Scale_A.x * 0.5f)) &&
 			(Position_A.y + (Scale_A.y * 0.5f)) > (Position_B.y - (Scale_B.y * 0.5f)) &&
 			(Position_B.y + (Scale_B.y * 0.5f)) > (Position_A.y - (Scale_A.y * 0.5f)))
 			return true;
+		*/
 
 		// 아니라면
 		return false;
 	}
 
-	static bool Delete(Object* _ObjA, Vector3 _Position)
+	static bool CircleCollision(const Object* _ObjA, const Object* _ObjB)
 	{
-		Vector3 Position_A = _ObjA->GetPosition();
-	
-		if ((Position_A.x > _Position.x + 0.5f && Position_A.x < _Position.x - 0.5f) &&
-			(Position_A.y > _Position.y + 0.5f && Position_A.y < _Position.y - 0.5f))
-		{
-			::Safe_Delete(_ObjA);
+		float Distance = MathManager::GetDistance(
+			_ObjA->GetPosition(), _ObjB->GetPosition());
+
+		float Sum = _ObjA->GetScale().x * 0.5f + _ObjB->GetScale().x * 0.5f;
+
+		if (Distance < Sum)
 			return true;
-		}
 
 		return false;
 	}
