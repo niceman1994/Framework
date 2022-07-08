@@ -16,12 +16,10 @@ public:
 	}
 private:
 	map<string, list<Object*>>* EnableList;
-	map<string, list<Object*>>* DisableList;
 public:
-	void AddObject(Object* _Object);
+	void AddObject(string _Key);
 	list<Object*>* GetObjectList(string _strKey);
 	list<Object*>::iterator ThrowObject(list<Object*>::iterator _Where, Object* _Object);
-	list<Object*>* GetDisObjectList(string _strKey);
 	void Update();
 	void Render();
 private:

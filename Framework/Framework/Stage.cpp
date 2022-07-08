@@ -19,6 +19,9 @@ void Stage::Initialize()
 {
 	Check = 0;
 	Score = 0;
+	
+	pPlayer = new Player;
+	pPlayer->Initialize();
 
 	Object* pEnemyProto = ObjectFactory<Enemy>::CreateObject();
 
@@ -33,7 +36,7 @@ void Stage::Initialize()
 		//pEnemy->SetPosition(118.0f, float(rand() % 30));
 		pEnemy->SetPosition(float(rand() % 110), float(rand() % 27 + 3));
 
-		ObjectManager::GetInstance()->AddObject(pEnemy);
+		//ObjectManager::GetInstance()->AddObject(pEnemy);
 	}
 }
 
@@ -46,10 +49,10 @@ void Stage::Update()
 		Enable_UI();
 	}
 
+	pPlayer->Update();
 	ObjectManager::GetInstance()->Update();
 	
-
-	Object* pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
+	//Object* pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
 	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObjectList("Bullet");
 	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObjectList("Enemy");
 
@@ -75,27 +78,16 @@ void Stage::Update()
 				Enemyiter != pEnemyList->end(); ++Enemyiter)
 			{
 				if (CollisionManager::CircleCollision(pPlayer, *Enemyiter))
-				{
-					//(*Enemyiter)->GetKey();
-
-					ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
-					continue;
-				}
+					Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
 
 				if (pBulletList != nullptr)
 				{
 					for (list<Object*>::iterator Bulletiter = pBulletList->begin(); Bulletiter != pBulletList->end();)
 					{
-						
-
 						if (CollisionManager::Collision(*Bulletiter, *Enemyiter))
-						{
 							Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, (*Bulletiter));
-						}
 						else
 							++Bulletiter;
-
-						ObjectManager::GetInstance()->GetDisObjectList("Bullet");
 					}
 				}
 			}
@@ -129,6 +121,7 @@ void Stage::Update()
 
 void Stage::Render()
 {
+	pPlayer->Render();
 	ObjectManager::GetInstance()->Render();
 
 	if (Check)
@@ -137,7 +130,8 @@ void Stage::Render()
 
 void Stage::Release()
 {
-
+	delete pPlayer;
+	pPlayer = nullptr;
 }
 
 void Stage::Enable_UI()

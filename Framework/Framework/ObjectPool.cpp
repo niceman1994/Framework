@@ -29,6 +29,20 @@ void ObjectPool::CatchObject(Object* _Object)
 		Disableiter->second.push_back(_Object);
 }
 
+Object* ObjectPool::ThrowObject(string _Key)
+{
+	map<string, list<Object*>>::iterator Disableiter = DisableList.find(_Key);
+
+	if (Disableiter != DisableList.end() && Disableiter->second.size())
+	{
+		Object* pObject = Disableiter->second.front();
+		Disableiter->second.pop_front();
+		return pObject;
+	}
+
+	return nullptr;
+}
+
 void ObjectPool::Update()
 {
 	CursorManager::GetInstance()->WriteBuffer(85.0f, 0.0f, (char*)"DisableList : ");

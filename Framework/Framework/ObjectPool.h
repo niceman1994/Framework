@@ -20,8 +20,9 @@ private:
 public:
 	static map<string, list<Object*>>* GetEnableList() { return &EnableList; }
 	map<string, list<Object*>>* GetDisableList() { return &DisableList; }
-	void Update();
 	void CatchObject(Object* _Object);
+	Object* ThrowObject(string _Key);
+	void Update();
 private:
 	ObjectPool();
 public:
