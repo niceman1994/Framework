@@ -1,4 +1,4 @@
-// 2022.07.07 Framework Ver 12.2-1
+// 2022.07.08 Framework Ver 13.0
 #define _CRT_SECURE_NO_WARNINGS
 #include "Headers.h"
 #include "MainUpdate.h"

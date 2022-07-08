@@ -18,6 +18,5 @@ public:
 	void Enable_UI();
 public:
 	Stage();
-	Stage(int _Score);
 	virtual ~Stage();
 };

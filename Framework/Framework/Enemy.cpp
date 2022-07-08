@@ -8,9 +8,9 @@ Enemy::Enemy(Transform _TransInfo) : Object(_TransInfo) {}
 
 Enemy::~Enemy() { }
 
-void Enemy::Initialize()
+Object* Enemy::Initialize(string _Key)
 {
-	strKey = "Enemy";
+	strKey = _Key;
 
 	Buffer[0] = (char*)"È£";
 	Buffer[1] = (char*)"¤µ";
@@ -20,6 +20,8 @@ void Enemy::Initialize()
 	TransInfo.Scale = Vector3(float(strlen(Buffer[0])), (float)MAX_SIZE);
 
 	Color = 15;
+
+	return this;
 }
 
 int Enemy::Update()

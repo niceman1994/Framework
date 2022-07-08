@@ -1,5 +1,5 @@
 #include "ObjectManager.h"
-#include "ObjectFactory.h"
+#include "Prototype.h"
 #include "ObjectPool.h"
 #include "Bullet.h"
 
@@ -18,13 +18,13 @@ void ObjectManager::AddObject(string _Key)
 	Object* pObject = ObjectPool::GetInstance()->ThrowObject(_Key);
 
 	if (pObject == nullptr)
-		pObject = ObjectFactory<Bullet>::CreateObject();
+		pObject = Prototype::GetInstance()->ProtoTypeObject(_Key)->Clone(); // Key 값을 전달
 
 	map<string, list<Object*>>::iterator iter = EnableList->find(_Key);
 
-	if (iter == EnableList->end()) // ObjectList에 아무것도 존재하지 않는 경우
+	if (iter == EnableList->end()) // EnableList에 아무것도 존재하지 않는 경우
 	{
-		list<Object*> TempList; // Player, Enemy 를 담는 임시 변수(TempList) 선언
+		list<Object*> TempList; // list<Object*> 객체를 담는 임시 변수(TempList) 선언
 		TempList.push_back(pObject); // TempList에 push_back으로 넣는다
 		EnableList->insert(make_pair(pObject->GetKey(), TempList));
 	}

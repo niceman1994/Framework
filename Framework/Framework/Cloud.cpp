@@ -4,8 +4,9 @@ Cloud::Cloud() {}
 Cloud::Cloud(Transform _TransInfo) : Object(_TransInfo) {}
 Cloud::~Cloud() {}
 
-void Cloud::Initialize()
+Object* Cloud::Initialize(string _Key)
 {
+    return nullptr;
 }
 
 int Cloud::Update()
