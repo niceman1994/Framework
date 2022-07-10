@@ -28,6 +28,8 @@ void Stage::Initialize()
 
 	for (int i = 0; i < 5; ++i)
 	{
+		srand(DWORD(GetTickCount64() * (i + 1)));
+
 		pEnemy->SetPosition(float(rand() % 118), float(rand() % 25));
 		ObjectManager::GetInstance()->AddObject("Enemy");
 	}
@@ -37,9 +39,34 @@ void Stage::Update()
 {
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
+	/*if (dwKey & KEY_ESCAPE)
+	{
+		while (true)
+		{
+			if (Check == 1)
+			{
+				Scene::PauseMessage();
+				system("pause");
+				break;
+			}
+			else
+				break;
+		}
+	}*/
+
 	if (dwKey & KEY_TAB)
 	{
 		Enable_UI();
+	}
+
+	if (dwKey & PRESS_5)
+	{
+		ObjectManager::GetInstance()->IncreaseCredit();
+		CursorManager::GetInstance()->ClearBuffer();
+		Sleep(100);
+
+		if (ObjectManager::GetInstance()->GetCredit() >= 99)
+			ObjectManager::GetInstance()->SetCredit(99);
 	}
 
 	pPlayer->Update();
@@ -109,6 +136,9 @@ void Stage::Render()
 
 	if (Check)
 		pUI->Render();
+
+	CursorManager::GetInstance()->WriteBuffer(119.0f, 28.0f, (char*)"\t\t\t\t\t\t\t\t\t\t\t\tCREDIT : ");
+	CursorManager::GetInstance()->WriteBuffer(97.0f, 29.0f, (int)(char*)(ObjectManager::GetInstance()->GetCredit()));
 }
 
 void Stage::Release()

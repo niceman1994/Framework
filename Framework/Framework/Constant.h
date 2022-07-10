@@ -10,6 +10,9 @@ const DWORD KEY_CTRL = 64;
 const DWORD KEY_ALT = 128;
 const DWORD KEY_TAB = 256;
 const DWORD KEY_ESCAPE = 512;
+const DWORD KEY_CANCEL = 1024;
+const DWORD PRESS_1 = 2048;
+const DWORD PRESS_5 = 4096;
 
 
 const int BUFFER_OVER = 1;

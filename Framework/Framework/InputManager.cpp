@@ -39,4 +39,13 @@ void InputManager::InputKey()
 
 	if (GetAsyncKeyState(VK_ESCAPE))
 		Key |= KEY_ESCAPE;
+
+	if (GetAsyncKeyState(VK_CANCEL))
+		Key |= KEY_CANCEL;
+
+	if (GetAsyncKeyState(0x31))
+		Key |= PRESS_1;
+
+	if (GetAsyncKeyState(0x35))
+		Key |= PRESS_5;
 }

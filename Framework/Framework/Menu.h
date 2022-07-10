@@ -3,6 +3,8 @@
 
 class Menu : public Scene
 {
+private:
+	char* Pointer[5];
 public:
 	virtual void Initialize()override;
 	virtual void Update()override;

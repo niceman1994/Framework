@@ -1,4 +1,4 @@
-// 2022.07.08 Framework Ver 13.0
+// 2022.07.11 Framework Ver 13.0 - 1
 #define _CRT_SECURE_NO_WARNINGS
 #include "Headers.h"
 #include "MainUpdate.h"
@@ -16,7 +16,7 @@ int main(void)
 
 	MainUpdate Main;
 	Main.Initialize();
-
+	
 	ULONGLONG Time = GetTickCount64(); // 1 / 1000 
 
 	while (true)
@@ -24,9 +24,9 @@ int main(void)
 		if (Time + 50 < GetTickCount64())
 		{
 			Time = GetTickCount64();
-
+	
 			system("cls");
-
+	
 			Main.Update();
 			Main.Render(); 
 		}
