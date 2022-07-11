@@ -7,6 +7,7 @@
 #include "InputManager.h"
 #include "CursorManager.h"
 #include "ObjectManager.h"
+#include "Prototype.h"
 #include "ObjectFactory.h"
 #include "ObjectPool.h"
 
@@ -24,12 +25,21 @@ void Stage::Initialize()
 	ObjectManager::GetInstance()->AddObject("Player");
 	pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
 
+	ObjectManager::GetInstance()->AddObject("Enemy");
+	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObjectList("Enemy");
+
+	for (list<Object*>::iterator iter = pEnemyList->begin(); iter != pEnemyList->end();)
+	{
+		(*iter)->SetPosition(float(rand() % 30 + 75), float(rand() % 15 + 5));
+	}
+
+	//Object* pEnemy = Prototype::GetInstance()->ProtoTypeObject("Enemy");
+
 	//for (int i = 0; i < 5; ++i)
 	//{
 	//	srand(DWORD(GetTickCount64() * (i + 1)));
-	//
-	//	Object* pEnemy = Prototype::GetInstance()->ProtoTypeObject("Enemy");
-	//	pEnemy->SetPosition(float(rand() % 25 + 80), float(rand() % 20 + 5));
+	//	
+	//	pEnemy->SetPosition(float(rand() % 30 + 75), float(rand() % 15 + 5));
 	//	ObjectManager::GetInstance()->AddObject("Enemy");
 	//}
 }
@@ -60,8 +70,6 @@ void Stage::Update()
 	
 	ObjectManager::GetInstance()->Update();
 	
-	//Object* pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
-	
 	if (dwKey & KEY_ESCAPE)
 	{
 		if (pBulletList->size() >= 20)
@@ -80,7 +88,7 @@ void Stage::Update()
 				pBulletList->pop_back();
 			}
 		}
-		else if(pBulletList->size())
+		else if (pBulletList->size())
 		{
 			ObjectPool::GetInstance()->CatchObject(pBulletList->back());
 			pBulletList->pop_back();

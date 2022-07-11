@@ -159,6 +159,7 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScrollBox.cpp" />
     <ClCompile Include="Stage.cpp" />
+    <ClCompile Include="TwinBullet.cpp" />
     <ClCompile Include="UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +192,7 @@
     <ClInclude Include="ScrollBox.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="Struct.h" />
+    <ClInclude Include="TwinBullet.h" />
     <ClInclude Include="UserInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
