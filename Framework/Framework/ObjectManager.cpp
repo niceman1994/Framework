@@ -10,7 +10,24 @@ ObjectManager::ObjectManager()
 	EnableList = ObjectPool::GetEnableList();
 }
 
-ObjectManager::~ObjectManager() {}
+ObjectManager::~ObjectManager() 
+{
+
+}
+
+void ObjectManager::AddObject(Object* _Object)
+{
+	map<string, list<Object*>>::iterator iter = EnableList->find(_Object->GetKey());
+
+	if (iter == EnableList->end()) // EnableList에 아무것도 존재하지 않는 경우
+	{
+		list<Object*> TempList; // list<Object*> 객체를 담는 임시 변수(TempList) 선언
+		TempList.push_back(_Object); // TempList에 push_back으로 넣는다
+		EnableList->insert(make_pair(_Object->GetKey(), TempList));
+	}
+	else
+		iter->second.push_back(_Object); // string이 이미 존재할 경우 list<Object*> 에 _Object를 넣는다.
+}
 
 void ObjectManager::AddObject(string _Key)
 {

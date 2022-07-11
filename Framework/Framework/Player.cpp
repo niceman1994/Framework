@@ -3,7 +3,8 @@
 #include "CursorManager.h"
 #include "Bullet.h"
 #include "ObjectManager.h"
-#include "Prototype.h"
+#include "ObjectFactory.h"
+#include "NormalBullet.h"
 
 Player::Player() { }
 Player::Player(Transform _TransInfo) : Object(_TransInfo) { }
@@ -50,11 +51,16 @@ int Player::Update()
 
 	if (dwKey & KEY_SPACE)
 	{
-		Object* pBullet = Prototype::GetInstance()->ProtoTypeObject("Bullet");
-		pBullet->SetPosition(TransInfo.Position);
-		ObjectManager::GetInstance()->AddObject("Bullet");
-		//Object* pBullet = ObjectManager::GetInstance()->GetObjectList("Bullet")->front();
+		ObjectManager::GetInstance()->AddObject(
+			CreateBullet<NormalBullet>());
 	}
+
+	/*
+	if (dwKey & KEY_SPACE)
+	{
+		CreateBullet<(다른거)NormalBullet>();
+	}
+	*/
 
 	return 0;
 }
@@ -81,4 +87,13 @@ void Player::Render()
 void Player::Release()
 {
 
+}
+
+template<typename T>
+Object* Player::CreateBullet()
+{
+	Bridge* pBridge = new T;
+	Object* pBullet = ObjectFactory<Bullet>::CreateObject(TransInfo.Position, pBridge); // 총알에 속성(pBridge)을 주고난 후 반환
+
+	return pBullet;
 }

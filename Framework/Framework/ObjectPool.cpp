@@ -39,7 +39,6 @@ Object* ObjectPool::ThrowObject(string _Key)
 		Disableiter->second.pop_front();
 
 		pObject->Initialize(_Key);
-		pObject->GetPosition();
 
 		return pObject;
 	}

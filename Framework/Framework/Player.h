@@ -11,7 +11,11 @@ public:
 
 	virtual Object* Clone() override { return new Player(*this); }
 public:
+	template <typename T>
+	Object* CreateBullet();
+public:
 	Player();
 	Player(Transform _TransInfo);
 	virtual ~Player();
 };
+

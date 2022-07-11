@@ -19,6 +19,7 @@ private:
 	int Credit;
 public:
 	void AddObject(string _Key);
+	void AddObject(Object* _Object);
 	list<Object*>* GetObjectList(string _strKey);
 	list<Object*>::iterator ThrowObject(list<Object*>::iterator _Where, Object* _Object);
 	void SetCredit(int _Credit) { Credit = _Credit; }

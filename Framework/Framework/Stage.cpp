@@ -24,10 +24,7 @@ void Stage::Initialize()
 	ObjectManager::GetInstance()->AddObject("Player");
 	pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
 
-	//pPlayer = Prototype::GetInstance()->ProtoTypeObject("Player");
-	//ObjectManager::GetInstance()->AddObject("Player");
-
-	for (int i = 0; i < 7; ++i)
+	for (int i = 0; i < 5; ++i)
 	{
 		srand(DWORD(GetTickCount64() * (i + 1)));
 	
@@ -43,21 +40,6 @@ void Stage::Update()
 	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObjectList("Enemy");
 
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
-
-	/*if (dwKey & KEY_ESCAPE)
-	{
-		while (true)
-		{
-			if (Check == 1)
-			{
-				Scene::PauseMessage();
-				system("pause");
-				break;
-			}
-			else
-				break;
-		}
-	}*/
 
 	if (dwKey & KEY_TAB)
 	{
@@ -102,11 +84,6 @@ void Stage::Update()
 		{
 			ObjectPool::GetInstance()->CatchObject(pBulletList->back());
 			pBulletList->pop_back();
-		}
-
-		if (pEnemyList->size())
-		{
-			ObjectPool::GetInstance()->ThrowObject("Enemy");
 		}
 	}
 
