@@ -1,10 +1,11 @@
 #include "Bullet.h"
 #include "CursorManager.h"
 #include "MathManager.h"
+#include "Bridge.h"
 
 Bullet::Bullet() { }
 Bullet::Bullet(Transform _TransInfo) : Object(_TransInfo) { }
-Bullet::~Bullet() { }
+Bullet::~Bullet() { Release(); }
 
 
 Object* Bullet::Initialize(string _Key)
@@ -20,46 +21,40 @@ Object* Bullet::Initialize(string _Key)
 
 	TransInfo.Direction = Vector3(0.0f, 0.0f);
 
-	Color = 12;
+	if (pBridge)
+		pBridge->Initialize();
 
 	return this;
 }
 
 int Bullet::Update()
 {
-	//printf_s("%f\n", TransInfo.Direction.x);
-	//printf_s("%f\n", TransInfo.Direction.y);
-
 	// Target의 좌표 - 나의 좌표 => 나와 타겟 사이의 길이
 	// 1보다 작아져야 비율로 바뀌니 관리가 편하다(피타고라스의 정리)
 
-	TransInfo.Direction = MathManager::GetDirection(
-		TransInfo.Position, Vector3(60.0f, 15.0f));
-
-	TransInfo.Position += TransInfo.Direction;
-
-	float Distance = MathManager::GetDistance(
-		TransInfo.Position, Vector3(60.0f, 15.0f));
-
-	if (Distance < 4)
-		return 2;
+	if (pBridge)
+		pBridge->Update(TransInfo);
 
 	return 0;
 }
 
 void Bullet::Render()
 {
-	for (int i = 0; i < MAX_SIZE; ++i)
-	{
-		CursorManager::GetInstance()->WriteBuffer(
-			TransInfo.Position.x + (TransInfo.Scale.x + 16.0f),
-			TransInfo.Position.y + i,
-			Buffer[i], Color);
-	}
+	//for (int i = 0; i < MAX_SIZE; ++i)
+	//{
+	//	CursorManager::GetInstance()->WriteBuffer(
+	//		TransInfo.Position.x + (TransInfo.Scale.x + 16.0f),
+	//		TransInfo.Position.y + i,
+	//		Buffer[i], Color);
+	//}
+
+	if (pBridge)
+		pBridge->Render();
 }
 
 void Bullet::Release()
 {
-
+	delete pBridge;
+	pBridge = nullptr;
 }
 

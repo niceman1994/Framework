@@ -50,7 +50,7 @@ public:
 
 		float Sum = _ObjA->GetScale().x * 0.5f + _ObjB->GetScale().x * 0.5f;
 
-		if (Distance < Sum)
+		if (Distance <= Sum)
 			return true;
 
 		return false;

@@ -39,6 +39,7 @@ Object* ObjectPool::ThrowObject(string _Key)
 		Disableiter->second.pop_front();
 
 		pObject->Initialize(_Key);
+		pObject->GetPosition();
 
 		return pObject;
 	}
@@ -53,6 +54,12 @@ void ObjectPool::Update()
 
 	CursorManager::GetInstance()->WriteBuffer(85.0f, 1.0f, (char*)"EnableList(Bullet) : ");
 	CursorManager::GetInstance()->WriteBuffer(106.0f, 1.0f, EnableList["Bullet"].size());
+
+	CursorManager::GetInstance()->WriteBuffer(85.0f, 2.0f, (char*)"DisableList(Enemy) : ");
+	CursorManager::GetInstance()->WriteBuffer(106.0f, 2.0f, DisableList["Enemy"].size());
+
+	CursorManager::GetInstance()->WriteBuffer(85.0f, 3.0f, (char*)"EnableList(Enemy) : ");
+	CursorManager::GetInstance()->WriteBuffer(105.0f, 3.0f, EnableList["Enemy"].size());
 
 	for (map<string, list<Object*>>::iterator iter = EnableList.begin(); iter != EnableList.end(); ++iter)
 	{

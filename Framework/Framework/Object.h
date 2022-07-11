@@ -1,13 +1,15 @@
 #pragma once
 #include "Headers.h"
 
+class Bridge;
 class Object
 {
 protected:
 	Transform TransInfo;
 	string strKey;
-	int Color;
 	char* Buffer[3];
+
+	Bridge* pBridge;
 public:
 	virtual Object* Initialize(string _Key)PURE;
 	virtual int Update()PURE;
@@ -18,8 +20,8 @@ public:
 public:
 	string GetKey() const { return strKey; }
 
-	int GetColor() const { return Color; }
-	void SetColor(int _Color) { Color = _Color; }
+	//int GetColor() const { return Color; }
+	//void SetColor(int _Color) { Color = _Color; }
 
 	Vector3 GetPosition() const { return TransInfo.Position; }
 	void SetPosition(float _x, float _y) { TransInfo.Position = Vector3(_x, _y); }

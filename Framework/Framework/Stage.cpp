@@ -21,22 +21,27 @@ void Stage::Initialize()
 	pUI = new ScrollBox;
 	pUI->Initialize();
 
-	pPlayer = Prototype::GetInstance()->ProtoTypeObject("Player");
 	ObjectManager::GetInstance()->AddObject("Player");
-	
-	Object* pEnemy = Prototype::GetInstance()->ProtoTypeObject("Enemy");
+	pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
 
-	for (int i = 0; i < 5; ++i)
+	//pPlayer = Prototype::GetInstance()->ProtoTypeObject("Player");
+	//ObjectManager::GetInstance()->AddObject("Player");
+
+	for (int i = 0; i < 7; ++i)
 	{
 		srand(DWORD(GetTickCount64() * (i + 1)));
-
-		pEnemy->SetPosition(float(rand() % 118), float(rand() % 25));
+	
+		Object* pEnemy = Prototype::GetInstance()->ProtoTypeObject("Enemy");
+		pEnemy->SetPosition(float(rand() % 25 + 80), float(rand() % 20 + 5));
 		ObjectManager::GetInstance()->AddObject("Enemy");
 	}
 }
 
 void Stage::Update()
 {
+	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObjectList("Bullet");
+	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObjectList("Enemy");
+
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
 	/*if (dwKey & KEY_ESCAPE)
@@ -74,15 +79,34 @@ void Stage::Update()
 	ObjectManager::GetInstance()->Update();
 	
 	//Object* pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
-	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObjectList("Bullet");
-	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObjectList("Enemy");
-
+	
 	if (dwKey & KEY_ESCAPE)
 	{
-		if (pBulletList->size())
+		if (pBulletList->size() >= 20)
+		{
+			for (int i = 0; i < 20; ++i)
+			{
+				ObjectPool::GetInstance()->CatchObject(pBulletList->back());
+				pBulletList->pop_back();
+			}
+		}
+		else if (pBulletList->size() < 20 && pBulletList->size() >= 5)
+		{
+			for (int i = 0; i < 5; ++i)
+			{
+				ObjectPool::GetInstance()->CatchObject(pBulletList->back());
+				pBulletList->pop_back();
+			}
+		}
+		else if(pBulletList->size())
 		{
 			ObjectPool::GetInstance()->CatchObject(pBulletList->back());
 			pBulletList->pop_back();
+		}
+
+		if (pEnemyList->size())
+		{
+			ObjectPool::GetInstance()->ThrowObject("Enemy");
 		}
 	}
 
@@ -103,10 +127,12 @@ void Stage::Update()
 		if (pEnemyList != nullptr)
 		{
 			for (list<Object*>::iterator Enemyiter = pEnemyList->begin();
-				Enemyiter != pEnemyList->end(); ++Enemyiter)
+				Enemyiter != pEnemyList->end();)
 			{
 				if (CollisionManager::CircleCollision(pPlayer, *Enemyiter))
 					Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
+				else
+					++Enemyiter;
 
 				if (pBulletList != nullptr)
 				{
