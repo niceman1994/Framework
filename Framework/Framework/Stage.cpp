@@ -7,7 +7,7 @@
 #include "InputManager.h"
 #include "CursorManager.h"
 #include "ObjectManager.h"
-#include "Prototype.h"
+#include "ObjectFactory.h"
 #include "ObjectPool.h"
 
 Stage::Stage() : Check(0) { }
@@ -24,14 +24,14 @@ void Stage::Initialize()
 	ObjectManager::GetInstance()->AddObject("Player");
 	pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
 
-	for (int i = 0; i < 5; ++i)
-	{
-		srand(DWORD(GetTickCount64() * (i + 1)));
-	
-		Object* pEnemy = Prototype::GetInstance()->ProtoTypeObject("Enemy");
-		pEnemy->SetPosition(float(rand() % 25 + 80), float(rand() % 20 + 5));
-		ObjectManager::GetInstance()->AddObject("Enemy");
-	}
+	//for (int i = 0; i < 5; ++i)
+	//{
+	//	srand(DWORD(GetTickCount64() * (i + 1)));
+	//
+	//	Object* pEnemy = Prototype::GetInstance()->ProtoTypeObject("Enemy");
+	//	pEnemy->SetPosition(float(rand() % 25 + 80), float(rand() % 20 + 5));
+	//	ObjectManager::GetInstance()->AddObject("Enemy");
+	//}
 }
 
 void Stage::Update()

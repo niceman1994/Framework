@@ -1,6 +1,4 @@
 #include "Bullet.h"
-#include "CursorManager.h"
-#include "MathManager.h"
 #include "Bridge.h"
 
 Bullet::Bullet() { }

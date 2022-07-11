@@ -2,6 +2,7 @@
 #include "Headers.h"
 
 class Object;
+class Bridge;
 class ObjectManager
 {
 private:
@@ -19,7 +20,7 @@ private:
 	int Credit;
 public:
 	void AddObject(string _Key);
-	void AddObject(Object* _Object);
+	void AddObject(string _Key, Bridge* _Bridge);
 	list<Object*>* GetObjectList(string _strKey);
 	list<Object*>::iterator ThrowObject(list<Object*>::iterator _Where, Object* _Object);
 	void SetCredit(int _Credit) { Credit = _Credit; }

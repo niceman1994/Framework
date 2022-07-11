@@ -10,7 +10,6 @@ Player::Player() { }
 Player::Player(Transform _TransInfo) : Object(_TransInfo) { }
 Player::~Player() { }
 
-
 Object* Player::Initialize(string _Key)
 {
 	strKey = _Key;
@@ -51,16 +50,9 @@ int Player::Update()
 
 	if (dwKey & KEY_SPACE)
 	{
-		ObjectManager::GetInstance()->AddObject(
-			CreateBullet<NormalBullet>());
+		Bridge* pBridge = new NormalBullet;
+		ObjectManager::GetInstance()->AddObject("Bullet", pBridge);
 	}
-
-	/*
-	if (dwKey & KEY_SPACE)
-	{
-		CreateBullet<(다른거)NormalBullet>();
-	}
-	*/
 
 	return 0;
 }
@@ -78,22 +70,13 @@ void Player::Render()
 	for (int i = 0; i < MAX_SIZE; ++i)
 	{
 		CursorManager::GetInstance()->WriteBuffer(
-			TransInfo.Position.x - (TransInfo.Scale.x * 0.5f),
-			TransInfo.Position.y - (TransInfo.Scale.y * 0.5f) + i,
-			Buffer[i]);
+			TransInfo.Position.x,
+			TransInfo.Position.y + i,
+			Buffer[i], 15);
 	}
 }
 
 void Player::Release()
 {
 
-}
-
-template<typename T>
-Object* Player::CreateBullet()
-{
-	Bridge* pBridge = new T;
-	Object* pBullet = ObjectFactory<Bullet>::CreateObject(TransInfo.Position, pBridge); // 총알에 속성(pBridge)을 주고난 후 반환
-
-	return pBullet;
 }
