@@ -106,9 +106,7 @@ void Stage::Update()
 				Enemyiter != pEnemyList->end(); ++Enemyiter)
 			{
 				if (CollisionManager::CircleCollision(pPlayer, *Enemyiter))
-				{
 					Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
-				}
 
 				if (pBulletList != nullptr)
 				{

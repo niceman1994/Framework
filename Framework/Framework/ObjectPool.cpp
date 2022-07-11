@@ -48,11 +48,11 @@ Object* ObjectPool::ThrowObject(string _Key)
 
 void ObjectPool::Update()
 {
-	CursorManager::GetInstance()->WriteBuffer(85.0f, 0.0f, (char*)"DisableList : ");
-	CursorManager::GetInstance()->WriteBuffer(100.0f, 0.0f, DisableList["Bullet"].size());
+	CursorManager::GetInstance()->WriteBuffer(85.0f, 0.0f, (char*)"DisableList(Bullet) : ");
+	CursorManager::GetInstance()->WriteBuffer(107.0f, 0.0f, DisableList["Bullet"].size());
 
-	CursorManager::GetInstance()->WriteBuffer(85.0f, 1.0f, (char*)"EnableList : ");
-	CursorManager::GetInstance()->WriteBuffer(100.0f, 1.0f, EnableList["Bullet"].size());
+	CursorManager::GetInstance()->WriteBuffer(85.0f, 1.0f, (char*)"EnableList(Bullet) : ");
+	CursorManager::GetInstance()->WriteBuffer(106.0f, 1.0f, EnableList["Bullet"].size());
 
 	for (map<string, list<Object*>>::iterator iter = EnableList.begin(); iter != EnableList.end(); ++iter)
 	{

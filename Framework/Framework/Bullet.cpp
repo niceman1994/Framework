@@ -52,7 +52,7 @@ void Bullet::Render()
 	for (int i = 0; i < MAX_SIZE; ++i)
 	{
 		CursorManager::GetInstance()->WriteBuffer(
-			TransInfo.Position.x,
+			TransInfo.Position.x + (TransInfo.Scale.x + 16.0f),
 			TransInfo.Position.y + i,
 			Buffer[i], Color);
 	}
