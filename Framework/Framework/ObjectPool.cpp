@@ -81,7 +81,7 @@ void ObjectPool::Update()
 					else
 						Disableiter->second.push_back((*iter2));
 
-					(*iter).second.erase(iter2);
+					iter2 = (*iter).second.erase(iter2);
 				}
 
 				case 2:

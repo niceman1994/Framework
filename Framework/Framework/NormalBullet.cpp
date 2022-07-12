@@ -20,8 +20,11 @@ void NormalBullet::Initialize()
 
 int NormalBullet::Update(Transform& Info)
 {
+	//Info.Direction = MathManager::GetDirection(
+	//	Info.Position, Vector3(60.0f, 15.0f));
+
 	Info.Direction = MathManager::GetDirection(
-		Info.Position, Vector3(60.0f, 15.0f));
+		Info.Position, Vector3(Info.Position.x, Info.Position.y));
 
 	Info.Position += Info.Direction * Speed;
 
@@ -31,9 +34,9 @@ int NormalBullet::Update(Transform& Info)
 void NormalBullet::Render()
 {
 	CursorManager::GetInstance()->WriteBuffer(
-		pObject->GetPosition().x,
+		pObject->GetPosition().x - (pObject->GetPosition().y * 0.5f),
 		pObject->GetPosition().y,
-		(char*)"Bullet", Color);
+		(char*)"¦¡", Color);
 }
 
 void NormalBullet::Release()

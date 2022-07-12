@@ -53,13 +53,13 @@ int Player::Update()
 	if (dwKey & KEY_SPACE)
 	{
 		Bridge* pBridge = new NormalBullet;
-		ObjectManager::GetInstance()->AddObject("Bullet", pBridge);
+		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
 	}
 
 	if (dwKey & KEY_CTRL)
 	{
 		Bridge* pBridge = new TwinBullet;
-		ObjectManager::GetInstance()->AddObject("Bullet", pBridge);
+		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
 	}
 
 	return 0;

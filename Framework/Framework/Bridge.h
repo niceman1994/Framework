@@ -11,6 +11,8 @@ public:
 	virtual int Update(Transform& Info)PURE;
 	virtual void Render()PURE;
 	virtual void Release()PURE;
+
+	virtual Bridge* Clone()PURE;
 public:
 	void SetObject(Object* _Object) { pObject = _Object; }
 public:

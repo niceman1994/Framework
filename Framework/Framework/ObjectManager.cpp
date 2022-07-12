@@ -1,4 +1,5 @@
 #include "ObjectManager.h"
+#include "ObjectFactory.h"
 #include "Prototype.h"
 #include "ObjectPool.h"
 #include "Bullet.h"
@@ -6,7 +7,7 @@
 
 ObjectManager* ObjectManager::Instance = nullptr;
 
-ObjectManager::ObjectManager() 
+ObjectManager::ObjectManager() : Credit(0)
 {
 	EnableList = ObjectPool::GetEnableList();
 }
@@ -36,7 +37,7 @@ void ObjectManager::AddObject(string _Key)
 		iter->second.push_back(pObject); // string이 이미 존재할 경우 list<Object*> 에 _Object를 넣는다.
 }
 
-void ObjectManager::AddObject(string _Key, Bridge* _Bridge)
+void ObjectManager::AddObject(string _Key, Bridge* _Bridge, Vector3 _Position)
 {
 	Object* pObject = ObjectPool::GetInstance()->ThrowObject(_Key);
 
@@ -47,6 +48,7 @@ void ObjectManager::AddObject(string _Key, Bridge* _Bridge)
 	_Bridge->SetObject(pObject);
 
 	pObject->SetBridge(_Bridge);
+	pObject->SetPosition(_Position);
 
 	map<string, list<Object*>>::iterator iter = EnableList->find(_Key);
 

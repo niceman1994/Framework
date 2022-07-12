@@ -11,7 +11,7 @@
 #include "ObjectFactory.h"
 #include "ObjectPool.h"
 
-Stage::Stage() : Check(0) { }
+Stage::Stage() : pPlayer(nullptr), pUI(nullptr), Check(0) { }
 Stage::~Stage() { Release(); }
 
 
@@ -25,23 +25,15 @@ void Stage::Initialize()
 	ObjectManager::GetInstance()->AddObject("Player");
 	pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
 
-	ObjectManager::GetInstance()->AddObject("Enemy");
-	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObjectList("Enemy");
+	Object* pEnemy = Prototype::GetInstance()->ProtoTypeObject("Enemy");
 
-	for (list<Object*>::iterator iter = pEnemyList->begin(); iter != pEnemyList->end();)
+	for (int i = 0; i < 5; ++i)
 	{
-		(*iter)->SetPosition(float(rand() % 30 + 75), float(rand() % 15 + 5));
+		srand(DWORD(GetTickCount64() * (i + 1)));
+		
+		pEnemy->SetPosition(float(rand() % 30 + 80), float(rand() % 18 + 5));
+		ObjectManager::GetInstance()->AddObject("Enemy");
 	}
-
-	//Object* pEnemy = Prototype::GetInstance()->ProtoTypeObject("Enemy");
-
-	//for (int i = 0; i < 5; ++i)
-	//{
-	//	srand(DWORD(GetTickCount64() * (i + 1)));
-	//	
-	//	pEnemy->SetPosition(float(rand() % 30 + 75), float(rand() % 15 + 5));
-	//	ObjectManager::GetInstance()->AddObject("Enemy");
-	//}
 }
 
 void Stage::Update()
@@ -67,7 +59,6 @@ void Stage::Update()
 	}
 
 	pPlayer->Update();
-	
 	ObjectManager::GetInstance()->Update();
 	
 	if (dwKey & KEY_ESCAPE)
@@ -114,14 +105,9 @@ void Stage::Update()
 			for (list<Object*>::iterator Enemyiter = pEnemyList->begin();
 				Enemyiter != pEnemyList->end();)
 			{
-				if (CollisionManager::CircleCollision(pPlayer, *Enemyiter))
-					Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
-				else
-					++Enemyiter;
-
 				if (pBulletList != nullptr)
 				{
-					for (list<Object*>::iterator Bulletiter = pBulletList->begin(); Bulletiter != pBulletList->end();)
+					for (list<Object*>::iterator Bulletiter = pBulletList->begin(); Bulletiter != pBulletList->end(); )
 					{
 						if (CollisionManager::Collision(*Bulletiter, *Enemyiter))
 							Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, (*Bulletiter));
@@ -129,6 +115,13 @@ void Stage::Update()
 							++Bulletiter;
 					}
 				}
+				
+				if (CollisionManager::CircleCollision(pPlayer, *Enemyiter))
+				{
+					Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
+				}
+				else
+					++Enemyiter;
 			}
 		}
 	}
