@@ -51,22 +51,16 @@ void StageUI::Render()
 
 	CursorManager::GetInstance()->WriteBuffer(36.0f, 17.0f, (char*)
 		"########  ########    ###    ########  ##    ##\n", 14);
-
 	CursorManager::GetInstance()->WriteBuffer(36.0f, 18.0f, (char*)
 		"##     ## ##         ## ##   ##     ##  ##  ## \n", 14);
-
 	CursorManager::GetInstance()->WriteBuffer(36.0f, 19.0f, (char*)
 		"##     ## ##        ##   ##  ##     ##   ####  \n", 14);
-
 	CursorManager::GetInstance()->WriteBuffer(36.0f, 20.0f, (char*)
 		"########  ######   ##     ## ##     ##    ##   \n", 14);
-
 	CursorManager::GetInstance()->WriteBuffer(36.0f, 21.0f, (char*)
 		"##   ##   ##       ######### ##     ##    ##   \n", 14);
-
 	CursorManager::GetInstance()->WriteBuffer(36.0f, 22.0f, (char*)
 		"##    ##  ##       ##     ## ##     ##    ##   \n", 14);
-
 	CursorManager::GetInstance()->WriteBuffer(36.0f, 23.0f, (char*)
 		"##     ## ######## ##     ## ########     ##   \n", 14);
 }

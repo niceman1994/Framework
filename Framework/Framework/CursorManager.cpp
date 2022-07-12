@@ -2,7 +2,7 @@
 
 CursorManager* CursorManager::Instance = nullptr;
 
-CursorManager::CursorManager() : BufferIndex(0) 
+CursorManager::CursorManager() : BufferIndex(0)
 {
 
 }

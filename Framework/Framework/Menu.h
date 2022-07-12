@@ -6,7 +6,6 @@ class Menu : public Scene
 private:
 	Vector3 Position;
 	char* Choose[1];
-	char* Stage[4];
 public:
 	virtual void Initialize()override;
 	virtual void Update()override;
