@@ -6,7 +6,9 @@ BackGround::~BackGround() {}
 
 Object* BackGround::Initialize(string _Key)
 {
-    return nullptr;
+    strKey = "BackGround";
+
+    return this;
 }
 
 int BackGround::Update()

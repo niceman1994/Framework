@@ -49,7 +49,7 @@ void Stage::Update()
 		Enable_UI();
 	}
 
-	if (dwKey & PRESS_5)
+	if (dwKey & PRESS_0)
 	{
 		ObjectManager::GetInstance()->IncreaseCredit();
 		CursorManager::GetInstance()->ClearBuffer();
@@ -163,8 +163,8 @@ void Stage::Render()
 	if (Check)
 		pUI->Render();
 
-	CursorManager::GetInstance()->WriteBuffer(119.0f, 28.0f, (char*)"\t\t\t\t\t\t\t\t\t\t\t\tCREDIT : ", 14);
-	CursorManager::GetInstance()->WriteBuffer(97.0f, 29.0f, (int)(char*)(ObjectManager::GetInstance()->GetCredit()), 14);
+	CursorManager::GetInstance()->WriteBuffer(92.0f, 28.0f, (char*)"CREDIT : ", 14);
+	CursorManager::GetInstance()->WriteBuffer(101.0f, 28.0f, (int)(char*)(ObjectManager::GetInstance()->GetCredit()), 14);
 }
 
 void Stage::Release()

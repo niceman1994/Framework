@@ -27,9 +27,6 @@ int TwinBullet::Update(Transform& Info)
 
     Info.Position += Info.Direction * Speed;
 
-   // if (Info.Position.x >= 120.0f)
-   //     CursorManager::GetInstance()->DestroyBuffer();
-
     return 0;
 }
 

@@ -9,17 +9,45 @@ Menu::~Menu() { }
 
 void Menu::Initialize()
 {
-	Pointer[0] = (char*)">>>>>>>    ";
-	Pointer[1] = (char*)"  >:::::>  ";
-	Pointer[2] = (char*)"    >:::::>";
-	Pointer[3] = (char*)"  >:::::>  ";
-	Pointer[4] = (char*)">>>>>>>  	";
+	//Transform Info;
+
+	Choose[0] = (char*)"¢¹";
+
+	Position = Vector3(47.0f, 16.0f);
+
+	Stage[0] = (char*)"STAGE 1";
+	Position = Vector3(55.0f, 17.0f);
+
+	Stage[1] = (char*)"STAGE 2";
+	Position = Vector3(55.0f, 18.0f);
+
+	Stage[2] = (char*)"STAGE 3";
+	Position = Vector3(55.0f, 19.0f);
+
+	Stage[3] = (char*)"STAGE 4";
+	Position = Vector3(55.0f, 20.0f);
 }
 
 void Menu::Update()
 {
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
-		
+
+	if (dwKey & KEY_UP)
+	{
+		Position.y -= 1;
+	
+		if(Position.x == 47.0f && Position.y <= 16.0f)
+			Position.y -= 0;
+	}
+	
+	if (dwKey & KEY_DOWN)
+	{
+		Position.y += 1;
+	
+		if (Position.x == 47.0f && Position.y >= 19.0f)
+			Position.y += 0;
+	}
+	
 	if (dwKey & KEY_ENTER)
 		SceneManager::GetInstance()->SetScene(STAGEUI);
 
@@ -28,7 +56,7 @@ void Menu::Update()
 		CursorManager::GetInstance()->ClearBuffer();
 	}
 		
-	if (dwKey & PRESS_5)
+	if (dwKey & PRESS_0)
 	{
 		ObjectManager::GetInstance()->IncreaseCredit();
 		CursorManager::GetInstance()->ClearBuffer();
@@ -41,31 +69,26 @@ void Menu::Update()
 
 void Menu::Render()
 {
-	CursorManager::GetInstance()->WriteBuffer(0.0f, 4.0f, (char*)
-	"\n"
-	"\t    #### #####   #    ###  #####    #### #####   #   ####  ####    #### #### #     ####  ### ##### \n" 
-	"\t   #       #   #   # #   #   #     #       #   #   # #     #      #     #    #     #    #      #   \n" 
-	"\t    ###    #   ##### ####    #      ###    #   ##### # ### ###     ###  ###  #     ###  #      #   \n" 
-	"\t       #   #   #   # #   #   #         #   #   #   # #   # #          # #    #     #    #      #   \n" 
-	"\t   ####    #   #   # #   #   #     ####    #   #   #  #### ####   ####  #### ##### ####  ###   #     "
-	"\n");
+	CursorManager::GetInstance()->WriteBuffer(0.0f, 3.0f, (char*)
+	"\t  #### #####   #   ####   #####     #### #####   #   ##### #####     ####  ##### #     #####  ####  #####\n"
+	"\t #       #    # #  #   #    #      #       #    # #  #     #        #      #     #     #      #   #   #  \n"
+	"\t#        #   #   # #    #   #     #        #   #   # #     #       #       #     #     #      #       #  \n"
+	"\t #       #   #   # #   #    #      #       #   #   # #     #        #      #     #     #      #       #  \n"
+	"\t  ###    #   ##### ####     #       ###    #   ##### # ### ####      ###   ####  #     ####   #       #  \n"
+	"\t     #   #   #   # #  #     #          #   #   #   # #   # #            #  #     #     #      #       #  \n"
+	"\t      #  #   #   # #   #    #           #  #   #   # #   # #             # #     #     #      #       #  \n"
+	"\t     #   #   #   # #    #   #          #   #   #   # #   # #            #  #     #     #      #   #   #  \n"
+	"\t ####    #   #   # #     #  #      ####    #   #   #  #### #####    ####   ##### ##### #####   ###    #  \n", 8);
 
-	CursorManager::GetInstance()->WriteBuffer(0.0f, 13.0f, (char*)
-		"\t\t\t\t _______  _______  _______  _______  _______    ____  \n"
-		"\t\t\t\t|       ||       ||   _   ||       ||       |  |    | \n"
-		"\t\t\t\t|  _____||_     _||  |_|  ||    ___||    ___|   |   | \n"
-		"\t\t\t\t| |_____   |   |  |       ||   | __ |   |___    |   | \n"
-		"\t\t\t\t|_____  |  |   |  |       ||   ||  ||    ___|   |   | \n"
-		"\t\t\t\t _____| |  |   |  |   _   ||   |_| ||   |___    |   | \n"
-		"\t\t\t\t|_______|  |___|  |__| |__||_______||_______|   |___| ", 3);
+	CursorManager::GetInstance()->WriteBuffer(Position.x, Position.y, Stage[0], 3);
+	CursorManager::GetInstance()->WriteBuffer(Position.x, Position.y, Stage[1], 4);
+	CursorManager::GetInstance()->WriteBuffer(Position.x, Position.y, Stage[2], 6);
+	CursorManager::GetInstance()->WriteBuffer(Position.x, Position.y, Stage[3], 12);
 
-	for (int i = 0; i < 2; ++i)
-		CursorManager::GetInstance()->WriteBuffer(13.0f + i, 15.0f + i, Pointer[i]);
-	for (int i = 2; i < 5; ++i)
-		CursorManager::GetInstance()->WriteBuffer(17.0f - i, 15.0f + i, Pointer[i]);
+	CursorManager::GetInstance()->WriteBuffer(Position.x, Position.y, Choose[0]);
 
-	CursorManager::GetInstance()->WriteBuffer(110.0f, 25.0f, (char*)"\t\t\t\t\t\t\t\t\t\t\t\tCREDIT : \n\n\n\n", 14);
-	CursorManager::GetInstance()->WriteBuffer(89.0f, 25.0f, (int)(char*)(ObjectManager::GetInstance()->GetCredit()), 14);
+	CursorManager::GetInstance()->WriteBuffer(92.0f, 28.0f, (char*)"CREDIT : ", 14);
+	CursorManager::GetInstance()->WriteBuffer(101.0f, 28.0f, (int)(char*)(ObjectManager::GetInstance()->GetCredit()), 14);
 }
 
 void Menu::Release()
