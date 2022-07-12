@@ -24,10 +24,7 @@ Object* Enemy::Initialize(string _Key)
 
 int Enemy::Update()
 {
-	//TransInfo.Position.x -= 1.1f;
-
-	if (TransInfo.Position.x <= 0)
-		return BUFFER_OVER;
+	TransInfo.Position.x -= 1.25f;
 
 	return 0;
 }
@@ -37,8 +34,8 @@ void Enemy::Render()
 	for (int i = 0; i < MAX_SIZE; ++i)
 	{
 		CursorManager::GetInstance()->WriteBuffer(
-			TransInfo.Position.x - (TransInfo.Scale.x * 0.5f),
-			TransInfo.Position.y - (TransInfo.Scale.y * 0.5f) + i,
+			TransInfo.Position.x,
+			TransInfo.Position.y + i,
 			Buffer[i]);
 	}
 }

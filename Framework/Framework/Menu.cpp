@@ -21,7 +21,7 @@ void Menu::Update()
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 		
 	if (dwKey & KEY_ENTER)
-		SceneManager::GetInstance()->SetScene(STAGE);
+		SceneManager::GetInstance()->SetScene(STAGEUI);
 
 	if (dwKey & KEY_ESCAPE)
 	{
@@ -57,15 +57,15 @@ void Menu::Render()
 		"\t\t\t\t| |_____   |   |  |       ||   | __ |   |___    |   | \n"
 		"\t\t\t\t|_____  |  |   |  |       ||   ||  ||    ___|   |   | \n"
 		"\t\t\t\t _____| |  |   |  |   _   ||   |_| ||   |___    |   | \n"
-		"\t\t\t\t|_______|  |___|  |__| |__||_______||_______|   |___| ");
+		"\t\t\t\t|_______|  |___|  |__| |__||_______||_______|   |___| ", 3);
 
 	for (int i = 0; i < 2; ++i)
 		CursorManager::GetInstance()->WriteBuffer(13.0f + i, 15.0f + i, Pointer[i]);
 	for (int i = 2; i < 5; ++i)
 		CursorManager::GetInstance()->WriteBuffer(17.0f - i, 15.0f + i, Pointer[i]);
 
-	CursorManager::GetInstance()->WriteBuffer(110.0f, 25.0f, (char*)"\t\t\t\t\t\t\t\t\t\t\t\tCREDIT : \n\n\n\n");
-	CursorManager::GetInstance()->WriteBuffer(89.0f, 25.0f, (int)(char*)(ObjectManager::GetInstance()->GetCredit()));
+	CursorManager::GetInstance()->WriteBuffer(110.0f, 25.0f, (char*)"\t\t\t\t\t\t\t\t\t\t\t\tCREDIT : \n\n\n\n", 14);
+	CursorManager::GetInstance()->WriteBuffer(89.0f, 25.0f, (int)(char*)(ObjectManager::GetInstance()->GetCredit()), 14);
 }
 
 void Menu::Release()

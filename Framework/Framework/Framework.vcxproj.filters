@@ -100,6 +100,9 @@
     <Filter Include="소스 파일\02. Object\Bullet\BulletBridge\TwinBullet">
       <UniqueIdentifier>{15cd97ff-8f7e-43b4-b2d3-a3c61453087e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01. Scene\StageUI">
+      <UniqueIdentifier>{45b2f956-f16c-422e-80b7-26a854a45904}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -167,6 +170,9 @@
     </ClCompile>
     <ClCompile Include="TwinBullet.cpp">
       <Filter>소스 파일\02. Object\Bullet\BulletBridge\TwinBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="StageUI.cpp">
+      <Filter>소스 파일\01. Scene\StageUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +268,9 @@
     </ClInclude>
     <ClInclude Include="TwinBullet.h">
       <Filter>소스 파일\02. Object\Bullet\BulletBridge\TwinBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="StageUI.h">
+      <Filter>소스 파일\01. Scene\StageUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -19,13 +19,16 @@ void TwinBullet::Initialize()
 
 int TwinBullet::Update(Transform& Info)
 {
-    //Info.Direction = MathManager::GetDirection(
-    //    Info.Position, Vector3(60.0f, 15.0f));
-
     Info.Direction = MathManager::GetDirection(
-        Info.Position, Vector3(Info.Position.x, Info.Position.y));
+        Info.Position, Vector3(120.0f, Info.Position.y));
+
+    //Info.Direction = MathManager::GetDirection(
+    //    Info.Position, Vector3(Info.Position.x, Info.Position.y));
 
     Info.Position += Info.Direction * Speed;
+
+   // if (Info.Position.x >= 120.0f)
+   //     CursorManager::GetInstance()->DestroyBuffer();
 
     return 0;
 }
@@ -33,16 +36,16 @@ int TwinBullet::Update(Transform& Info)
 void TwinBullet::Render()
 {
     CursorManager::GetInstance()->WriteBuffer(
-        pObject->GetPosition().x - (pObject->GetPosition().y * 0.5f),
-        pObject->GetPosition().y - 1,
-        (char*)"¦¡",
+        pObject->GetPosition().x + 0.5f,
+        pObject->GetPosition().y - 0.5f,
+        (char*)"£ª",
         Color);
 
     CursorManager::GetInstance()->WriteBuffer(
-        pObject->GetPosition().x - (pObject->GetPosition().y * 0.5f),
+        pObject->GetPosition().x + 0.5f,
         pObject->GetPosition().y,
-        (char*)"¦¡",
-        Color);
+        (char*)"£ª",
+        14);
 }
 
 void TwinBullet::Release()
