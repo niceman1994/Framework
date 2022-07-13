@@ -14,6 +14,7 @@ const DWORD KEY_CANCEL = 1024;
 const DWORD PRESS_0 = 2048;
 const DWORD PRESS_1 = 4096;
 const DWORD PRESS_2 = 8192;
+const DWORD PRESS_3 = 16384;
 
 
 const int BUFFER_OVER = 1;

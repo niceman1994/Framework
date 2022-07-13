@@ -103,6 +103,9 @@
     <Filter Include="소스 파일\01. Scene\StageUI">
       <UniqueIdentifier>{45b2f956-f16c-422e-80b7-26a854a45904}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01. Scene\Manual">
+      <UniqueIdentifier>{e758ea49-5de2-409f-b3b4-1af8f68f31ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -173,6 +176,9 @@
     </ClCompile>
     <ClCompile Include="StageUI.cpp">
       <Filter>소스 파일\01. Scene\StageUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Manual.cpp">
+      <Filter>소스 파일\01. Scene\Manual</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -271,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="StageUI.h">
       <Filter>소스 파일\01. Scene\StageUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Manual.h">
+      <Filter>소스 파일\01. Scene\Manual</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

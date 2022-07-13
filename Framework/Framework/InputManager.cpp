@@ -10,16 +10,16 @@ void InputManager::InputKey()
 {
 	Key = 0;
 
-	if (GetAsyncKeyState(VK_UP) || GetAsyncKeyState('W'))
+	if (GetAsyncKeyState(VK_UP))
 		Key |= KEY_UP;
 
-	if (GetAsyncKeyState(VK_DOWN) || GetAsyncKeyState('S'))
+	if (GetAsyncKeyState(VK_DOWN))
 		Key |= KEY_DOWN;
 
-	if (GetAsyncKeyState(VK_LEFT) || GetAsyncKeyState('A'))
+	if (GetAsyncKeyState(VK_LEFT))
 		Key |= KEY_LEFT;
 
-	if (GetAsyncKeyState(VK_RIGHT) || GetAsyncKeyState('D'))
+	if (GetAsyncKeyState(VK_RIGHT))
 		Key |= KEY_RIGHT;
 
 	if (GetAsyncKeyState(VK_SPACE))
@@ -51,4 +51,7 @@ void InputManager::InputKey()
 
 	if (GetAsyncKeyState(0x32))
 		Key |= PRESS_2;
+
+	if (GetAsyncKeyState(0x33))
+		Key |= PRESS_3;
 }

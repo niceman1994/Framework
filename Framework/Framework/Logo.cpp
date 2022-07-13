@@ -40,6 +40,9 @@ void Logo::Update()
 	}
 
 	if (dwKey & PRESS_2)
+		SceneManager::GetInstance()->SetScene(MANUAL);
+
+	if (dwKey & PRESS_3)
 		exit(0);
 }
 
@@ -67,9 +70,10 @@ void Logo::Render()
 	CursorManager::GetInstance()->WriteBuffer(14.0f, 17.0f, (char*)
 		"============================================================================================\n", 9);
 
-	CursorManager::GetInstance()->WriteBuffer(52.0f, 21.0f, (char*)"0. 동전넣기", 6);
-	CursorManager::GetInstance()->WriteBuffer(54.0f, 22.0f, (char*)"1. 시작", 2);
-	CursorManager::GetInstance()->WriteBuffer(54.0f, 23.0f, (char*)"2. 종료", 8);
+	CursorManager::GetInstance()->WriteBuffer(54.0f, 19.0f, (char*)"0. 동전넣기", 6);
+	CursorManager::GetInstance()->WriteBuffer(54.0f, 21.0f, (char*)"1. 시작", 2);
+	CursorManager::GetInstance()->WriteBuffer(54.0f, 23.0f, (char*)"2. 조작법", 3);
+	CursorManager::GetInstance()->WriteBuffer(54.0f, 25.0f, (char*)"3. 종료", 8);
 	
 	CursorManager::GetInstance()->WriteBuffer(92.0f, 28.0f, (char*)"CREDIT : ", 14);
 	CursorManager::GetInstance()->WriteBuffer(101.0f, 28.0f, (int)(char*)(ObjectManager::GetInstance()->GetCredit()), 14);

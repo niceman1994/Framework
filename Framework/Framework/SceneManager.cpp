@@ -1,6 +1,7 @@
 #include "SceneManager.h"
 
 #include "Logo.h"
+#include "Manual.h"
 #include "Menu.h"
 #include "StageUI.h"
 #include "Stage.h" // Scene.h 파일은 추상클래스로 만들어서 추가해도 쓸 수 없으니 파생 클래스들의 헤더 파일을 추가한다.
@@ -20,6 +21,10 @@ void SceneManager::SetScene(SCENEID _SceneState)
 	{
 	case SCENEID::LOGO:
 		SceneState = new Logo;
+		break;
+
+	case SCENEID::MANUAL:
+		SceneState = new Manual;
 		break;
 
 	case SCENEID::MENU:

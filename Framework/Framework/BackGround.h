@@ -3,6 +3,8 @@
 
 class BackGround : public Object
 {
+private:
+	vector<string> TextureList;
 public:
 	virtual Object* Initialize(string _Key)override;
 	virtual int Update()override;
