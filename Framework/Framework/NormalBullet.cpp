@@ -13,16 +13,12 @@ NormalBullet::~NormalBullet()
 
 void NormalBullet::Initialize()
 {
-	// Bullet의 데이터 초기화
 	Speed = 0.5f;
 	Color = 12;
 }
 
 int NormalBullet::Update(Transform& Info)
 {
-	//Info.Direction = MathManager::GetDirection(
-	//	Info.Position, Vector3(60.0f, 15.0f));
-
 	Info.Direction = MathManager::GetDirection(
 		Info.Position, Vector3(120.0f, Info.Position.y));
 
@@ -34,8 +30,8 @@ int NormalBullet::Update(Transform& Info)
 void NormalBullet::Render()
 {
 	CursorManager::GetInstance()->WriteBuffer(
-		pObject->GetPosition().x + 0.5f,
-		pObject->GetPosition().y,
+		pObject->GetPosition().x + (pObject->GetScale().x),
+		pObject->GetPosition().y - pObject->GetScale().y * 0.33f,
 		(char*)"＊", Color);
 }
 

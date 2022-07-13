@@ -19,6 +19,7 @@ private:
 	map<string, list<Object*>>* EnableList;
 	int Credit;
 	int Score;
+	int PlayerHp;
 public:
 	void AddObject(string _Key);
 	void AddObject(string _Key, Bridge* _Bridge, Vector3 _Position);
@@ -33,6 +34,10 @@ public:
 	void SetScore(int _Score) { Score = _Score; }
 	void GetStageScore(int _Score) { Score += _Score; }
 	int FinalScore() const { return Score; }
+
+	void SetHp(int _hp) { PlayerHp = _hp; }
+	void SubHp(int _hp) { PlayerHp -= _hp; }
+	int GetHp() const { return PlayerHp; }
 
 	void Update();
 	void Render();

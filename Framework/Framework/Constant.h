@@ -22,5 +22,5 @@ const int BUFFER_OVER = 1;
 const int MAX_SIZE = 2;
 
 
-const SHORT ConsoleWidthSize = 120;
-const SHORT ConsoleHeightSize = 30;
+const SHORT ConsoleWidthSize = 150;
+const SHORT ConsoleHeightSize = 40;

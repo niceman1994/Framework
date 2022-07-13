@@ -18,6 +18,8 @@ Stage::~Stage() { Release(); }
 
 void Stage::Initialize()
 {
+	ObjectManager::GetInstance()->SetHp(3);
+
 	Check = 0;
 
 	pUI = new ScrollBox;
@@ -32,7 +34,7 @@ void Stage::Initialize()
 	{
 		srand(DWORD(GetTickCount64() * (i + 1)));
 		
-		pEnemy->SetPosition(float(rand() % 30 + 80), float(rand() % 18 + 5));
+		pEnemy->SetPosition(float(rand() % 30 + (90 + (i * 6))), float(rand() % 18 + 5));
 		ObjectManager::GetInstance()->AddObject("Enemy");
 	}
 }
@@ -101,7 +103,10 @@ void Stage::Update()
 			iter != pBulletList->end(); )
 		{
 			if ((*iter)->GetPosition().x >= 120.0f)
+			{
+				(*iter)->SetPosition((*iter)->GetPosition().x, (*iter)->GetPosition().y);
 				iter = ObjectManager::GetInstance()->ThrowObject(iter, (*iter));
+			}
 			else
 				++iter;
 		}
@@ -120,35 +125,51 @@ void Stage::Update()
 
 	if (pPlayer != nullptr)
 	{
-		if (pEnemyList != nullptr && pBulletList != nullptr)
+		if (pEnemyList != nullptr)
 		{
-			for (list<Object*>::iterator Bulletiter = pBulletList->begin(); Bulletiter != pBulletList->end();)
+			for (list<Object*>::iterator Enemyiter = pEnemyList->begin(); Enemyiter != pEnemyList->end();)
 			{
-				for (list<Object*>::iterator Enemyiter = pEnemyList->begin(); Enemyiter != pEnemyList->end();)
+				if (pBulletList != nullptr)
 				{
-					if (CollisionManager::Collision(*Bulletiter, *Enemyiter))
+					for (list<Object*>::iterator Bulletiter = pBulletList->begin(); Bulletiter != pBulletList->end();)
 					{
-						delete (*Bulletiter);
-						Bulletiter = pBulletList->erase(Bulletiter);
+						if (Enemyiter == pEnemyList->end())
+							break;
+						else if (CollisionManager::Collision(*Bulletiter, *Enemyiter))
+						{
+							delete (*Enemyiter);
+							Enemyiter = pEnemyList->erase(Enemyiter);
 
-						delete (*Enemyiter);
-						Enemyiter = pEnemyList->erase(Enemyiter);
+							delete (*Bulletiter);
+							Bulletiter = pBulletList->erase(Bulletiter);
+						}
+						else
+							++Bulletiter;
 					}
-
-					if (Enemyiter != pEnemyList->end())
-						++Enemyiter;
 				}
-				++Bulletiter;
+				if (Enemyiter == pEnemyList->end())
+					break;
+				else
+					++Enemyiter;
 			}
-
-			//if (CollisionManager::CircleCollision(pPlayer, *Enemyiter))
-			//{
-			//	Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
-			//}
-			//else
-			//	++Enemyiter;
 		}
 	}
+
+	//if (pPlayer != nullptr)
+	//{
+	//	if (pEnemyList != nullptr)
+	//	{
+	//		for (list<Object*>::iterator Enemyiter = pEnemyList->begin(); Enemyiter != pEnemyList->end(); )
+	//		{
+	//			if (CollisionManager::CircleCollision(pPlayer, *Enemyiter))
+	//			{
+	//				ObjectManager::GetInstance()->SubHp(1);
+	//			}
+	//			//else
+	//			//	++Enemyiter;
+	//		}
+	//	}
+	//}
 
 	if (Check)
 		pUI->Update();
@@ -163,8 +184,14 @@ void Stage::Render()
 	if (Check)
 		pUI->Render();
 
-	CursorManager::GetInstance()->WriteBuffer(92.0f, 28.0f, (char*)"CREDIT : ", 14);
-	CursorManager::GetInstance()->WriteBuffer(101.0f, 28.0f, (int)(char*)(ObjectManager::GetInstance()->GetCredit()), 14);
+	for (int i = 0; i < 30; ++i)
+		CursorManager::GetInstance()->WriteBuffer(0.0f, 0.0f + i, (char*)" \n", 0);
+
+	CursorManager::GetInstance()->WriteBuffer(1.0f, 0.0f, (char*)"HP : ");
+	CursorManager::GetInstance()->WriteBuffer(6.0f, 0.0f, ObjectManager::GetInstance()->GetHp());
+
+	CursorManager::GetInstance()->WriteBuffer(118.0f, 39.0f, (char*)"CREDIT : ", 14);
+	CursorManager::GetInstance()->WriteBuffer(127.0f, 39.0f, ObjectManager::GetInstance()->GetCredit(), 14);
 }
 
 void Stage::Release()

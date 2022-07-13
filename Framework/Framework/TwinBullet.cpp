@@ -33,14 +33,14 @@ int TwinBullet::Update(Transform& Info)
 void TwinBullet::Render()
 {
     CursorManager::GetInstance()->WriteBuffer(
-        pObject->GetPosition().x + 0.5f,
-        pObject->GetPosition().y - 0.5f,
+        pObject->GetPosition().x + (pObject->GetScale().x),
+        pObject->GetPosition().y - (pObject->GetScale().y * 0.5f),
         (char*)"£ª",
         Color);
 
     CursorManager::GetInstance()->WriteBuffer(
-        pObject->GetPosition().x + 0.5f,
-        pObject->GetPosition().y,
+        pObject->GetPosition().x + (pObject->GetScale().x),
+        pObject->GetPosition().y + (pObject->GetScale().y * 0.25f),
         (char*)"£ª",
         14);
 }

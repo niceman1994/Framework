@@ -7,7 +7,7 @@
 
 ObjectManager* ObjectManager::Instance = nullptr;
 
-ObjectManager::ObjectManager() : Credit(0), Score(0)
+ObjectManager::ObjectManager() : Credit(0), Score(0), PlayerHp(0)
 {
 	EnableList = ObjectPool::GetEnableList();
 }

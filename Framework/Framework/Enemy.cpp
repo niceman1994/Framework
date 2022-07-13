@@ -12,12 +12,15 @@ Object* Enemy::Initialize(string _Key)
 {
 	strKey = _Key;
 
-	Buffer[0] = (char*)"È£";
-	Buffer[1] = (char*)"¤µ";
+	Buffer[0] = (char*)" ¡â";
+	Buffer[1] = (char*)" ¡à   ¡â";
+	Buffer[2] = (char*)"¡Ü¡à¡à¡à";
+	Buffer[3] = (char*)" ¡à   ¡ä";
+	Buffer[4] = (char*)" ¡ä";
 
 	TransInfo.Position = Vector3(0.0f, 0.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
-	TransInfo.Scale = Vector3(float(strlen(Buffer[0])), (float)MAX_SIZE);
+	TransInfo.Scale = Vector3(10.0f, 5.0f);
 
 	return this;
 }
@@ -31,12 +34,12 @@ int Enemy::Update()
 
 void Enemy::Render()
 {
-	for (int i = 0; i < MAX_SIZE; ++i)
+	for (int i = 0; i < 5; ++i)
 	{
 		CursorManager::GetInstance()->WriteBuffer(
 			TransInfo.Position.x,
-			TransInfo.Position.y + i,
-			Buffer[i]);
+			TransInfo.Position.y - (TransInfo.Scale.y * 0.5f) + i,
+			Buffer[i], 15);
 	}
 }
 
