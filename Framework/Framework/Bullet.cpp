@@ -38,6 +38,9 @@ int Bullet::Update()
 
 void Bullet::Render()
 {
+	//CursorManager::GetInstance()->WriteBuffer(1.0f, 1.0f, (int)TransInfo.Position.x);
+	//CursorManager::GetInstance()->WriteBuffer(1.0f, 2.0f, (int)TransInfo.Position.y);
+
 	if (pBridge)
 		pBridge->Render();
 }

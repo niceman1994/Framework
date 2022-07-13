@@ -37,16 +37,16 @@ int Player::Update()
 	{
 		TransInfo.Position.y -= 1.0f;
 
-		if (TransInfo.Position.y <= 5.0f)
-			TransInfo.Position = Vector3(TransInfo.Position.x, 5.0f); 
+		if (TransInfo.Position.y <= 4.0f)
+			TransInfo.Position = Vector3(TransInfo.Position.x, 4.0f); 
 	}
 
 	if (dwKey & KEY_DOWN)
 	{
 		TransInfo.Position.y += 1.0f;
 
-		if (TransInfo.Position.y >= 28.0f)
-			TransInfo.Position = Vector3(TransInfo.Position.x, 28.0f);
+		if (TransInfo.Position.y >= 47.0f)
+			TransInfo.Position = Vector3(TransInfo.Position.x, 47.0f);
 	}
 
 	if (dwKey & KEY_LEFT)
@@ -61,20 +61,24 @@ int Player::Update()
 	{
 		TransInfo.Position.x += 1.0f;
 
-		if (TransInfo.Position.x >= 110.0f)
-			TransInfo.Position = Vector3(110.0f, TransInfo.Position.y);
+		if (TransInfo.Position.x >= 170.0f)
+			TransInfo.Position = Vector3(170.0f, TransInfo.Position.y);
 	}
 
 	if (dwKey & KEY_SPACE)
 	{
 		Bridge* pBridge = new NormalBullet;
 		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
+
+		dwKey &= KEY_SPACE;
 	}
 
 	if (dwKey & KEY_CTRL)
 	{
 		Bridge* pBridge = new TwinBullet;
 		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
+
+		dwKey &= KEY_CTRL;
 	}
 
 	return 0;
@@ -82,8 +86,10 @@ int Player::Update()
 
 void Player::Render()
 {
-	CursorManager::GetInstance()->WriteBuffer(1.0f, 1.0f, (int)TransInfo.Position.x);
-	CursorManager::GetInstance()->WriteBuffer(1.0f, 2.0f, (int)TransInfo.Position.y);
+	CursorManager::GetInstance()->WriteBuffer(0.0f, 1.0f, (char*)"X : ");
+	CursorManager::GetInstance()->WriteBuffer(0.0f, 2.0f, (char*)"Y : ");
+	CursorManager::GetInstance()->WriteBuffer(4.0f, 1.0f, (int)TransInfo.Position.x);
+	CursorManager::GetInstance()->WriteBuffer(4.0f, 2.0f, (int)TransInfo.Position.y);
 
 	for (int i = 0; i < 5; ++i)
 	{

@@ -1,4 +1,4 @@
-// 2022.07.13 Framework Portfolio Ver 1.4
+// 2022.07.13 Framework Portfolio Ver 1.5
 #define _CRT_SECURE_NO_WARNINGS
 #include "Headers.h"
 #include "MainUpdate.h"
@@ -12,7 +12,7 @@ int main(void)
 {
 	system("title 김정곤 - Flight Shooting Game");
 
-	system("mode con cols=150 lines=40"); // 강제로 120, 30 사이즈로 맞춰주는 것
+	system("mode con cols=180 lines=50"); // 강제로 120, 30 사이즈로 맞춰주는 것
 
 	MainUpdate Main;
 	Main.Initialize();

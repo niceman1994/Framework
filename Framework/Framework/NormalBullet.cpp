@@ -13,14 +13,14 @@ NormalBullet::~NormalBullet()
 
 void NormalBullet::Initialize()
 {
-	Speed = 0.5f;
+	Speed = 1.2f;
 	Color = 12;
 }
 
 int NormalBullet::Update(Transform& Info)
 {
 	Info.Direction = MathManager::GetDirection(
-		Info.Position, Vector3(120.0f, Info.Position.y));
+		Info.Position, Vector3(180.0f, Info.Position.y));
 
 	Info.Position += Info.Direction * Speed;
 

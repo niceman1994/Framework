@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "ScrollBox.h"
+#include "BackGround.h"
 #include "SceneManager.h"
 #include "CollisionManager.h"
 #include "InputManager.h"
@@ -12,7 +13,7 @@
 #include "ObjectPool.h"
 #include "StageUI.h"
 
-Stage::Stage() : pPlayer(nullptr), pUI(nullptr), Check(0) { }
+Stage::Stage() : pPlayer(nullptr), pUI(nullptr), _BackGround(nullptr), Check(0) { }
 Stage::~Stage() { Release(); }
 
 
@@ -25,6 +26,9 @@ void Stage::Initialize()
 	pUI = new ScrollBox;
 	pUI->Initialize();
 
+	_BackGround = new BackGround;
+	_BackGround->Initialize("BackGround");
+
 	ObjectManager::GetInstance()->AddObject("Player");
 	pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
 
@@ -34,7 +38,7 @@ void Stage::Initialize()
 	{
 		srand(DWORD(GetTickCount64() * (i + 1)));
 		
-		pEnemy->SetPosition(float(rand() % 30 + (90 + (i * 6))), float(rand() % 18 + 5));
+		pEnemy->SetPosition(float(rand() % 10 + (60 + (i * 15))), float(rand() % 1 + (10 + (i * 4))));
 		ObjectManager::GetInstance()->AddObject("Enemy");
 	}
 }
@@ -102,9 +106,9 @@ void Stage::Update()
 		for (list<Object*>::iterator iter = pBulletList->begin();
 			iter != pBulletList->end(); )
 		{
-			if ((*iter)->GetPosition().x >= 120.0f)
+			if ((*iter)->GetPosition().x >= 179.0f)
 			{
-				(*iter)->SetPosition((*iter)->GetPosition().x, (*iter)->GetPosition().y);
+				//(*iter)->SetPosition((*iter)->GetPosition().x, (*iter)->GetPosition().y);
 				iter = ObjectManager::GetInstance()->ThrowObject(iter, (*iter));
 			}
 			else
@@ -116,7 +120,7 @@ void Stage::Update()
 	{
 		for (list<Object*>::iterator iter = pEnemyList->begin(); iter != pEnemyList->end();)
 		{
-			if ((*iter)->GetPosition().x <= 0.0f)
+			if ((*iter)->GetPosition().x <= -1.0f)
 				iter = ObjectManager::GetInstance()->ThrowObject(iter, *iter);
 			else
 				++iter;
@@ -184,14 +188,16 @@ void Stage::Render()
 	if (Check)
 		pUI->Render();
 
-	for (int i = 0; i < 30; ++i)
-		CursorManager::GetInstance()->WriteBuffer(0.0f, 0.0f + i, (char*)" \n", 0);
+	_BackGround->Render();
+
+	//for (int i = 0; i < 30; ++i)
+	//	CursorManager::GetInstance()->WriteBuffer(0.0f, 0.0f + i, (char*)" \n", 0);
 
 	CursorManager::GetInstance()->WriteBuffer(1.0f, 0.0f, (char*)"HP : ");
 	CursorManager::GetInstance()->WriteBuffer(6.0f, 0.0f, ObjectManager::GetInstance()->GetHp());
 
-	CursorManager::GetInstance()->WriteBuffer(118.0f, 39.0f, (char*)"CREDIT : ", 14);
-	CursorManager::GetInstance()->WriteBuffer(127.0f, 39.0f, ObjectManager::GetInstance()->GetCredit(), 14);
+	CursorManager::GetInstance()->WriteBuffer(148.0f, 49.0f, (char*)"CREDIT : ", 14);
+	CursorManager::GetInstance()->WriteBuffer(157.0f, 49.0f, ObjectManager::GetInstance()->GetCredit(), 14);
 }
 
 void Stage::Release()

@@ -4,7 +4,7 @@
 class BackGround : public Object
 {
 private:
-	vector<string> TextureList;
+	char* TextureList[8];
 public:
 	virtual Object* Initialize(string _Key)override;
 	virtual int Update()override;

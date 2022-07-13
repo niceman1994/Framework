@@ -13,7 +13,7 @@ void Menu::Initialize()
 
 	Choose[0] = (char*)"1P ¢¹";
 
-	Position = Vector3(60.0f, 22.0f);
+	Position = Vector3(77.0f, 24.0f);
 }
 
 void Menu::Update()
@@ -24,21 +24,21 @@ void Menu::Update()
 	{
 		Position.y -= 2;
 	
-		if (Position.y <= 22.0f)
-			Position = Vector3(60.0f, 22.0f);
+		if (Position.y <= 24.0f)
+			Position = Vector3(77.0f, 24.0f);
 	}
 	
 	if (dwKey & KEY_DOWN)
 	{
 		Position.y += 2;
 	
-		if (Position.y >= 28.0f)
-			Position = Vector3(60.0f, 28.0f);
+		if (Position.y >= 30.0f)
+			Position = Vector3(77.0f, 30.0f);
 	}
 	
 	if (dwKey & KEY_ENTER)
 	{
-		if(Position.y == 22.0f)
+		if(Position.y == 24.0f)
 			SceneManager::GetInstance()->SetScene(STAGEUI);
 	}
 
@@ -59,26 +59,36 @@ void Menu::Update()
 void Menu::Render()
 {
 	CursorManager::GetInstance()->WriteBuffer(0.0f, 4.0f, (char*)
-	"\t\t         #### #####   #   ####   #####     #### #####   #   ##### #####     ####  ##### #     #####   ###  #####\n"
-	"\t\t        #       #    # #  #   #    #      #       #    # #  #     #        #      #     #     #      #   #   #  \n"
-	"\t\t       #        #   #   # #    #   #     #        #   #   # #     #       #       #     #     #      #       #  \n"
-	"\t\t        #       #   #   # #   #    #      #       #   #   # #     #        #      #     #     #      #       #  \n"
-	"\t\t         ###    #   ##### ####     #       ###    #   ##### # ### ####      ###   ####  #     ####   #       #  \n"
-	"\t\t            #   #   #   # #  #     #          #   #   #   # #   # #            #  #     #     #      #       #  \n"
-	"\t\t             #  #   #   # #   #    #           #  #   #   # #   # #             # #     #     #      #       #  \n"
-	"\t\t            #   #   #   # #    #   #          #   #   #   # #   # #            #  #     #     #      #   #   #  \n"
-	"\t\t        ####    #   #   # #     #  #      ####    #   #   #  #### #####    ####   ##### ##### #####   ###    #  \n", 7);
+	"\t\t\t\t      #### #####   #   ####   #####     #### #####   #   ##### #####     ####  ##### #     #####   ###  #####\n"
+	"\t\t\t\t     #       #    # #  #   #    #      #       #    # #  #     #        #      #     #     #      #   #   #  \n"
+	"\t\t\t\t    #        #   #   # #    #   #     #        #   #   # #     #       #       #     #     #      #       #  \n"
+	"\t\t\t\t     #       #   #   # #   #    #      #       #   #   # #     #        #      #     #     #      #       #  \n"
+	"\t\t\t\t      ###    #   ##### ####     #       ###    #   ##### # ### ####      ###   ####  #     ####   #       #  \n"
+	"\t\t\t\t         #   #   #   # #  #     #          #   #   #   # #   # #            #  #     #     #      #       #  \n"
+	"\t\t\t\t          #  #   #   # #   #    #           #  #   #   # #   # #             # #     #     #      #       #  \n"
+	"\t\t\t\t         #   #   #   # #    #   #          #   #   #   # #   # #            #  #     #     #      #   #   #  \n"
+	"\t\t\t\t     ####    #   #   # #     #  #      ####    #   #   #  #### #####    ####   ##### ##### #####   ###    #  \n", 7);
 
-	CursorManager::GetInstance()->WriteBuffer(68.0f, 22.0f, (char*)"STAGE 1", 3);
-	CursorManager::GetInstance()->WriteBuffer(68.0f, 24.0f, (char*)"STAGE 2", 4);
-	CursorManager::GetInstance()->WriteBuffer(68.0f, 26.0f, (char*)"STAGE 3", 6);
-	CursorManager::GetInstance()->WriteBuffer(68.0f, 28.0f, (char*)"STAGE 4", 12);
-	CursorManager::GetInstance()->WriteBuffer(68.0f, 39.0f, (char*)"ESC : µ¹¾Æ°¡±â");
+	CursorManager::GetInstance()->WriteBuffer(68.0f, 20.0f, (char*)"¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª", 8);
+
+	for (int i = 0; i < 14; ++i)
+	{
+		CursorManager::GetInstance()->WriteBuffer(67.0f, 21.0f + i, (char*)
+			"£ü\t\t\t\t\t     £ü\n", 8);
+	}
+
+	CursorManager::GetInstance()->WriteBuffer(85.0f, 24.0f, (char*)"STAGE 1", 3);
+	CursorManager::GetInstance()->WriteBuffer(85.0f, 26.0f, (char*)"STAGE 2", 4);
+	CursorManager::GetInstance()->WriteBuffer(85.0f, 28.0f, (char*)"STAGE 3", 6);
+	CursorManager::GetInstance()->WriteBuffer(85.0f, 30.0f, (char*)"STAGE 4", 12);
+	CursorManager::GetInstance()->WriteBuffer(82.0f, 49.0f, (char*)"ESC : µ¹¾Æ°¡±â");
+
+	CursorManager::GetInstance()->WriteBuffer(68.0f, 34.0f, (char*)"¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª", 8);
 
 	CursorManager::GetInstance()->WriteBuffer(Position.x, Position.y, Choose[0]);
 
-	CursorManager::GetInstance()->WriteBuffer(118.0f, 39.0f, (char*)"CREDIT : ", 14);
-	CursorManager::GetInstance()->WriteBuffer(127.0f, 39.0f, ObjectManager::GetInstance()->GetCredit(), 14);
+	CursorManager::GetInstance()->WriteBuffer(148.0f, 49.0f, (char*)"CREDIT : ", 14);
+	CursorManager::GetInstance()->WriteBuffer(157.0f, 49.0f, ObjectManager::GetInstance()->GetCredit(), 14);
 }
 
 void Menu::Release()
