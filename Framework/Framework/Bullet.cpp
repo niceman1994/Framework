@@ -11,7 +11,7 @@ Object* Bullet::Initialize(string _Key)
 	strKey = _Key;
 
 	Buffer[0] = (char*)"¡¬";
-	Buffer[1] = (char*)"£¯£¯";
+	Buffer[1] = (char*)"£¯£¯ ";
 
 	TransInfo.Position = Vector3(0.0f, 0.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);

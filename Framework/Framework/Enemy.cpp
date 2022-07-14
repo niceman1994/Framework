@@ -1,6 +1,11 @@
 #include "Enemy.h"
+#include "Bullet.h"
+#include "EnemyBullet.h"
 #include "CursorManager.h"
 #include "ObjectPool.h"
+#include "ObjectManager.h"
+#include "ObjectFactory.h"
+#include "InputManager.h"
 
 Enemy::Enemy() { }
 
@@ -12,11 +17,11 @@ Object* Enemy::Initialize(string _Key)
 {
 	strKey = _Key;
 
-	Buffer[0] = (char*)" ¡â";
-	Buffer[1] = (char*)" ¡à   ¡â";
+	Buffer[0] = (char*)"  ¡â";
+	Buffer[1] = (char*)"  ¡à  ¡â";
 	Buffer[2] = (char*)"¡Ü¡à¡à¡à";
-	Buffer[3] = (char*)" ¡à   ¡ä";
-	Buffer[4] = (char*)" ¡ä";
+	Buffer[3] = (char*)"  ¡à  ¡ä";
+	Buffer[4] = (char*)"  ¡ä";
 
 	TransInfo.Position = Vector3(0.0f, 0.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);

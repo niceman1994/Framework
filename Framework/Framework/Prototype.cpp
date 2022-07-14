@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Bullet.h"
 #include "Enemy.h"
+#include "EnemyBullet.h"
 
 Prototype* Prototype::Instance = nullptr;
 
@@ -25,6 +26,9 @@ void Prototype::Initialize()
 
 	Key = "Bullet";
 	ProtoTypeList[Key] = (new Bullet(Info))->Initialize(Key);
+
+	Key = "EnemyBullet";
+	ProtoTypeList[Key] = (new EnemyBullet(Info))->Initialize(Key);
 }
 
 Object* Prototype::ProtoTypeObject(string _Key)

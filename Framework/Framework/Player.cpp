@@ -71,16 +71,11 @@ int Player::Update()
 		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
 	}
 
-	//if (dwKey & KEY_CTRL)
-	//{
-	//	if (!Pressed)
-	//	{
-	//		Pressed = true;
-	//
-	//		Bridge* pBridge = new TwinBullet;
-	//		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
-	//	}
-	//}
+	if (dwKey & KEY_CTRL)
+	{
+		Bridge* pBridge = new TwinBullet;
+		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
+	}
 
 	return 0;
 }
@@ -89,8 +84,10 @@ void Player::Render()
 {
 	CursorManager::GetInstance()->WriteBuffer(0.0f, 1.0f, (char*)"X : ");
 	CursorManager::GetInstance()->WriteBuffer(0.0f, 2.0f, (char*)"Y : ");
+	CursorManager::GetInstance()->WriteBuffer(0.0f, 3.0f, (char*)"R : ");
 	CursorManager::GetInstance()->WriteBuffer(4.0f, 1.0f, (int)TransInfo.Position.x);
 	CursorManager::GetInstance()->WriteBuffer(4.0f, 2.0f, (int)TransInfo.Position.y);
+	CursorManager::GetInstance()->WriteBuffer(4.0f, 3.0f, (int)TransInfo.Rotation.x);
 
 	for (int i = 0; i < 5; ++i)
 	{

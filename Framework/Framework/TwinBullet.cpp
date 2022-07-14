@@ -22,9 +22,6 @@ int TwinBullet::Update(Transform& Info)
     Info.Direction = MathManager::GetDirection(
         Info.Position, Vector3(180.0f, Info.Position.y));
 
-    //Info.Direction = MathManager::GetDirection(
-    //    Info.Position, Vector3(Info.Position.x, Info.Position.y));
-
     Info.Position += Info.Direction * Speed;
 
     return 0;

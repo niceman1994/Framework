@@ -48,7 +48,6 @@ void StageUI::Render()
 		"8 8888         8 888888888888 .8'       `8. `88888. 8 8888      8 888888888888  8 8888     `88.       8888888", 11);
 
 
-
 	CursorManager::GetInstance()->WriteBuffer(66.0f, 28.0f, (char*)
 		"########  ########    ###    ########  ##    ##\n", 14);
 	CursorManager::GetInstance()->WriteBuffer(66.0f, 29.0f, (char*)

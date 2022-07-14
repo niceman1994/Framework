@@ -33,13 +33,19 @@ void Stage::Initialize()
 	pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
 
 	Object* pEnemy = Prototype::GetInstance()->ProtoTypeObject("Enemy");
+	Object* pEnemyBullet = Prototype::GetInstance()->ProtoTypeObject("EnemyBullet");
 
-	for (int i = 0; i < 25; ++i)
+	for (int i = 0; i < 5; ++i)
 	{
 		srand(DWORD(GetTickCount64() * (i + 1)));
-		
-		pEnemy->SetPosition(float(rand() % 80 + (90 + (i * 40))), float(rand() % 30 + 5));
+
+		pEnemy->SetPosition(float(rand() % 80 + (100 + (i * 20))), float(rand() % 30 + 10));
+
+		for(int i = 0; i < 3; ++i)
+			pEnemyBullet->SetPosition(pEnemy->GetPosition().x + i, pEnemy->GetPosition().y);
+
 		ObjectManager::GetInstance()->AddObject("Enemy");
+		ObjectManager::GetInstance()->AddObject("EnemyBullet");
 	}
 }
 
@@ -47,6 +53,7 @@ void Stage::Update()
 {
 	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObjectList("Bullet");
 	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObjectList("Enemy");
+	list<Object*>* pEnemyBulletList = ObjectManager::GetInstance()->GetObjectList("EnemyBullet");
 
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
@@ -118,12 +125,26 @@ void Stage::Update()
 
 	if (pEnemyList != nullptr)
 	{
-		for (list<Object*>::iterator iter = pEnemyList->begin(); iter != pEnemyList->end();)
+		for (list<Object*>::iterator Enemyiter = pEnemyList->begin(); Enemyiter != pEnemyList->end();)
 		{
-			if ((*iter)->GetPosition().x <= -1.0f)
-				iter = ObjectManager::GetInstance()->ThrowObject(iter, *iter);
+			if (pEnemyBulletList != nullptr)
+			{
+				for (list<Object*>::iterator iter = pEnemyBulletList->begin(); iter != pEnemyBulletList->end();)
+				{
+					if ((*iter)->GetPosition().x <= 0.0f)
+					{
+						delete (*iter);
+						iter = pEnemyBulletList->erase(iter);
+					}
+					else
+						++iter;
+				}
+			}
+
+			if ((*Enemyiter)->GetPosition().x <= -1.0f)
+				Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, *Enemyiter);
 			else
-				++iter;
+				++Enemyiter;
 		}
 	}
 
@@ -159,21 +180,21 @@ void Stage::Update()
 		}
 	}
 
-	if (pPlayer != nullptr)
-	{
-		if (pEnemyList != nullptr)
-		{
-			for (list<Object*>::iterator Enemyiter = pEnemyList->begin(); Enemyiter != pEnemyList->end(); )
-			{
-				if (CollisionManager::Collision(pPlayer, *Enemyiter))
-				{
-					ObjectManager::GetInstance()->SubHp(1);
-				}
-				else
-					++Enemyiter;
-			}
-		}
-	}
+	//if (pPlayer != nullptr)
+	//{
+	//	if (pEnemyList != nullptr)
+	//	{
+	//		for (list<Object*>::iterator Enemyiter = pEnemyList->begin(); Enemyiter != pEnemyList->end(); )
+	//		{
+	//			if (CollisionManager::Collision(pPlayer, *Enemyiter))
+	//			{
+	//				ObjectManager::GetInstance()->SubHp(1);
+	//			}
+	//			else
+	//				++Enemyiter;
+	//		}
+	//	}
+	//}
 
 	if (Check)
 		pUI->Update();
