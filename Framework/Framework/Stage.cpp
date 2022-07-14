@@ -34,11 +34,11 @@ void Stage::Initialize()
 
 	Object* pEnemy = Prototype::GetInstance()->ProtoTypeObject("Enemy");
 
-	for (int i = 0; i < 5; ++i)
+	for (int i = 0; i < 25; ++i)
 	{
 		srand(DWORD(GetTickCount64() * (i + 1)));
 		
-		pEnemy->SetPosition(float(rand() % 10 + (60 + (i * 15))), float(rand() % 1 + (10 + (i * 4))));
+		pEnemy->SetPosition(float(rand() % 80 + (90 + (i * 40))), float(rand() % 30 + 5));
 		ObjectManager::GetInstance()->AddObject("Enemy");
 	}
 }
@@ -159,21 +159,21 @@ void Stage::Update()
 		}
 	}
 
-	//if (pPlayer != nullptr)
-	//{
-	//	if (pEnemyList != nullptr)
-	//	{
-	//		for (list<Object*>::iterator Enemyiter = pEnemyList->begin(); Enemyiter != pEnemyList->end(); )
-	//		{
-	//			if (CollisionManager::CircleCollision(pPlayer, *Enemyiter))
-	//			{
-	//				ObjectManager::GetInstance()->SubHp(1);
-	//			}
-	//			//else
-	//			//	++Enemyiter;
-	//		}
-	//	}
-	//}
+	if (pPlayer != nullptr)
+	{
+		if (pEnemyList != nullptr)
+		{
+			for (list<Object*>::iterator Enemyiter = pEnemyList->begin(); Enemyiter != pEnemyList->end(); )
+			{
+				if (CollisionManager::Collision(pPlayer, *Enemyiter))
+				{
+					ObjectManager::GetInstance()->SubHp(1);
+				}
+				else
+					++Enemyiter;
+			}
+		}
+	}
 
 	if (Check)
 		pUI->Update();

@@ -15,6 +15,7 @@ public:
 	}
 private:
 	DWORD Key;
+	bool Pressed;
 public:
 	DWORD GetKey() const { return Key; } // const는 값을 건드리지 말라는 의미, 변경이 불가능해서 대입이 불가능
 public:
