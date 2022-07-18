@@ -2,7 +2,8 @@
 #include "StageUI.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "Enemy2.h"
+#include "FrontShield.h"
+#include "Item.h"
 #include "ScrollBox.h"
 #include "BackGround.h"
 #include "SceneManager.h"
@@ -19,7 +20,8 @@ Stage::~Stage() { Release(); }
 
 void Stage::Initialize()
 {
-	ObjectManager::GetInstance()->GetHp();
+	ObjectManager::GetInstance()->GetLife();
+	ObjectManager::GetInstance()->GetStageScore();
 
 	Check = 0;
 
@@ -32,19 +34,21 @@ void Stage::Initialize()
 	ObjectManager::GetInstance()->AddObject("Player");
 	pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
 
+	ObjectManager::GetInstance()->AddObject("FrontShield");
+	pFrontShield = ObjectManager::GetInstance()->GetObjectList("FrontShield")->front();
+
 	Object* pEnemy = Prototype::GetInstance()->ProtoTypeObject("Enemy");
 	Object* pEnemyBullet = Prototype::GetInstance()->ProtoTypeObject("EnemyBullet");
-	Object* pEnemy2 = Prototype::GetInstance()->ProtoTypeObject("Enemy2");
-	pEnemy2->SetPosition(80.0f, 48.0f);
-	ObjectManager::GetInstance()->AddObject("Enemy2");
-
-	for (int i = 0; i < 10; ++i)
+	//Object* Item = Prototype::GetInstance()->ProtoTypeObject("Item");
+	
+	for (int i = 0; i < 15; ++i)
 	{
 		srand(DWORD(GetTickCount64() * (i + 1)));
 
 		pEnemy->SetPosition(float(rand() % 100 + (80 + (i * 30))), float(rand() % 30 + 10));
 		pEnemyBullet->SetPosition(pEnemy->GetPosition().x, pEnemy->GetPosition().y);
 		ObjectManager::GetInstance()->AddObject("Enemy");
+		//ObjectManager::GetInstance()->AddObject("Item");
 		ObjectManager::GetInstance()->AddObject("EnemyBullet");
 	}
 }
@@ -54,6 +58,7 @@ void Stage::Update()
 	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObjectList("Bullet");
 	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObjectList("Enemy");
 	list<Object*>* pEnemyBulletList = ObjectManager::GetInstance()->GetObjectList("EnemyBullet");
+	//list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
 
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
@@ -74,7 +79,7 @@ void Stage::Update()
 
 	pPlayer->Update();
 	ObjectManager::GetInstance()->Update();
-	
+
 	if (dwKey & KEY_ESCAPE)
 	{
 		if (pBulletList->size() >= 20)
@@ -158,6 +163,22 @@ void Stage::Update()
 							break;
 						else if (CollisionManager::Collision(*Bulletiter, *Enemyiter))
 						{
+							ObjectManager::GetInstance()->AddScore(990);
+
+							//if (pItemList != nullptr)
+							//{
+							//	for (list<Object*>::iterator Itemiter = pItemList->begin(); Itemiter != pItemList->end();)
+							//	{
+							//		
+							//		(*Itemiter)->SetPosition((*Enemyiter)->GetPosition());
+							//
+							//		if (CollisionManager::Collision(pPlayer, *Itemiter))
+							//			Itemiter = ObjectManager::GetInstance()->ThrowObject(Itemiter, *Itemiter);
+							//		else
+							//			++Itemiter;
+							//	}
+							//}
+
 							delete (*Enemyiter);
 							Enemyiter = pEnemyList->erase(Enemyiter);
 
@@ -184,44 +205,61 @@ void Stage::Update()
 			{
 				if (CollisionManager::Collision(pPlayer, *EnemyBulletiter))
 				{
-					ObjectManager::GetInstance()->SubHp(1);
+					ObjectManager::GetInstance()->SubLife(1);
 					EnemyBulletiter = ObjectManager::GetInstance()->ThrowObject(EnemyBulletiter, *EnemyBulletiter);
 
-					if (ObjectManager::GetInstance()->GetHp() == 0)
+					if (ObjectManager::GetInstance()->GetLife() == 0)
 					{
 						Sleep(100);
 						pPlayer->Initialize("Player");
-						ObjectManager::GetInstance()->SetHp(3);
+						ObjectManager::GetInstance()->SetLife(3);
 					}
 				}
 				else
 					++EnemyBulletiter;
 			}
 		}
+	}
 
-		if (pEnemyList != nullptr)
+	if (pEnemyList != nullptr)
+	{
+		for (list<Object*>::iterator Enemyiter = pEnemyList->begin(); Enemyiter != pEnemyList->end(); )
 		{
-			for (list<Object*>::iterator Enemyiter = pEnemyList->begin(); Enemyiter != pEnemyList->end(); )
+			if (CollisionManager::CircleCollision(pPlayer, *Enemyiter))
 			{
-				if (CollisionManager::CircleCollision(pPlayer, *Enemyiter))
+				ObjectManager::GetInstance()->SubLife(1);
+
+				if (ObjectManager::GetInstance()->GetLife() == 0)
 				{
-					ObjectManager::GetInstance()->SubHp(1);
-
-					if (ObjectManager::GetInstance()->GetHp() == 0)
-					{
-						Sleep(100);
-						pPlayer->Initialize("Player");
-						ObjectManager::GetInstance()->SetHp(3);
-					}
-
+					Sleep(100);
 					pPlayer->Initialize("Player");
-					Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, *Enemyiter);
+					ObjectManager::GetInstance()->SetLife(3);
 				}
+
+				pPlayer->Initialize("Player");
+				Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, *Enemyiter);
+			}
+			else
+				++Enemyiter;
+		}
+	}
+
+	if (pFrontShield != nullptr)
+	{
+		if (pEnemyBulletList != nullptr)
+		{
+			for (list<Object*>::iterator EnemyBulletiter = pEnemyBulletList->begin(); EnemyBulletiter != pEnemyBulletList->end();)
+			{
+				if (CollisionManager::Collision(pFrontShield, *EnemyBulletiter))
+					EnemyBulletiter = ObjectManager::GetInstance()->ThrowObject(EnemyBulletiter, *EnemyBulletiter);
 				else
-					++Enemyiter;
+					++EnemyBulletiter;
 			}
 		}
 	}
+	else
+		pFrontShield->Initialize("FrontShield");
+
 
 	if (Check)
 		pUI->Update();
@@ -239,7 +277,10 @@ void Stage::Render()
 	_BackGround->Render();
 
 	CursorManager::GetInstance()->WriteBuffer(1.0f, 0.0f, (char*)"HP : ");
-	CursorManager::GetInstance()->WriteBuffer(6.0f, 0.0f, ObjectManager::GetInstance()->GetHp());
+	CursorManager::GetInstance()->WriteBuffer(6.0f, 0.0f, ObjectManager::GetInstance()->GetLife());
+
+	CursorManager::GetInstance()->WriteBuffer(12.0f, 0.0f, (char*)"Score : ");
+	CursorManager::GetInstance()->WriteBuffer(20.0f, 0.0f, ObjectManager::GetInstance()->GetStageScore());
 
 	CursorManager::GetInstance()->WriteBuffer(152.0f, 49.0f, (char*)"CREDIT : ", 14);
 	CursorManager::GetInstance()->WriteBuffer(161.0f, 49.0f, ObjectManager::GetInstance()->GetCredit(), 14);

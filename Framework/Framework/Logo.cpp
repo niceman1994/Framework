@@ -15,7 +15,7 @@ Logo::~Logo() { }
 
 void Logo::Initialize()
 {
-	ObjectManager::GetInstance()->SetHp(3);
+	ObjectManager::GetInstance()->SetLife(3);
 	//ObjectManager::GetInstance()->AddObject(ObjectFactory<Player>::CreateObject());
 	//SceneManager::GetInstance()->SetScene(STAGE);
 }

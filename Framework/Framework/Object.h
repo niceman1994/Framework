@@ -7,7 +7,7 @@ class Object
 protected:
 	Transform TransInfo;
 	string strKey;
-	char* Buffer[5];
+	char* Buffer[64];
 
 	Bridge* pBridge;
 public:

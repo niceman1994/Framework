@@ -10,6 +10,10 @@ Boss::~Boss() {}
 
 Object* Boss::Initialize(string _Key)
 {
+	strKey = _Key;
+
+	
+
 	return this;
 }
 

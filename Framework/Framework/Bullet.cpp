@@ -1,5 +1,6 @@
 #include "Bullet.h"
 #include "Bridge.h"
+#include "ObjectManager.h"
 
 Bullet::Bullet() { }
 Bullet::Bullet(Transform _TransInfo) : Object(_TransInfo) { }

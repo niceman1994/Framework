@@ -7,6 +7,7 @@ class Stage : public Scene
 {
 private:
 	Object* pPlayer;
+	Object* pFrontShield;
 	Object* _BackGround;
 	UserInterface* pUI;
 	int Check;

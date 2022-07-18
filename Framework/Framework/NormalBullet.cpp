@@ -1,4 +1,5 @@
 #include "NormalBullet.h"
+#include "ObjectManager.h"
 #include "CursorManager.h"
 #include "MathManager.h"
 #include "Object.h"
@@ -15,6 +16,8 @@ void NormalBullet::Initialize()
 
 int NormalBullet::Update(Transform& Info)
 {
+	
+
 	Info.Direction = MathManager::GetDirection(
 		Info.Position, Vector3(180.0f, Info.Position.y));
 

@@ -19,7 +19,9 @@ private:
 	map<string, list<Object*>>* EnableList;
 	int Credit;
 	int Score;
-	int PlayerHp;
+	int Life;
+	int ShieldHp;
+	int AtkPower;
 public:
 	void AddObject(string _Key);
 	void AddObject(string _Key, Bridge* _Bridge, Vector3 _Position);
@@ -32,12 +34,14 @@ public:
 	void DecreaseCredit() { Credit -= 1; }
 
 	void SetScore(int _Score) { Score = _Score; }
-	void GetStageScore(int _Score) { Score += _Score; }
-	int FinalScore() const { return Score; }
+	void AddScore(int _Score) { Score += _Score; }
+	int GetStageScore() { return Score; }
 
-	void SetHp(int _hp) { PlayerHp = _hp; }
-	void SubHp(int _hp) { PlayerHp -= _hp; }
-	int GetHp() const { return PlayerHp; }
+	void SetLife(int _life) { Life = _life; }
+	void SubLife(int _life) { Life -= _life; }
+	int GetLife() const { return Life; }
+
+
 
 	void Update();
 	void Render();

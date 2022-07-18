@@ -118,8 +118,14 @@
     <Filter Include="소스 파일\02. Object\Boss">
       <UniqueIdentifier>{f3e50430-5b67-4dd7-8881-cdff9fd545e1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02. Object\Enemy2">
-      <UniqueIdentifier>{664120d9-3c28-490c-aa02-ccf3c87205c6}</UniqueIdentifier>
+    <Filter Include="소스 파일\02. Object\FrontShield">
+      <UniqueIdentifier>{b68a6581-9448-4c1f-9e91-25758f326b7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Item">
+      <UniqueIdentifier>{52446910-d14a-442e-bc0a-243bf48e7317}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\98. Pattern\ItemBridge">
+      <UniqueIdentifier>{4513cf04-da6b-4022-a58a-19fc9291a2ef}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -204,8 +210,11 @@
     <ClCompile Include="Boss.cpp">
       <Filter>소스 파일\02. Object\Boss</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy2.cpp">
-      <Filter>소스 파일\02. Object\Enemy2</Filter>
+    <ClCompile Include="FrontShield.cpp">
+      <Filter>소스 파일\02. Object\FrontShield</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>소스 파일\02. Object\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -320,8 +329,14 @@
     <ClInclude Include="Boss.h">
       <Filter>소스 파일\02. Object\Boss</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy2.h">
-      <Filter>소스 파일\02. Object\Enemy2</Filter>
+    <ClInclude Include="FrontShield.h">
+      <Filter>소스 파일\02. Object\FrontShield</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>소스 파일\02. Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemBridge.h">
+      <Filter>소스 파일\98. Pattern\ItemBridge</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
