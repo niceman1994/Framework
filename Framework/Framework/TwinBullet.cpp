@@ -3,13 +3,9 @@
 #include "MathManager.h"
 #include "Object.h"
 
-TwinBullet::TwinBullet()
-{
-}
+TwinBullet::TwinBullet() {}
 
-TwinBullet::~TwinBullet()
-{
-}
+TwinBullet::~TwinBullet() {}
 
 void TwinBullet::Initialize()
 {

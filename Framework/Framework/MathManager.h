@@ -22,5 +22,25 @@ public:
 
 		return Vector3(Width / Distance, Height / Distance);
 	}
+
+	static float Sin(Vector3 _Current, Vector3 _Target)
+	{
+		float Width = _Target.x - _Current.x;
+		float Height = _Target.y - _Current.y;
+
+		float Distance = sqrt((Width * Width) + (Height * Height));
+
+		return Height / Distance;
+	}
+
+	static float Cos(Vector3 _Current, Vector3 _Target)
+	{
+		float Width = _Target.x - _Current.x;
+		float Height = _Target.y - _Current.y;
+
+		float Distance = sqrt((Width * Width) + (Height * Height));
+
+		return Width / Distance;
+	}
 };
 

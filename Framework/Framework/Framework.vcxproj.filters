@@ -109,6 +109,18 @@
     <Filter Include="소스 파일\02. Object\EnemyBullet">
       <UniqueIdentifier>{5fb2978a-6f05-490f-af7f-f193161ddfa8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02. Object\EnemyBullet\EnemyBulletBridge">
+      <UniqueIdentifier>{98a98e90-636c-4286-b4f5-8c0b945a75d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\EnemyBullet\EnemyBulletBridge\NormalEnemyBullet">
+      <UniqueIdentifier>{8ad58ec7-96c0-460f-935b-81b094b14eea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Boss">
+      <UniqueIdentifier>{f3e50430-5b67-4dd7-8881-cdff9fd545e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Enemy2">
+      <UniqueIdentifier>{664120d9-3c28-490c-aa02-ccf3c87205c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -185,6 +197,15 @@
     </ClCompile>
     <ClCompile Include="EnemyBullet.cpp">
       <Filter>소스 파일\02. Object\EnemyBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalEnemyBullet.cpp">
+      <Filter>소스 파일\02. Object\EnemyBullet\EnemyBulletBridge\NormalEnemyBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>소스 파일\02. Object\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy2.cpp">
+      <Filter>소스 파일\02. Object\Enemy2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +310,18 @@
     </ClInclude>
     <ClInclude Include="EnemyBullet.h">
       <Filter>소스 파일\02. Object\EnemyBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBulletBridge.h">
+      <Filter>소스 파일\02. Object\EnemyBullet\EnemyBulletBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalEnemyBullet.h">
+      <Filter>소스 파일\02. Object\EnemyBullet\EnemyBulletBridge\NormalEnemyBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>소스 파일\02. Object\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy2.h">
+      <Filter>소스 파일\02. Object\Enemy2</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

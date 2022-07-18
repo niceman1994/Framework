@@ -9,8 +9,7 @@ InputManager::~InputManager() {}
 void InputManager::InputKey()
 {
 	Key = 0;
-	Pressed = false;
-	
+
 	if (GetAsyncKeyState(VK_UP))
 		Key |= KEY_UP;
 
@@ -54,5 +53,5 @@ void InputManager::InputKey()
 		Key |= PRESS_2;
 
 	if (GetAsyncKeyState(0x33))
-		Key |= PRESS_3;
+			Key |= PRESS_3;
 }

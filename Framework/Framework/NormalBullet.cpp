@@ -3,13 +3,9 @@
 #include "MathManager.h"
 #include "Object.h"
 
-NormalBullet::NormalBullet()
-{
-}
+NormalBullet::NormalBullet() {}
 
-NormalBullet::~NormalBullet()
-{
-}
+NormalBullet::~NormalBullet() {}
 
 void NormalBullet::Initialize()
 {

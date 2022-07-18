@@ -1,11 +1,10 @@
 #include "Enemy.h"
-#include "Bullet.h"
 #include "EnemyBullet.h"
 #include "CursorManager.h"
-#include "ObjectPool.h"
 #include "ObjectManager.h"
-#include "ObjectFactory.h"
-#include "InputManager.h"
+#include "NormalEnemyBullet.h"
+
+#define PI 3.141592f
 
 Enemy::Enemy() { }
 
@@ -17,11 +16,11 @@ Object* Enemy::Initialize(string _Key)
 {
 	strKey = _Key;
 
-	Buffer[0] = (char*)"  ¡â";
-	Buffer[1] = (char*)"  ¡à  ¡â";
-	Buffer[2] = (char*)"¡Ü¡à¡à¡à";
-	Buffer[3] = (char*)"  ¡à  ¡ä";
-	Buffer[4] = (char*)"  ¡ä";
+	Buffer[0] = (char*)"  ¡ã";
+	Buffer[1] = (char*)"  ¡á  ¡ã";
+	Buffer[2] = (char*)"¡Ü¡á¡á¡á";
+	Buffer[3] = (char*)"  ¡á  ¡å";
+	Buffer[4] = (char*)"  ¡å";
 
 	TransInfo.Position = Vector3(0.0f, 0.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
@@ -33,6 +32,16 @@ Object* Enemy::Initialize(string _Key)
 int Enemy::Update()
 {
 	TransInfo.Position.x -= 1.25f;
+
+	int time = rand() % 200;
+	
+	if (time == 5)
+	{
+		Bridge* pBridge = new NormalEnemyBullet;
+		ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge, TransInfo.Position);
+	}
+	//else if (time == 6)
+	//	TransInfo.Position.y += 1.8f;
 
 	return 0;
 }

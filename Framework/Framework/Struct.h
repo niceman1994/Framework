@@ -36,6 +36,11 @@ struct Vector3
 	{
 		return Vector3(this->x * _Value * 2, this->y * _Value, this->z * _Value);
 	}
+
+	Vector3 operator-(float _Value)
+	{
+		return Vector3(this->x - _Value, this->y - _Value, this->z - _Value);
+	}
 };
 
 struct Transform

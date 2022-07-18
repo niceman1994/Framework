@@ -37,16 +37,16 @@ int Player::Update()
 	{
 		TransInfo.Position.y -= 1.0f;
 
-		if (TransInfo.Position.y <= 4.0f)
-			TransInfo.Position = Vector3(TransInfo.Position.x, 4.0f); 
+		if (TransInfo.Position.y <= 5.0f)
+			TransInfo.Position = Vector3(TransInfo.Position.x, 5.0f); 
 	}
 
 	if (dwKey & KEY_DOWN)
 	{
 		TransInfo.Position.y += 1.0f;
 
-		if (TransInfo.Position.y >= 47.0f)
-			TransInfo.Position = Vector3(TransInfo.Position.x, 47.0f);
+		if (TransInfo.Position.y >= 46.0f)
+			TransInfo.Position = Vector3(TransInfo.Position.x, 46.0f);
 	}
 
 	if (dwKey & KEY_LEFT)
@@ -82,12 +82,12 @@ int Player::Update()
 
 void Player::Render()
 {
-	CursorManager::GetInstance()->WriteBuffer(0.0f, 1.0f, (char*)"X : ");
-	CursorManager::GetInstance()->WriteBuffer(0.0f, 2.0f, (char*)"Y : ");
-	CursorManager::GetInstance()->WriteBuffer(0.0f, 3.0f, (char*)"R : ");
-	CursorManager::GetInstance()->WriteBuffer(4.0f, 1.0f, (int)TransInfo.Position.x);
-	CursorManager::GetInstance()->WriteBuffer(4.0f, 2.0f, (int)TransInfo.Position.y);
-	CursorManager::GetInstance()->WriteBuffer(4.0f, 3.0f, (int)TransInfo.Rotation.x);
+	//CursorManager::GetInstance()->WriteBuffer(0.0f, 1.0f, (char*)"X : ");
+	//CursorManager::GetInstance()->WriteBuffer(0.0f, 2.0f, (char*)"Y : ");
+	//CursorManager::GetInstance()->WriteBuffer(0.0f, 3.0f, (char*)"R : ");
+	//CursorManager::GetInstance()->WriteBuffer(4.0f, 1.0f, (int)TransInfo.Position.x);
+	//CursorManager::GetInstance()->WriteBuffer(4.0f, 2.0f, (int)TransInfo.Position.y);
+	//CursorManager::GetInstance()->WriteBuffer(4.0f, 3.0f, (int)TransInfo.Rotation.x);
 
 	for (int i = 0; i < 5; ++i)
 	{

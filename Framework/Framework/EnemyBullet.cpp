@@ -1,12 +1,11 @@
 #include "EnemyBullet.h"
-#include "CursorManager.h"
-#include "MathManager.h"
+#include "Bridge.h"
 
 EnemyBullet::EnemyBullet() {}
 
 EnemyBullet::EnemyBullet(Transform _TransInfo) : Object(_TransInfo) {}
 
-EnemyBullet::~EnemyBullet() {}
+EnemyBullet::~EnemyBullet() { Release(); }
 
 Object* EnemyBullet::Initialize(string _Key)
 {
@@ -20,22 +19,29 @@ Object* EnemyBullet::Initialize(string _Key)
 
 	TransInfo.Direction = Vector3(0.0f, 0.0f);
 
+	if (pBridge)
+		pBridge->Initialize();
+
 	return this;
 }
 
 int EnemyBullet::Update()
 {
-	TransInfo.Position.x -= 1.55f;
+	if (pBridge)
+		pBridge->Update(TransInfo);
 
 	return 0;
 }
 
 void EnemyBullet::Render()
 {
-	CursorManager::GetInstance()->WriteBuffer(TransInfo.Position, Buffer[0]);
+	if (pBridge)
+		pBridge->Render();
 }
 
 void EnemyBullet::Release()
 {
+	delete pBridge;
+	pBridge = nullptr;
 }
 

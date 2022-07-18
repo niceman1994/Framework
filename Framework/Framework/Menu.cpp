@@ -87,8 +87,8 @@ void Menu::Render()
 
 	CursorManager::GetInstance()->WriteBuffer(Position.x, Position.y, Choose[0]);
 
-	CursorManager::GetInstance()->WriteBuffer(148.0f, 49.0f, (char*)"CREDIT : ", 14);
-	CursorManager::GetInstance()->WriteBuffer(157.0f, 49.0f, ObjectManager::GetInstance()->GetCredit(), 14);
+	CursorManager::GetInstance()->WriteBuffer(152.0f, 49.0f, (char*)"CREDIT : ", 14);
+	CursorManager::GetInstance()->WriteBuffer(161.0f, 49.0f, ObjectManager::GetInstance()->GetCredit(), 14);
 }
 
 void Menu::Release()

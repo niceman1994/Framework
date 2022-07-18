@@ -15,6 +15,7 @@ Logo::~Logo() { }
 
 void Logo::Initialize()
 {
+	ObjectManager::GetInstance()->SetHp(3);
 	//ObjectManager::GetInstance()->AddObject(ObjectFactory<Player>::CreateObject());
 	//SceneManager::GetInstance()->SetScene(STAGE);
 }
@@ -79,8 +80,8 @@ void Logo::Render()
 	CursorManager::GetInstance()->WriteBuffer(84.0f, 36.0f, (char*)"2. 조작법", 3);
 	CursorManager::GetInstance()->WriteBuffer(84.0f, 38.0f, (char*)"3. 종료", 8);
 	
-	CursorManager::GetInstance()->WriteBuffer(148.0f, 49.0f, (char*)"CREDIT : ", 14);
-	CursorManager::GetInstance()->WriteBuffer(157.0f, 49.0f, ObjectManager::GetInstance()->GetCredit(), 14);
+	CursorManager::GetInstance()->WriteBuffer(152.0f, 49.0f, (char*)"CREDIT : ", 14);
+	CursorManager::GetInstance()->WriteBuffer(161.0f, 49.0f, ObjectManager::GetInstance()->GetCredit(), 14);
 }
 
 void Logo::Release()
