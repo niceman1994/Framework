@@ -16,8 +16,6 @@ void NormalBullet::Initialize()
 
 int NormalBullet::Update(Transform& Info)
 {
-	
-
 	Info.Direction = MathManager::GetDirection(
 		Info.Position, Vector3(180.0f, Info.Position.y));
 

@@ -30,7 +30,7 @@ Object* Enemy::Initialize(string _Key)
 
 int Enemy::Update()
 {
-	TransInfo.Position.x -= 1.25f;
+	TransInfo.Position.x -= 1.5f;
 
 	int time = rand() % 200;
 	
@@ -38,10 +38,6 @@ int Enemy::Update()
 	{
 		Bridge* pBridge = new NormalEnemyBullet;
 		ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge, TransInfo.Position);
-	}
-	else if (time == 10)
-	{
-
 	}
 
 	return 0;

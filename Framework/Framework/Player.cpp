@@ -33,8 +33,6 @@ int Player::Update()
 {
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
-	Object* FrontShield = ObjectManager::GetInstance()->GetObjectList("FrontShield")->front();
-
 	if (dwKey & KEY_UP)
 	{
 		TransInfo.Position.y -= 1.0f;

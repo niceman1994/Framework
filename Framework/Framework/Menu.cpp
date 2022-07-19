@@ -4,7 +4,7 @@
 #include "ObjectManager.h"
 #include "CursorManager.h"
 
-Menu::Menu() { }
+Menu::Menu() : Choose() { }
 Menu::~Menu() { }
 
 void Menu::Initialize()

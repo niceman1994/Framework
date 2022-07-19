@@ -65,7 +65,7 @@ void CursorManager::WriteBuffer(float _x, float _y, int _Value, int _Color)
 
 	SetColor(_Color);
 
-	char Buffer[4];
+	char Buffer[5];
 	_itoa(_Value, Buffer, 10); // 문자를 정수로 바꿔주는 함수
 
 	char* pBuffer = new char[strlen(Buffer)];
@@ -101,7 +101,7 @@ void CursorManager::WriteBuffer(Vector3 _Position, int _Value, int _Color)
 
 	SetColor(_Color);
 
-	char Buffer[4];
+	char Buffer[5];
 	_itoa(_Value, Buffer, 10); // 문자를 정수로 바꿔주는 함수
 
 	char* pBuffer = new char[strlen(Buffer)];
