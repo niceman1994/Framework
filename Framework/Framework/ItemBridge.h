@@ -1,21 +1,19 @@
 #pragma once
-#include "Headers.h"
+#include "Bridge.h"
 
-class Object;
-class ItemBridge
+class ItemBridge : public Bridge
 {
 protected:
-	Object* pObject;
+	float Speed;
+	int Color;
 public:
 	virtual void Initialize()PURE;
 	virtual int Update(Transform& Info)PURE;
 	virtual void Render()PURE;
 	virtual void Release()PURE;
 
-	virtual ItemBridge* Clone()PURE;
+	virtual Bridge* Clone()PURE;
 public:
-	void SetObject(Object* _Object) { pObject = _Object; }
-public:
-	ItemBridge() : pObject(nullptr) {}
-	virtual ~ItemBridge() {}
+	ItemBridge() : Speed(0), Color(0) {};
+	virtual ~ItemBridge() {};
 };

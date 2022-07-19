@@ -39,19 +39,19 @@ void Stage::Initialize()
 
 	Object* pEnemy = Prototype::GetInstance()->ProtoTypeObject("Enemy");
 	Object* pEnemyBullet = Prototype::GetInstance()->ProtoTypeObject("EnemyBullet");
-	Object* Item = Prototype::GetInstance()->ProtoTypeObject("Item");
-	ObjectManager::GetInstance()->AddObject("Item");
-	
-	for (int i = 0; i < 15; ++i)
+
+	for (int i = 0; i < 25; ++i)
 	{
 		srand(DWORD(GetTickCount64() * (i + 1)));
 
 		pEnemy->SetPosition(float(rand() % 150 + (80 + (i * 30))), float(rand() % 30 + 10));
 		pEnemyBullet->SetPosition(pEnemy->GetPosition().x, pEnemy->GetPosition().y);
 		ObjectManager::GetInstance()->AddObject("Enemy");
-		//ObjectManager::GetInstance()->AddObject("Item");
 		ObjectManager::GetInstance()->AddObject("EnemyBullet");
 	}
+
+	//Object* Item = Prototype::GetInstance()->ProtoTypeObject("Item");
+	//ObjectManager::GetInstance()->AddObject("Item");
 }
 
 void Stage::Update()
@@ -59,7 +59,6 @@ void Stage::Update()
 	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObjectList("Bullet");
 	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObjectList("Enemy");
 	list<Object*>* pEnemyBulletList = ObjectManager::GetInstance()->GetObjectList("EnemyBullet");
-	list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
 
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
@@ -166,8 +165,22 @@ void Stage::Update()
 						{
 							ObjectManager::GetInstance()->AddScore(100);
 
-							//delete (*Enemyiter);
-							//Enemyiter = pEnemyList->erase(Enemyiter);
+							if (rand() % 25 == 5)
+							{
+								Object* Item = Prototype::GetInstance()->ProtoTypeObject("Item");
+								ObjectManager::GetInstance()->AddObject("Item");
+								list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
+
+								for (list<Object*>::iterator Itemiter = pItemList->begin(); Itemiter != pItemList->end();)
+								{
+									(*Itemiter)->SetPosition((*Enemyiter)->GetPosition());
+
+									if (Itemiter == pItemList->end())
+										break;
+									else
+										++Itemiter;
+								}
+							}
 
 							Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, *Enemyiter);
 

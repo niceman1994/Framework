@@ -124,8 +124,11 @@
     <Filter Include="소스 파일\02. Object\Item">
       <UniqueIdentifier>{52446910-d14a-442e-bc0a-243bf48e7317}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\98. Pattern\ItemBridge">
-      <UniqueIdentifier>{4513cf04-da6b-4022-a58a-19fc9291a2ef}</UniqueIdentifier>
+    <Filter Include="소스 파일\02. Object\Item\ItemBridge">
+      <UniqueIdentifier>{caffc9fd-1d83-4281-8901-170131829f8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Item\ItemBridge\PowerUpItem">
+      <UniqueIdentifier>{7e029e9f-cc73-4d04-9e85-8fd97909304e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +218,9 @@
     </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>소스 파일\02. Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUpItem.cpp">
+      <Filter>소스 파일\02. Object\Item\ItemBridge\PowerUpItem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -336,7 +342,10 @@
       <Filter>소스 파일\02. Object\Item</Filter>
     </ClInclude>
     <ClInclude Include="ItemBridge.h">
-      <Filter>소스 파일\98. Pattern\ItemBridge</Filter>
+      <Filter>소스 파일\02. Object\Item\ItemBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUpItem.h">
+      <Filter>소스 파일\02. Object\Item\ItemBridge\PowerUpItem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
