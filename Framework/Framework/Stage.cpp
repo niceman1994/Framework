@@ -165,7 +165,7 @@ void Stage::Update()
 						{
 							ObjectManager::GetInstance()->AddScore(100);
 
-							if (rand() % 25 == 5)
+							if (rand() % 2 == 1)
 							{
 								Object* Item = Prototype::GetInstance()->ProtoTypeObject("Item");
 								ObjectManager::GetInstance()->AddObject("Item");
@@ -177,8 +177,19 @@ void Stage::Update()
 
 									if (Itemiter == pItemList->end())
 										break;
+									else if (CollisionManager::CircleCollision(pPlayer, *Itemiter))
+									{
+										//int Random = rand() % 2 + 1;
+										//
+										//if (Random == 1)
+											ObjectManager::GetInstance()->AddScore(500);
+
+										//Itemiter = ObjectManager::GetInstance()->ThrowObject(Itemiter, *Itemiter);
+									}
 									else
 										++Itemiter;
+
+									
 								}
 							}
 

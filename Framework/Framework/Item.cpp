@@ -1,7 +1,6 @@
 #include "Item.h"
-#include "Bridge.h"
-#include "ObjectManager.h"
 #include "CursorManager.h"
+#include "ObjectManager.h"
 
 Item::Item() {}
 
@@ -21,27 +20,28 @@ Object* Item::Initialize(string _Key)
     TransInfo.Rotation = Vector3(0.0f, 0.0f);
     TransInfo.Scale = Vector3(7.0f, 3.0f);
 
-    if (pBridge)
-        pBridge->Initialize();
-
     return this;
 }
 
 int Item::Update()
 {
-    TransInfo.Position.x -= 0.8f;
-
-    if (pBridge)
-        pBridge->Update(TransInfo);
+    TransInfo.Position.x -= 1.2f;
 
     return 0;
 }
 
 void Item::Render()
 {
-   
-    if (pBridge)
-        pBridge->Render();
+    if (TransInfo.Position.x >= 2.0f)
+    {
+        for (int i = 0; i < 3; ++i)
+        {
+            CursorManager::GetInstance()->WriteBuffer(
+                TransInfo.Position.x,
+                TransInfo.Position.y - (TransInfo.Scale.y * 0.5f) + i,
+                Buffer[i], 15);
+        }
+    }
 }
 
 void Item::Release()

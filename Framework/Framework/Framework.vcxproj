@@ -160,7 +160,6 @@
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="ObjectPool.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PowerUpItem.cpp" />
     <ClCompile Include="Prototype.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -189,7 +188,6 @@
     <ClInclude Include="Headers.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Item.h" />
-    <ClInclude Include="ItemBridge.h" />
     <ClInclude Include="Logo.h" />
     <ClInclude Include="MainUpdate.h" />
     <ClInclude Include="Manual.h" />
@@ -202,7 +200,6 @@
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PowerUpItem.h" />
     <ClInclude Include="Prototype.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
