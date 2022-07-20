@@ -54,9 +54,15 @@ void ObjectPool::Update()
 	CursorManager::GetInstance()->WriteBuffer(152.0f, 1.0f, (char*)"EnableList(Bullet) : ");
 	CursorManager::GetInstance()->WriteBuffer(173.0f, 1.0f, EnableList["Bullet"].size());
 
+	CursorManager::GetInstance()->WriteBuffer(152.0f, 4.0f, (char*)"DisableList(Item) : ");
+	CursorManager::GetInstance()->WriteBuffer(172.0f, 4.0f, DisableList["Item"].size());
+
+	CursorManager::GetInstance()->WriteBuffer(152.0f, 5.0f, (char*)"EnableList(Item) : ");
+	CursorManager::GetInstance()->WriteBuffer(171.0f, 5.0f, EnableList["Item"].size());
+
 	CursorManager::GetInstance()->WriteBuffer(152.0f, 2.0f, (char*)"DisableList(Enemy) : ");
 	CursorManager::GetInstance()->WriteBuffer(173.0f, 2.0f, DisableList["Enemy"].size());
-
+	
 	CursorManager::GetInstance()->WriteBuffer(152.0f, 3.0f, (char*)"EnableList(Enemy) : ");
 	CursorManager::GetInstance()->WriteBuffer(172.0f, 3.0f, EnableList["Enemy"].size());
 
