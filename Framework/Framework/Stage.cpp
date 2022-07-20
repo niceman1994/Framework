@@ -50,8 +50,8 @@ void Stage::Initialize()
 		ObjectManager::GetInstance()->AddObject("EnemyBullet");
 	}
 
-	//Object* Item = Prototype::GetInstance()->ProtoTypeObject("Item");
-	//ObjectManager::GetInstance()->AddObject("Item");
+	Object* Item = Prototype::GetInstance()->ProtoTypeObject("Item");
+	ObjectManager::GetInstance()->AddObject("Item");
 }
 
 void Stage::Update()
@@ -59,6 +59,7 @@ void Stage::Update()
 	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObjectList("Bullet");
 	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObjectList("Enemy");
 	list<Object*>* pEnemyBulletList = ObjectManager::GetInstance()->GetObjectList("EnemyBullet");
+	list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
 
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
@@ -165,33 +166,9 @@ void Stage::Update()
 						{
 							ObjectManager::GetInstance()->AddScore(100);
 
-							if (rand() % 2 == 1)
-							{
-								Object* Item = Prototype::GetInstance()->ProtoTypeObject("Item");
-								ObjectManager::GetInstance()->AddObject("Item");
-								list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
-
-								for (list<Object*>::iterator Itemiter = pItemList->begin(); Itemiter != pItemList->end();)
-								{
-									(*Itemiter)->SetPosition((*Enemyiter)->GetPosition());
-
-									if (Itemiter == pItemList->end())
-										break;
-									else if (CollisionManager::CircleCollision(pPlayer, *Itemiter))
-									{
-										//int Random = rand() % 2 + 1;
-										//
-										//if (Random == 1)
-											ObjectManager::GetInstance()->AddScore(500);
-
-										//Itemiter = ObjectManager::GetInstance()->ThrowObject(Itemiter, *Itemiter);
-									}
-									else
-										++Itemiter;
-
-									
-								}
-							}
+							//Object* Item = Prototype::GetInstance()->ProtoTypeObject("Item");
+							//ObjectManager::GetInstance()->AddObject("Item");
+							pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
 
 							Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, *Enemyiter);
 
@@ -200,6 +177,28 @@ void Stage::Update()
 						}
 						else
 							++Bulletiter;
+
+						//if (rand() % 2 == 1)
+						//{
+						//	for (list<Object*>::iterator Itemiter = pItemList->begin(); Itemiter != pItemList->end();)
+						//	{
+						//		(*Itemiter)->SetPosition((*Enemyiter)->GetPosition());
+						//
+						//		if (Itemiter == pItemList->end())
+						//			break;
+						//		else if (CollisionManager::Collision(pPlayer, *Itemiter))
+						//		{
+						//			//int Random = rand() % 2 + 1;
+						//			//
+						//			//if (Random == 1)
+						//			ObjectManager::GetInstance()->AddScore(500);
+						//
+						//			//Itemiter = ObjectManager::GetInstance()->ThrowObject(Itemiter, *Itemiter);
+						//		}
+						//		else
+						//			++Itemiter;
+						//	}
+						//}
 					}
 				}
 				if (Enemyiter == pEnemyList->end())
