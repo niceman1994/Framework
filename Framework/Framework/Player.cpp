@@ -65,13 +65,25 @@ int Player::Update()
 			TransInfo.Position = Vector3(170.0f, TransInfo.Position.y);
 	}	
 
-	if (dwKey & KEY_SPACE)
+	if (dwKey & KEY_SPACE && ObjectManager::GetInstance()->GetStageScore() < 5000)
 	{
 		Bridge* pBridge = new NormalBullet;
 		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
 	}
 
-	if (dwKey & KEY_CTRL)
+	if (dwKey & KEY_SPACE && ObjectManager::GetInstance()->GetStageScore() >= 5000)
+	{
+		Bridge* pBridge = new TwinBullet;
+		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
+	}
+
+	if (dwKey & KEY_CTRL && ObjectManager::GetInstance()->GetStageScore() < 5000)
+	{
+		Bridge* pBridge = new NormalBullet;
+		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
+	}
+
+	if (dwKey & KEY_CTRL && ObjectManager::GetInstance()->GetStageScore() >= 5000)
 	{
 		Bridge* pBridge = new TwinBullet;
 		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);

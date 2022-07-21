@@ -11,6 +11,9 @@ void TwinBullet::Initialize()
 {
     Speed = 1.35f;
     Color = 13;
+
+    //Speed = 1.2f;
+    //Color = 12;
 }
 
 int TwinBullet::Update(Transform& Info)
@@ -30,12 +33,17 @@ void TwinBullet::Render()
         pObject->GetPosition().y - (pObject->GetScale().y * 0.5f),
         (char*)"£ª",
         Color);
-
+    
     CursorManager::GetInstance()->WriteBuffer(
         pObject->GetPosition().x + (pObject->GetScale().x * 0.5f),
         pObject->GetPosition().y + (pObject->GetScale().y * 0.25f),
         (char*)"£ª",
         14);
+
+    //CursorManager::GetInstance()->WriteBuffer(
+    //    pObject->GetPosition().x + (pObject->GetScale().x),
+    //    pObject->GetPosition().y - pObject->GetScale().y * 0.33f,
+    //    (char*)"£ª", Color);
 }
 
 void TwinBullet::Release()

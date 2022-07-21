@@ -3,7 +3,7 @@
 #include "SceneManager.h"
 #include "InputManager.h"
 
-StageUI::StageUI()
+StageUI::StageUI() : Ready()
 {
 }
 
@@ -13,7 +13,15 @@ StageUI::~StageUI()
 
 void StageUI::Initialize()
 {
-	
+	Ready[0] = (char*)"########  ########    ###    ########  ##    ##";
+	Ready[1] = (char*)"##     ## ##         ## ##   ##     ##  ##  ## ";
+	Ready[2] = (char*)"##     ## ##        ##   ##  ##     ##   ####  ";
+	Ready[3] = (char*)"########  ######   ##     ## ##     ##    ##   ";
+	Ready[4] = (char*)"##   ##   ##       ######### ##     ##    ##   ";
+	Ready[5] = (char*)"##    ##  ##       ##     ## ##     ##    ##   ";
+	Ready[6] = (char*)"##     ## ######## ##     ## ########     ##   ";
+
+	Ready[7] = (char*)"";
 }
 
 void StageUI::Update()
@@ -46,22 +54,24 @@ void StageUI::Render()
 		"8 8888         8 8888          .888888888. `88888.  8 8888      8 8888          8 8888   `8b.           888", 11);
 	CursorManager::GetInstance()->WriteBuffer(36.0f, 16.0f, (char*)
 		"8 8888         8 888888888888 .8'       `8. `88888. 8 8888      8 888888888888  8 8888     `88.       8888888", 11);
+	
+	int count = 0;
 
+	while (count <= 30)
+	{
+		for (int i = 0; i < 7; ++i)
+			CursorManager::GetInstance()->WriteBuffer(67.0f, 28.0f + i, Ready[i], 14);
 
-	CursorManager::GetInstance()->WriteBuffer(66.0f, 28.0f, (char*)
-		"########  ########    ###    ########  ##    ##\n", 14);
-	CursorManager::GetInstance()->WriteBuffer(66.0f, 29.0f, (char*)
-		"##     ## ##         ## ##   ##     ##  ##  ## \n", 14);
-	CursorManager::GetInstance()->WriteBuffer(66.0f, 30.0f, (char*)
-		"##     ## ##        ##   ##  ##     ##   ####  \n", 14);
-	CursorManager::GetInstance()->WriteBuffer(66.0f, 31.0f, (char*)
-		"########  ######   ##     ## ##     ##    ##   \n", 14);
-	CursorManager::GetInstance()->WriteBuffer(66.0f, 32.0f, (char*)
-		"##   ##   ##       ######### ##     ##    ##   \n", 14);
-	CursorManager::GetInstance()->WriteBuffer(66.0f, 33.0f, (char*)
-		"##    ##  ##       ##     ## ##     ##    ##   \n", 14);
-	CursorManager::GetInstance()->WriteBuffer(66.0f, 34.0f, (char*)
-		"##     ## ######## ##     ## ########     ##   \n", 14);
+		++count;
+
+		if (count % 2 == 1)
+		{
+			for (int i = 0; i < 7; ++i)
+				CursorManager::GetInstance()->WriteBuffer(67.0f, 28.0f + i, Ready[i], 0);
+		}
+
+		break;
+	}
 }
 
 void StageUI::Release()

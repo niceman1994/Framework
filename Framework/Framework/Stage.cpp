@@ -65,7 +65,7 @@ void Stage::Update()
 		Enable_UI();
 	}
 
-	if (dwKey & PRESS_0)
+	if (dwKey & KEY_0)
 	{
 		ObjectManager::GetInstance()->IncreaseCredit();
 		CursorManager::GetInstance()->ClearBuffer();
@@ -80,23 +80,7 @@ void Stage::Update()
 
 	if (dwKey & KEY_ESCAPE)
 	{
-		if (pBulletList->size() >= 20)
-		{
-			for (int i = 0; i < 20; ++i)
-			{
-				ObjectPool::GetInstance()->CatchObject(pBulletList->back());
-				pBulletList->pop_back();
-			}
-		}
-		else if (pBulletList->size() < 10 && pBulletList->size() >= 5)
-		{
-			for (int i = 0; i < 10; ++i)
-			{
-				ObjectPool::GetInstance()->CatchObject(pBulletList->back());
-				pBulletList->pop_back();
-			}
-		}
-		else if (pBulletList->size())
+		if (pBulletList->size())
 		{
 			ObjectPool::GetInstance()->CatchObject(pBulletList->back());
 			pBulletList->pop_back();
@@ -166,12 +150,14 @@ void Stage::Update()
 							if (rand() % 2 == 1)
 							{
 								Object* pItem = Prototype::GetInstance()->ProtoTypeObject("Item");
-								//pItem->SetPosition((*Enemyiter)->GetPosition());
+								pItem->SetPosition((*Enemyiter)->GetPosition());
 								ObjectManager::GetInstance()->AddObject("Item");
 								list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
 
-								for (list<Object*>::iterator Itemiter = pItemList->begin(); Itemiter != pItemList->end(); ++ Itemiter)
-									(*Itemiter)->SetPosition((*Enemyiter)->GetPosition());
+								//for (list<Object*>::iterator Itemiter = pItemList->begin(); Itemiter != pItemList->end(); ++Itemiter)
+								//{
+								//	(*Itemiter)->SetPosition((*Enemyiter)->GetPosition());
+								//}
 							}
 
 							Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, *Enemyiter);
@@ -303,8 +289,8 @@ void Stage::Render()
 	CursorManager::GetInstance()->WriteBuffer(1.0f, 0.0f, (char*)"HP : ");
 	CursorManager::GetInstance()->WriteBuffer(6.0f, 0.0f, ObjectManager::GetInstance()->GetLife());
 
-	CursorManager::GetInstance()->WriteBuffer(12.0f, 0.0f, (char*)"Score : ");
-	CursorManager::GetInstance()->WriteBuffer(20.0f, 0.0f, ObjectManager::GetInstance()->GetStageScore());
+	CursorManager::GetInstance()->WriteBuffer(45.0f, 0.0f, (char*)"Score : ");
+	CursorManager::GetInstance()->WriteBuffer(53.0f, 0.0f, ObjectManager::GetInstance()->GetStageScore());
 
 	CursorManager::GetInstance()->WriteBuffer(152.0f, 49.0f, (char*)"CREDIT : ", 14);
 	CursorManager::GetInstance()->WriteBuffer(161.0f, 49.0f, ObjectManager::GetInstance()->GetCredit(), 14);

@@ -3,6 +3,8 @@
 
 class StageUI : public Scene
 {
+private:
+	char* Ready[8];
 public:
 	virtual void Initialize()override;
 	virtual void Update()override;

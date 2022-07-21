@@ -22,10 +22,14 @@ void InputManager::InputKey()
 	if (GetAsyncKeyState(VK_RIGHT))
 		Key |= KEY_RIGHT;
 
-	if (GetAsyncKeyState(VK_SPACE))
+	if (GetAsyncKeyState(VK_SPACE) & 0x0001)
+	{
 		Key |= KEY_SPACE;
+		Pressed = true;
+	}
 
-	if (GetAsyncKeyState(VK_RETURN))
+
+	if (GetAsyncKeyState(VK_RETURN) & 0x0001)
 		Key |= KEY_ENTER;
 
 	if (GetAsyncKeyState(VK_CONTROL))
@@ -37,21 +41,18 @@ void InputManager::InputKey()
 	if (GetAsyncKeyState(VK_TAB))
 		Key |= KEY_TAB;
 
-	if (GetAsyncKeyState(VK_ESCAPE))
+	if (GetAsyncKeyState(VK_ESCAPE) & 0x0001)
 		Key |= KEY_ESCAPE;
 
-	if (GetAsyncKeyState(VK_CANCEL))
-		Key |= KEY_CANCEL;
+	if (GetAsyncKeyState(0x30) & 0x0001)
+		Key |= KEY_0;
 
-	if (GetAsyncKeyState(0x30))
-		Key |= PRESS_0;
+	if (GetAsyncKeyState(0x31) & 0x0001)
+		Key |= KEY_1;
 
-	if (GetAsyncKeyState(0x31))
-		Key |= PRESS_1;
+	if (GetAsyncKeyState(0x32) & 0x0001)
+		Key |= KEY_2;
 
-	if (GetAsyncKeyState(0x32))
-		Key |= PRESS_2;
-
-	if (GetAsyncKeyState(0x33))
-			Key |= PRESS_3;
+	if (GetAsyncKeyState(0x33) & 0x0001)
+		Key |= KEY_3;
 }

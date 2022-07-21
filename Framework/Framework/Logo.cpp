@@ -24,7 +24,7 @@ void Logo::Update()
 {
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
-	if (dwKey & PRESS_0)
+	if (dwKey & KEY_0)
 	{
 		ObjectManager::GetInstance()->IncreaseCredit();
 		CursorManager::GetInstance()->ClearBuffer();
@@ -34,16 +34,16 @@ void Logo::Update()
 			ObjectManager::GetInstance()->SetCredit(99);
 	}
 
-	if (dwKey & PRESS_1 && ObjectManager::GetInstance()->GetCredit() >= 1)
+	if (dwKey & KEY_1 && ObjectManager::GetInstance()->GetCredit() >= 1)
 	{
 		ObjectManager::GetInstance()->DecreaseCredit();
 		SceneManager::GetInstance()->SetScene(MENU);
 	}
 
-	if (dwKey & PRESS_2)
+	if (dwKey & KEY_2)
 		SceneManager::GetInstance()->SetScene(MANUAL);
 
-	if (dwKey & PRESS_3)
+	if (dwKey & KEY_3)
 		exit(0);
 }
 
@@ -90,6 +90,7 @@ void Logo::Render()
 	CursorManager::GetInstance()->WriteBuffer(84.0f, 34.0f, (char*)"1. 시작", 2);
 	CursorManager::GetInstance()->WriteBuffer(84.0f, 36.0f, (char*)"2. 조작법", 3);
 	CursorManager::GetInstance()->WriteBuffer(84.0f, 38.0f, (char*)"3. 종료", 8);
+	
 	
 	CursorManager::GetInstance()->WriteBuffer(152.0f, 49.0f, (char*)"CREDIT : ", 14);
 	CursorManager::GetInstance()->WriteBuffer(161.0f, 49.0f, ObjectManager::GetInstance()->GetCredit(), 14);
