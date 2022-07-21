@@ -25,7 +25,7 @@ Object* Item::Initialize(string _Key)
 
 int Item::Update()
 {
-    TransInfo.Position.x -= 1.2f;
+    TransInfo.Position.x -= 1.2f * 1;
 
     return 0;
 }

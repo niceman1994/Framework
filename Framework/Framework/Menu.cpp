@@ -4,18 +4,18 @@
 #include "ObjectManager.h"
 #include "CursorManager.h"
 
-Menu::Menu() : Select() { }
+Menu::Menu() { }
 Menu::~Menu() { }
 
 void Menu::Initialize()
 {
-	Select[0] = (char*)" #####  #######    #     #####  #######       #   ";
-	Select[1] = (char*)"#     #    #      # #   #     # #            ##   ";
-	Select[2] = (char*)"#          #     #   #  #       #           # #   ";
-	Select[3] = (char*)" #####     #    #     # #  #### #####         #   ";
-	Select[4] = (char*)"      #    #    ####### #     # #             #   ";
-	Select[5] = (char*)"#     #    #    #     # #     # #             #   ";
-	Select[6] = (char*)" #####     #    #     #  #####  #######     ##### ";
+	Text[0] = (char*)" #####  #######    #     #####  #######       #   ";
+	Text[1] = (char*)"#     #    #      # #   #     # #            ##   ";
+	Text[2] = (char*)"#          #     #   #  #       #           # #   ";
+	Text[3] = (char*)" #####     #    #     # #  #### #####         #   ";
+	Text[4] = (char*)"      #    #    ####### #     # #             #   ";
+	Text[5] = (char*)"#     #    #    #     # #     # #             #   ";
+	Text[6] = (char*)" #####     #    #     #  #####  #######     ##### ";
 }
 
 void Menu::Update()
@@ -61,7 +61,7 @@ void Menu::Render()
 	}
 
 	for (int i = 0; i < 7; ++i)
-		CursorManager::GetInstance()->WriteBuffer(67.0f, 24.0f + i, Select[i], 3);
+		CursorManager::GetInstance()->WriteBuffer(67.0f, 24.0f + i, Text[i], 3);
 
 	//CursorManager::GetInstance()->WriteBuffer(85.0f, 26.0f, (char*)"STAGE 2", 4);
 	//CursorManager::GetInstance()->WriteBuffer(85.0f, 28.0f, (char*)"STAGE 3", 6);

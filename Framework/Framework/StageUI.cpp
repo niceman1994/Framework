@@ -3,7 +3,7 @@
 #include "SceneManager.h"
 #include "InputManager.h"
 
-StageUI::StageUI() : Ready()
+StageUI::StageUI()
 {
 }
 
@@ -13,15 +13,15 @@ StageUI::~StageUI()
 
 void StageUI::Initialize()
 {
-	Ready[0] = (char*)"########  ########    ###    ########  ##    ##";
-	Ready[1] = (char*)"##     ## ##         ## ##   ##     ##  ##  ## ";
-	Ready[2] = (char*)"##     ## ##        ##   ##  ##     ##   ####  ";
-	Ready[3] = (char*)"########  ######   ##     ## ##     ##    ##   ";
-	Ready[4] = (char*)"##   ##   ##       ######### ##     ##    ##   ";
-	Ready[5] = (char*)"##    ##  ##       ##     ## ##     ##    ##   ";
-	Ready[6] = (char*)"##     ## ######## ##     ## ########     ##   ";
+	Text[0] = (char*)"########  ########    ###    ########  ##    ##";
+	Text[1] = (char*)"##     ## ##         ## ##   ##     ##  ##  ## ";
+	Text[2] = (char*)"##     ## ##        ##   ##  ##     ##   ####  ";
+	Text[3] = (char*)"########  ######   ##     ## ##     ##    ##   ";
+	Text[4] = (char*)"##   ##   ##       ######### ##     ##    ##   ";
+	Text[5] = (char*)"##    ##  ##       ##     ## ##     ##    ##   ";
+	Text[6] = (char*)"##     ## ######## ##     ## ########     ##   ";
 
-	Ready[7] = (char*)"";
+	Text[7] = (char*)"";
 }
 
 void StageUI::Update()
@@ -60,15 +60,15 @@ void StageUI::Render()
 	while (count <= 30)
 	{
 		for (int i = 0; i < 7; ++i)
-			CursorManager::GetInstance()->WriteBuffer(67.0f, 28.0f + i, Ready[i], 14);
+			CursorManager::GetInstance()->WriteBuffer(67.0f, 28.0f + i, Text[i], 14);
 
 		++count;
 
-		if (count % 2 == 1)
-		{
-			for (int i = 0; i < 7; ++i)
-				CursorManager::GetInstance()->WriteBuffer(67.0f, 28.0f + i, Ready[i], 0);
-		}
+		//if (count % 2 == 1)
+		//{
+		//	for (int i = 0; i < 7; ++i)
+		//		CursorManager::GetInstance()->WriteBuffer(67.0f, 28.0f + i, Text[i], 0);
+		//}
 
 		break;
 	}

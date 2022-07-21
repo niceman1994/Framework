@@ -1,5 +1,6 @@
 #include "ObjectPool.h"
 #include "Object.h"
+#include "ObjectManager.h"
 #include "CursorManager.h"
 #include "CollisionManager.h"
 

@@ -23,11 +23,7 @@ void InputManager::InputKey()
 		Key |= KEY_RIGHT;
 
 	if (GetAsyncKeyState(VK_SPACE) & 0x0001)
-	{
 		Key |= KEY_SPACE;
-		Pressed = true;
-	}
-
 
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001)
 		Key |= KEY_ENTER;

@@ -1,4 +1,4 @@
-// 2022.07.20 Framework Portfolio Ver 2.3-1
+// 2022.07.21 Framework Portfolio Ver 2.4
 #define _CRT_SECURE_NO_WARNINGS
 #include "Headers.h"
 #include "MainUpdate.h"
