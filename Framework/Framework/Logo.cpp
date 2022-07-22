@@ -47,10 +47,7 @@ void Logo::Update()
 	}
 
 	if (dwKey & KEY_1 && ObjectManager::GetInstance()->GetCredit() >= 1)
-	{
-		ObjectManager::GetInstance()->DecreaseCredit();
 		SceneManager::GetInstance()->SetScene(MENU);
-	}
 
 	if (dwKey & KEY_2)
 		SceneManager::GetInstance()->SetScene(MANUAL);

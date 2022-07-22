@@ -49,23 +49,23 @@ Object* ObjectPool::ThrowObject(string _Key)
 
 void ObjectPool::Update()
 {
-	CursorManager::GetInstance()->WriteBuffer(152.0f, 0.0f, (char*)"DisableList(Bullet) : ");
-	CursorManager::GetInstance()->WriteBuffer(174.0f, 0.0f, DisableList["Bullet"].size());
+	CursorManager::GetInstance()->WriteBuffer(152.0f, 0.0f, (char*)"DisableList(Enemy) : ");
+	CursorManager::GetInstance()->WriteBuffer(173.0f, 0.0f, (int)DisableList["Enemy"].size());
 
-	CursorManager::GetInstance()->WriteBuffer(152.0f, 1.0f, (char*)"EnableList(Bullet) : ");
-	CursorManager::GetInstance()->WriteBuffer(173.0f, 1.0f, EnableList["Bullet"].size());
+	CursorManager::GetInstance()->WriteBuffer(152.0f, 1.0f, (char*)"EnableList(Enemy) : ");
+	CursorManager::GetInstance()->WriteBuffer(172.0f, 1.0f, (int)EnableList["Enemy"].size());
 
-	CursorManager::GetInstance()->WriteBuffer(152.0f, 4.0f, (char*)"DisableList(Item) : ");
-	CursorManager::GetInstance()->WriteBuffer(172.0f, 4.0f, DisableList["Item"].size());
+	CursorManager::GetInstance()->WriteBuffer(152.0f, 2.0f, (char*)"DisableList(Bullet) : ", 0);
+	CursorManager::GetInstance()->WriteBuffer(174.0f, 2.0f, (int)DisableList["Bullet"].size(), 0);
 
-	CursorManager::GetInstance()->WriteBuffer(152.0f, 5.0f, (char*)"EnableList(Item) : ");
-	CursorManager::GetInstance()->WriteBuffer(171.0f, 5.0f, EnableList["Item"].size());
+	CursorManager::GetInstance()->WriteBuffer(152.0f, 3.0f, (char*)"EnableList(Bullet) : ", 0);
+	CursorManager::GetInstance()->WriteBuffer(173.0f, 3.0f, (int)EnableList["Bullet"].size(), 0);
 
-	CursorManager::GetInstance()->WriteBuffer(152.0f, 2.0f, (char*)"DisableList(Enemy) : ");
-	CursorManager::GetInstance()->WriteBuffer(173.0f, 2.0f, DisableList["Enemy"].size());
+	CursorManager::GetInstance()->WriteBuffer(152.0f, 4.0f, (char*)"DisableList(Item) : ", 0);
+	CursorManager::GetInstance()->WriteBuffer(172.0f, 4.0f, (int)DisableList["Item"].size(), 0);
 	
-	CursorManager::GetInstance()->WriteBuffer(152.0f, 3.0f, (char*)"EnableList(Enemy) : ");
-	CursorManager::GetInstance()->WriteBuffer(172.0f, 3.0f, EnableList["Enemy"].size());
+	CursorManager::GetInstance()->WriteBuffer(152.0f, 5.0f, (char*)"EnableList(Item) : ", 0);
+	CursorManager::GetInstance()->WriteBuffer(171.0f, 5.0f, (int)EnableList["Item"].size(), 0);
 
 	for (map<string, list<Object*>>::iterator iter = EnableList.begin(); iter != EnableList.end(); ++iter)
 	{

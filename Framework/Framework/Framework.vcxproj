@@ -163,7 +163,9 @@
     <ClCompile Include="Prototype.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="ScoreItem.cpp" />
     <ClCompile Include="ScrollBox.cpp" />
+    <ClCompile Include="ShieldItem.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="StageUI.cpp" />
     <ClCompile Include="TwinBullet.cpp" />
@@ -188,6 +190,7 @@
     <ClInclude Include="Headers.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemBridge.h" />
     <ClInclude Include="Logo.h" />
     <ClInclude Include="MainUpdate.h" />
     <ClInclude Include="Manual.h" />
@@ -203,7 +206,9 @@
     <ClInclude Include="Prototype.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="ScoreItem.h" />
     <ClInclude Include="ScrollBox.h" />
+    <ClInclude Include="ShieldItem.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="StageUI.h" />
     <ClInclude Include="Struct.h" />

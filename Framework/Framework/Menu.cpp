@@ -67,7 +67,10 @@ void Menu::Update()
 	if (dwKey & KEY_ENTER)
 	{
 		if (count == 0)
+		{
+			ObjectManager::GetInstance()->DecreaseCredit();
 			SceneManager::GetInstance()->SetScene(STAGEUI);
+		}
 	}
 
 	if (dwKey & KEY_ESCAPE)
@@ -86,31 +89,31 @@ void Menu::Update()
 
 void Menu::Render()
 {
-	CursorManager::GetInstance()->WriteBuffer(38.0f, 4.0f, (char*)
-		"  #### #####   #   ####   #####     #### #####   #   ##### #####     ####  ##### #     #####   ###  #####  ", 7);
-	CursorManager::GetInstance()->WriteBuffer(38.0f, 5.0f, (char*)
-		" #       #    # #  #   #    #      #       #    # #  #     #        #      #     #     #      #   #   #  ", 7);
-	CursorManager::GetInstance()->WriteBuffer(38.0f, 6.0f, (char*)
-		"#        #   #   # #    #   #     #        #   #   # #     #       #       #     #     #      #       #  ", 7);
-	CursorManager::GetInstance()->WriteBuffer(38.0f, 7.0f, (char*)
-		" #       #   #   # #   #    #      #       #   #   # #     #        #      #     #     #      #       #  ", 7);
-	CursorManager::GetInstance()->WriteBuffer(38.0f, 8.0f, (char*)
-		"  ###    #   ##### ####     #       ###    #   ##### # ### ####      ###   ####  #     ####   #       #  ", 7);
-	CursorManager::GetInstance()->WriteBuffer(38.0f, 9.0f, (char*)
-		"     #   #   #   # #  #     #          #   #   #   # #   # #            #  #     #     #      #       #  ", 7);
-	CursorManager::GetInstance()->WriteBuffer(38.0f, 10.0f, (char*)
-		"      #  #   #   # #   #    #           #  #   #   # #   # #             # #     #     #      #       #  ", 7);
-	CursorManager::GetInstance()->WriteBuffer(38.0f, 11.0f, (char*)
-		"     #   #   #   # #    #   #          #   #   #   # #   # #            #  #     #     #      #   #   #  ", 7);
-	CursorManager::GetInstance()->WriteBuffer(38.0f, 12.0f, (char*)
-		" ####    #   #   # #     #  #      ####    #   #   #  #### #####    ####   ##### ##### #####   ###    #  ", 7);
+	CursorManager::GetInstance()->WriteBuffer(37.0f, 4.0f, (char*)
+		"  #### #####   #   ####   #####      #### #####   #   ##### #####      ####  ##### #     #####   ###  #####  ", 7);
+	CursorManager::GetInstance()->WriteBuffer(37.0f, 5.0f, (char*)
+		" #       #    # #  #   #    #       #       #    # #  #     #         #      #     #     #      #   #   #  ", 7);
+	CursorManager::GetInstance()->WriteBuffer(37.0f, 6.0f, (char*)
+		"#        #   #   # #    #   #      #        #   #   # #     #        #       #     #     #      #       #  ", 7);
+	CursorManager::GetInstance()->WriteBuffer(37.0f, 7.0f, (char*)
+		" #       #   #   # #   #    #       #       #   #   # #     #         #      #     #     #      #       #  ", 7);
+	CursorManager::GetInstance()->WriteBuffer(37.0f, 8.0f, (char*)
+		"  ###    #   ##### ####     #        ###    #   ##### # ### ####       ###   ####  #     ####   #       #  ", 7);
+	CursorManager::GetInstance()->WriteBuffer(37.0f, 9.0f, (char*)
+		"     #   #   #   # #  #     #           #   #   #   # #   # #             #  #     #     #      #       #  ", 7);
+	CursorManager::GetInstance()->WriteBuffer(37.0f, 10.0f, (char*)
+		"      #  #   #   # #   #    #            #  #   #   # #   # #              # #     #     #      #       #  ", 7);
+	CursorManager::GetInstance()->WriteBuffer(37.0f, 11.0f, (char*)
+		"     #   #   #   # #    #   #           #   #   #   # #   # #             #  #     #     #      #   #   #  ", 7);
+	CursorManager::GetInstance()->WriteBuffer(37.0f, 12.0f, (char*)
+		" ####    #   #   # #     #  #       ####    #   #   #  #### #####     ####   ##### ##### #####   ###    #  ", 7);
 
-	CursorManager::GetInstance()->WriteBuffer(60.0f, 20.0f, (char*)"―――――――――――――――――――――――――――――――", 8);
+	CursorManager::GetInstance()->WriteBuffer(59.0f, 19.0f, (char*)"――――――――――――――――――――――――――――――――", 8);
 
-	for (int i = 0; i < 14; ++i)
+	for (int i = 0; i < 15; ++i)
 	{
-		CursorManager::GetInstance()->WriteBuffer(59.0f, 21.0f + i, (char*)
-			"｜\t\t\t\t\t\t\t         ｜\n", 8);
+		CursorManager::GetInstance()->WriteBuffer(58.0f, 20.0f + i, (char*)
+			"｜\t\t\t\t\t\t\t          ｜\n", 8);
 	}
 
 	if (count == 0)
@@ -118,33 +121,33 @@ void Menu::Render()
 		for (int i = 0; i < 7; ++i)
 			CursorManager::GetInstance()->WriteBuffer(66.0f, 24.0f + i, Text[i], 3);
 
-		Sleep(200);
+		Sleep(150);
 	}
 	else if (count == 1)
 	{
 		for (int i = 7; i < 14; ++i)
 			CursorManager::GetInstance()->WriteBuffer(66.0f, 17.0f + i, Text[i], 4);
 
-		Sleep(200);
+		Sleep(150);
 	}
 	else if (count == 2)
 	{
 		for (int i = 14; i < 21; ++i)
 			CursorManager::GetInstance()->WriteBuffer(66.0f, 10.0f + i, Text[i], 6);
 
-		Sleep(200);
+		Sleep(150);
 	}
 	else if (count == 3)
 	{
 		for (int i = 21; i < 28; ++i)
 			CursorManager::GetInstance()->WriteBuffer(66.0f, 3.0f + i, Text[i], 12);
 
-		Sleep(200);
+		Sleep(150);
 	}
 
-	CursorManager::GetInstance()->WriteBuffer(82.0f, 49.0f, (char*)"ESC : 돌아가기");
+	CursorManager::GetInstance()->WriteBuffer(81.0f, 49.0f, (char*)"ESC : 돌아가기");
 
-	CursorManager::GetInstance()->WriteBuffer(60.0f, 34.0f, (char*)"―――――――――――――――――――――――――――――――", 8);
+	CursorManager::GetInstance()->WriteBuffer(59.0f, 35.0f, (char*)"――――――――――――――――――――――――――――――――", 8);
 
 	CursorManager::GetInstance()->WriteBuffer(152.0f, 49.0f, (char*)"CREDIT : ", 14);
 	CursorManager::GetInstance()->WriteBuffer(161.0f, 49.0f, ObjectManager::GetInstance()->GetCredit(), 14);

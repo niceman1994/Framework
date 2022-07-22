@@ -9,6 +9,8 @@ NormalEnemyBullet::~NormalEnemyBullet() {}
 
 void NormalEnemyBullet::Initialize()
 {
+    BridgeKey = "NormalEnemyBullet";
+
     Speed = -1.75f;
     Color = 15;
 }

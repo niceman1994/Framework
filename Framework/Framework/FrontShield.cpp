@@ -3,8 +3,6 @@
 #include "ObjectManager.h"
 #include "MathManager.h"
 
-#define PI 3.141592f;
-
 FrontShield::FrontShield() {}
 
 FrontShield::FrontShield(Transform _TransInfo) : Object(_TransInfo) {}

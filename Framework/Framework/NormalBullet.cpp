@@ -10,6 +10,8 @@ NormalBullet::~NormalBullet() {}
 
 void NormalBullet::Initialize()
 {
+	BridgeKey = "NormalBullet";
+
 	Speed = 1.2f;
 	Color = 12;
 }

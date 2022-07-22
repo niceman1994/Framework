@@ -7,7 +7,7 @@
 
 ObjectManager* ObjectManager::Instance = nullptr;
 
-ObjectManager::ObjectManager() : Credit(0), Score(0), Life(0), AtkPower(0), ShieldHp(0)
+ObjectManager::ObjectManager() : Credit(0), Score(0), Life(0), AtkPower(0)
 {
 	EnableList = ObjectPool::GetEnableList();
 }
@@ -35,6 +35,27 @@ void ObjectManager::AddObject(string _Key)
 	}
 	else
 		iter->second.push_back(pObject); // string이 이미 존재할 경우 list<Object*> 에 _Object를 넣는다.
+}
+
+void ObjectManager::AddObject(string _Key, Vector3 _Position)
+{
+	Object* pObject = ObjectPool::GetInstance()->ThrowObject(_Key);
+
+	if (pObject == nullptr)
+		pObject = Prototype::GetInstance()->ProtoTypeObject(_Key)->Clone();
+
+	pObject->SetPosition(_Position);
+
+	map<string, list<Object*>>::iterator iter = EnableList->find(_Key);
+
+	if (iter == EnableList->end())
+	{
+		list<Object*> TempList;
+		TempList.push_back(pObject);
+		EnableList->insert(make_pair(pObject->GetKey(), TempList));
+	}
+	else
+		iter->second.push_back(pObject);
 }
 
 void ObjectManager::AddObject(string _Key, Bridge* _Bridge, Vector3 _Position)

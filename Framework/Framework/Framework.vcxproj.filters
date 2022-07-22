@@ -124,6 +124,15 @@
     <Filter Include="소스 파일\02. Object\Item">
       <UniqueIdentifier>{52446910-d14a-442e-bc0a-243bf48e7317}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02. Object\Item\ItemBridge">
+      <UniqueIdentifier>{00f3d9e8-585b-4289-8529-8c4c252ff2f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Item\ItemBridge\ShieldItem">
+      <UniqueIdentifier>{e911c8ed-3a1e-4b56-bb30-d7a4d22f7150}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Item\ItemBridge\ScoreItem">
+      <UniqueIdentifier>{c9bf7a3e-0599-438b-932a-e7510311f0fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -212,6 +221,12 @@
     </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>소스 파일\02. Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ShieldItem.cpp">
+      <Filter>소스 파일\02. Object\Item\ItemBridge\ShieldItem</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreItem.cpp">
+      <Filter>소스 파일\02. Object\Item\ItemBridge\ScoreItem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -331,6 +346,15 @@
     </ClInclude>
     <ClInclude Include="Item.h">
       <Filter>소스 파일\02. Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemBridge.h">
+      <Filter>소스 파일\02. Object\Item\ItemBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="ShieldItem.h">
+      <Filter>소스 파일\02. Object\Item\ItemBridge\ShieldItem</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreItem.h">
+      <Filter>소스 파일\02. Object\Item\ItemBridge\ScoreItem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -14,6 +14,8 @@
 #include "Prototype.h"
 #include "ObjectFactory.h"
 #include "ObjectPool.h"
+#include "ScoreItem.h"
+#include "ShieldItem.h"
 
 Stage::Stage() : pPlayer(nullptr), pFrontShield(nullptr), pUI(nullptr), _BackGround(nullptr), Check(0) { }
 Stage::~Stage() { Release(); }
@@ -35,8 +37,8 @@ void Stage::Initialize()
 	ObjectManager::GetInstance()->AddObject("Player");
 	pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
 
-	ObjectManager::GetInstance()->AddObject("FrontShield");
-	pFrontShield = ObjectManager::GetInstance()->GetObjectList("FrontShield")->front();
+	//ObjectManager::GetInstance()->AddObject("FrontShield");
+	//pFrontShield = ObjectManager::GetInstance()->GetObjectList("FrontShield")->front();
 
 	Object* pEnemy = Prototype::GetInstance()->ProtoTypeObject("Enemy");
 	Object* pEnemyBullet = Prototype::GetInstance()->ProtoTypeObject("EnemyBullet");
@@ -57,7 +59,6 @@ void Stage::Update()
 	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObjectList("Bullet");
 	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObjectList("Enemy");
 	list<Object*>* pEnemyBulletList = ObjectManager::GetInstance()->GetObjectList("EnemyBullet");
-	//list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
 
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
@@ -148,20 +149,23 @@ void Stage::Update()
 						{
 							ObjectManager::GetInstance()->AddScore(100);
 
-							Object* pItem = Prototype::GetInstance()->ProtoTypeObject("Item");
-							//pItem->SetPosition((*Enemyiter)->GetPosition());
-							ObjectManager::GetInstance()->AddObject("Item");
-							list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
-							//list<Object*>::iterator Itemiter = pItemList->begin();
-
-							for (list<Object*>::iterator Itemiter = pItemList->begin(); Itemiter != pItemList->end(); ++Itemiter)
-								(*Itemiter)->SetPosition((*Enemyiter)->GetPosition());
+							if (rand() % 5 == 1)
+							{
+								Bridge* pBridge = new ScoreItem;
+								pBridge->GetBridgeKey();
+								ObjectManager::GetInstance()->AddObject("Item", pBridge, (*Enemyiter)->GetPosition());
+								list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
+							}
+							else if (rand() % 5 == 2)
+							{
+								Bridge* pBridge = new ShieldItem;
+								pBridge->GetBridgeKey();
+								ObjectManager::GetInstance()->AddObject("Item", pBridge, (*Enemyiter)->GetPosition());
+								list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
+							}
 
 							Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, *Enemyiter);
 							Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, *Bulletiter);
-
-							//if (Itemiter != pItemList->end())
-							//	break;
 						}
 						else
 							++Bulletiter;
@@ -172,23 +176,6 @@ void Stage::Update()
 				else
 					++Enemyiter;
 			}
-		}
-
-		list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
-		
-		for (list<Object*>::iterator Itemiter = pItemList->begin(); Itemiter != pItemList->end();)
-		{
-			if (Itemiter == pItemList->end())
-				break;
-			if (CollisionManager::Collision(pPlayer, *Itemiter))
-			{
-				ObjectManager::GetInstance()->AddScore(500);
-				Itemiter = ObjectManager::GetInstance()->ThrowObject(Itemiter, *Itemiter);
-			}
-			else if ((*Itemiter)->GetPosition().x <= 2.0f)
-				Itemiter = ObjectManager::GetInstance()->ThrowObject(Itemiter, *Itemiter);
-			else
-				++Itemiter;
 		}
 	}
 
@@ -215,6 +202,31 @@ void Stage::Update()
 			}
 		}
 
+		list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
+
+		for (list<Object*>::iterator Itemiter = pItemList->begin(); Itemiter != pItemList->end();)
+		{
+			if (Itemiter == pItemList->end())
+				break;
+			if (CollisionManager::Collision(pPlayer, (*Itemiter)))
+			{	
+				//if ((*Itemiter)->GetBridgeName() == "ScoreItem")
+				//	ObjectManager::GetInstance()->AddScore(400);
+				//else if ((*Itemiter)->GetBridgeName() == "ShieldItem")
+				//{
+				//	ObjectManager::GetInstance()->AddObject("FrontShield");
+				//	pFrontShield = ObjectManager::GetInstance()->GetObjectList("FrontShield")->front();
+				//	pFrontShield->Initialize("FrontShield");
+				//}
+
+				Itemiter = ObjectManager::GetInstance()->ThrowObject(Itemiter, *Itemiter);
+			}
+			else if ((*Itemiter)->GetPosition().x <= 2.0f)
+				Itemiter = ObjectManager::GetInstance()->ThrowObject(Itemiter, *Itemiter);
+			else
+				++Itemiter;
+		}
+
 		if (pFrontShield != nullptr)
 		{
 			if (pEnemyBulletList != nullptr)
@@ -228,8 +240,6 @@ void Stage::Update()
 				}
 			}
 		}
-		//else
-		//	pFrontShield->Initialize("FrontShield");
 	}
 
 	if (pEnemyList != nullptr)

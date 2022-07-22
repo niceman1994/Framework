@@ -28,6 +28,14 @@ public:
 	void SetScale(float _x, float _y) { TransInfo.Scale = Vector3(_x, _y); }
 
 	void SetBridge(Bridge* _Bridge) { pBridge = _Bridge; }
+	void SetBridgeName(string _BridgeKey) {}
+	string GetBridgeName() const 
+	{ 
+		if (pBridge != NULL)
+			return pBridge->GetBridgeKey();
+		else
+			return "";
+	}
 public:
 	Object();
 	Object(Transform _TransInfo);
