@@ -13,15 +13,26 @@ StageUI::~StageUI()
 
 void StageUI::Initialize()
 {
-	Text[0] = (char*)"########  ########    ###    ########  ##    ##";
-	Text[1] = (char*)"##     ## ##         ## ##   ##     ##  ##  ## ";
-	Text[2] = (char*)"##     ## ##        ##   ##  ##     ##   ####  ";
-	Text[3] = (char*)"########  ######   ##     ## ##     ##    ##   ";
-	Text[4] = (char*)"##   ##   ##       ######### ##     ##    ##   ";
-	Text[5] = (char*)"##    ##  ##       ##     ## ##     ##    ##   ";
-	Text[6] = (char*)"##     ## ######## ##     ## ########     ##   ";
+	count = 0;
 
-	Text[7] = (char*)"";
+	Text[0] = (char*)"8 888888888o   8 8888                  .8.   `8.`8888.      ,8' 8 888888888888  8 888888888o.         d8888";
+	Text[1] = (char*)"8 8888    `88. 8 8888                 .888.   `8.`8888.    ,8'  8 8888          8 8888    `88.       d88888";
+	Text[2] = (char*)"8 8888     `88 8 8888                :88888.   `8.`8888.  ,8'   8 8888          8 8888     `88          888";
+	Text[3] = (char*)"8 8888     ,88 8 8888               . `88888.   `8.`8888.,8'    8 8888          8 8888     ,88          888";
+	Text[4] = (char*)"8 8888.   ,88' 8 8888              .8. `88888.   `8.`88888'     8 888888888888  8 8888.   ,88'          888";
+	Text[5] = (char*)"8 888888888P'  8 8888             .8`8. `88888.   `8. 8888      8 8888          8 888888888P'           888";
+	Text[6] = (char*)"8 8888         8 8888            .8' `8. `88888.   `8 8888      8 8888          8 8888`8b               888";
+	Text[7] = (char*)"8 8888         8 8888           .8'   `8. `88888.   8 8888      8 8888          8 8888 `8b.             888";
+	Text[8] = (char*)"8 8888         8 8888          .888888888. `88888.  8 8888      8 8888          8 8888   `8b.           888";
+	Text[9] = (char*)"8 8888         8 888888888888 .8'       `8. `88888. 8 8888      8 888888888888  8 8888     `88.       8888888";
+
+	Text[10] = (char*)"########  ########    ###    ########  ##    ##";
+	Text[11] = (char*)"##     ## ##         ## ##   ##     ##  ##  ## ";
+	Text[12] = (char*)"##     ## ##        ##   ##  ##     ##   ####  ";
+	Text[13] = (char*)"########  ######   ##     ## ##     ##    ##   ";
+	Text[14] = (char*)"##   ##   ##       ######### ##     ##    ##   ";
+	Text[15] = (char*)"##    ##  ##       ##     ## ##     ##    ##   ";
+	Text[16] = (char*)"##     ## ######## ##     ## ########     ##   ";
 }
 
 void StageUI::Update()
@@ -33,48 +44,33 @@ void StageUI::Update()
 }
 
 void StageUI::Render()
-{                
-	CursorManager::GetInstance()->WriteBuffer(36.0f, 7.0f, (char*)
-		"8 888888888o   8 8888                  .8.   `8.`8888.      ,8' 8 888888888888  8 888888888o.         d8888", 11);     
-	CursorManager::GetInstance()->WriteBuffer(36.0f, 8.0f, (char*)
-		"8 8888    `88. 8 8888                 .888.   `8.`8888.    ,8'  8 8888          8 8888    `88.       d88888", 11);
-	CursorManager::GetInstance()->WriteBuffer(36.0f, 9.0f, (char*)
-		"8 8888     `88 8 8888                :88888.   `8.`8888.  ,8'   8 8888          8 8888     `88          888", 11);
-	CursorManager::GetInstance()->WriteBuffer(36.0f, 10.0f, (char*)
-		"8 8888     ,88 8 8888               . `88888.   `8.`8888.,8'    8 8888          8 8888     ,88          888", 11);
-	CursorManager::GetInstance()->WriteBuffer(36.0f, 11.0f, (char*)
-		"8 8888.   ,88' 8 8888              .8. `88888.   `8.`88888'     8 888888888888  8 8888.   ,88'          888", 11);
-	CursorManager::GetInstance()->WriteBuffer(36.0f, 12.0f, (char*)
-		"8 888888888P'  8 8888             .8`8. `88888.   `8. 8888      8 8888          8 888888888P'           888", 11);
-	CursorManager::GetInstance()->WriteBuffer(36.0f, 13.0f, (char*)
-		"8 8888         8 8888            .8' `8. `88888.   `8 8888      8 8888          8 8888`8b               888", 11);
-	CursorManager::GetInstance()->WriteBuffer(36.0f, 14.0f, (char*)
-		"8 8888         8 8888           .8'   `8. `88888.   8 8888      8 8888          8 8888 `8b.             888", 11);
-	CursorManager::GetInstance()->WriteBuffer(36.0f, 15.0f, (char*)
-		"8 8888         8 8888          .888888888. `88888.  8 8888      8 8888          8 8888   `8b.           888", 11);
-	CursorManager::GetInstance()->WriteBuffer(36.0f, 16.0f, (char*)
-		"8 8888         8 888888888888 .8'       `8. `88888. 8 8888      8 888888888888  8 8888     `88.       8888888", 11);
-	
-	int count = 0;
+{
+	for (int i = 0; i < 10; ++i)
+		CursorManager::GetInstance()->WriteBuffer(36.0f, 7.0f + i, Text[i], 11);
 
-	while (count <= 30)
+	if (count <= 6)
 	{
-		for (int i = 0; i < 7; ++i)
-			CursorManager::GetInstance()->WriteBuffer(67.0f, 28.0f + i, Text[i], 14);
-
 		++count;
 
-		//if (count % 2 == 1)
-		//{
-		//	for (int i = 0; i < 7; ++i)
-		//		CursorManager::GetInstance()->WriteBuffer(67.0f, 28.0f + i, Text[i], 0);
-		//}
+		for (int i = 10; i < 17; ++i)
+			CursorManager::GetInstance()->WriteBuffer(67.0f, 18.0f + i, Text[i], 14);
+	}
+	else if (count > 6)
+	{
+		++count;
 
-		break;
+		for (int i = 0; i < 7; ++i)
+			CursorManager::GetInstance()->WriteBuffer(67.0f, 18.0f + i, Text[i], 0);
+
+		if (count >= 17)
+		{
+			count = 0;
+			return;
+		}
 	}
 }
 
 void StageUI::Release()
 {
-	
+
 }

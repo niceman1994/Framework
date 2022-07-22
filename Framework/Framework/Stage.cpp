@@ -24,6 +24,7 @@ void Stage::Initialize()
 	ObjectManager::GetInstance()->GetStageScore();
 
 	Check = 0;
+	count = 0;
 
 	pUI = new ScrollBox;
 	pUI->Initialize();

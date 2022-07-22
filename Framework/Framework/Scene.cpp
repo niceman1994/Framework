@@ -1,4 +1,4 @@
 #include "Scene.h"
 
-Scene::Scene() : Text() { }
+Scene::Scene() : Text(), count(0) { }
 Scene::~Scene() { }
