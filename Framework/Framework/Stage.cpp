@@ -2,21 +2,25 @@
 #include "StageUI.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "FrontShield.h"
-#include "Item.h"
+
 #include "ScrollBox.h"
-#include "BackGround.h"
+
 #include "SceneManager.h"
 #include "CollisionManager.h"
 #include "InputManager.h"
 #include "CursorManager.h"
 #include "ObjectManager.h"
+#include "ObjectPool.h"
+
 #include "Prototype.h"
 #include "ObjectFactory.h"
-#include "ObjectPool.h"
+
 #include "ScoreItem.h"
 #include "ShieldItem.h"
 #include "LifeItem.h"
+#include "FrontShield.h"
+#include "Item.h"
+#include "BackGround.h"
 
 Stage::Stage() : pPlayer(nullptr), pFrontShield(nullptr), pUI(nullptr), _BackGround(nullptr), Check(0) { }
 Stage::~Stage() { Release(); }
@@ -51,6 +55,7 @@ void Stage::Initialize()
 		ObjectManager::GetInstance()->AddObject("EnemyBullet");
 	}
 }
+
 
 void Stage::Update()
 {
@@ -87,27 +92,17 @@ void Stage::Update()
 		}
 	}
 
-	if (pBulletList != nullptr)
-	{
-		for (list<Object*>::iterator Bulletiter = pBulletList->begin(); Bulletiter != pBulletList->end(); )
-		{
-			if ((*Bulletiter)->GetPosition().x >= 178.0f)
-				Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, (*Bulletiter));
-			else
-				++Bulletiter;
-		}
-	}
-
-	if (pEnemyBulletList != nullptr)
-	{
-		for (list<Object*>::iterator iter = pEnemyBulletList->begin(); iter != pEnemyBulletList->end();)
-		{
-			if ((*iter)->GetPosition().x <= 0.0f)
-				iter = ObjectManager::GetInstance()->ThrowObject(iter, (*iter));
-			else
-				++iter;
-		}
-	}
+	Scene::Collsion(pBulletList);
+	//if (pBulletList != nullptr)
+	//{
+	//	for (list<Object*>::iterator Bulletiter = pBulletList->begin(); Bulletiter != pBulletList->end(); )
+	//	{
+	//		if ((*Bulletiter)->GetPosition().x >= 178.0f)
+	//			Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, (*Bulletiter));
+	//		else
+	//			++Bulletiter;
+	//	}
+	//}
 
 	if (pEnemyList != nullptr)
 	{
@@ -152,23 +147,21 @@ void Stage::Update()
 								Bridge* pBridge = new ScoreItem;
 								pBridge->GetBridgeKey();
 								ObjectManager::GetInstance()->AddObject("Item", pBridge, (*Enemyiter)->GetPosition());
-								list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
 							}
 							else if (rand() % 10 == 2)
 							{
 								Bridge* pBridge = new ShieldItem;
 								pBridge->GetBridgeKey();
 								ObjectManager::GetInstance()->AddObject("Item", pBridge, (*Enemyiter)->GetPosition());
-								list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
 							}
-
-							if (rand() % 200 == 1)
-							{
-								Bridge* pBridge = new LifeItem;
-								pBridge->GetBridgeKey();
-								ObjectManager::GetInstance()->AddObject("Item", pBridge, (*Enemyiter)->GetPosition());
-								list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
-							}
+							list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
+							//if (rand() % 200 == 1)
+							//{
+							//	Bridge* pBridge = new LifeItem;
+							//	pBridge->GetBridgeKey();
+							//	ObjectManager::GetInstance()->AddObject("Item", pBridge, (*Enemyiter)->GetPosition());
+							//	list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
+							//}
 
 							Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, *Enemyiter);
 							Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, *Bulletiter);
@@ -232,10 +225,10 @@ void Stage::Update()
 					pFrontShield = ObjectManager::GetInstance()->GetObjectList("FrontShield")->front();
 					pFrontShield->Initialize("FrontShield");
 				}
-				else if ((*Itemiter)->GetBridgeName() == "LifeItem")
-				{
-					
-				}
+				//else if ((*Itemiter)->GetBridgeName() == "LifeItem")
+				//{
+				//	
+				//}
 
 				Itemiter = ObjectManager::GetInstance()->ThrowObject(Itemiter, *Itemiter);
 			}

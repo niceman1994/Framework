@@ -65,4 +65,6 @@ public:
 
 		return pObject;
 	}
+
+	//static Bridge* CreateBridge()
 };

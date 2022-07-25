@@ -8,8 +8,11 @@ class Stage : public Scene
 {
 private:
 	Object* pPlayer;
+
 	Object* pFrontShield;
+	Object* LifeItem;
 	Object* _BackGround;
+
 	UserInterface* pUI;
 	int Check;
 public:
