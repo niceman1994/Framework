@@ -16,6 +16,7 @@
 #include "ObjectPool.h"
 #include "ScoreItem.h"
 #include "ShieldItem.h"
+#include "LifeItem.h"
 
 Stage::Stage() : pPlayer(nullptr), pFrontShield(nullptr), pUI(nullptr), _BackGround(nullptr), Check(0) { }
 Stage::~Stage() { Release(); }
@@ -36,9 +37,6 @@ void Stage::Initialize()
 
 	ObjectManager::GetInstance()->AddObject("Player");
 	pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
-
-	//ObjectManager::GetInstance()->AddObject("FrontShield");
-	//pFrontShield = ObjectManager::GetInstance()->GetObjectList("FrontShield")->front();
 
 	Object* pEnemy = Prototype::GetInstance()->ProtoTypeObject("Enemy");
 	Object* pEnemyBullet = Prototype::GetInstance()->ProtoTypeObject("EnemyBullet");
@@ -149,16 +147,24 @@ void Stage::Update()
 						{
 							ObjectManager::GetInstance()->AddScore(100);
 
-							if (rand() % 5 == 1)
+							if (rand() % 10 == 1 || rand() % 10 == 3 || rand() % 10 == 4 || rand() % 10 == 5)
 							{
 								Bridge* pBridge = new ScoreItem;
 								pBridge->GetBridgeKey();
 								ObjectManager::GetInstance()->AddObject("Item", pBridge, (*Enemyiter)->GetPosition());
 								list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
 							}
-							else if (rand() % 5 == 2)
+							else if (rand() % 10 == 2)
 							{
 								Bridge* pBridge = new ShieldItem;
+								pBridge->GetBridgeKey();
+								ObjectManager::GetInstance()->AddObject("Item", pBridge, (*Enemyiter)->GetPosition());
+								list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
+							}
+
+							if (rand() % 200 == 1)
+							{
+								Bridge* pBridge = new LifeItem;
 								pBridge->GetBridgeKey();
 								ObjectManager::GetInstance()->AddObject("Item", pBridge, (*Enemyiter)->GetPosition());
 								list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
@@ -187,15 +193,16 @@ void Stage::Update()
 			{
 				if (CollisionManager::Collision(pPlayer, *EnemyBulletiter))
 				{
-					ObjectManager::GetInstance()->SubLife(1);
-					EnemyBulletiter = ObjectManager::GetInstance()->ThrowObject(EnemyBulletiter, *EnemyBulletiter);
+					ObjectManager::GetInstance()->SubtractLife();
 
-					if (ObjectManager::GetInstance()->GetLife() == 0)
+					if (ObjectManager::GetInstance()->GetLife()[8])
 					{
 						Sleep(100);
 						pPlayer->Initialize("Player");
-						ObjectManager::GetInstance()->SetLife(3);
+						ObjectManager::GetInstance()->SetLife((char*)"¡á¡á¡á¡á");
 					}
+
+					EnemyBulletiter = ObjectManager::GetInstance()->ThrowObject(EnemyBulletiter, *EnemyBulletiter);
 				}
 				else
 					++EnemyBulletiter;
@@ -210,14 +217,25 @@ void Stage::Update()
 				break;
 			if (CollisionManager::Collision(pPlayer, (*Itemiter)))
 			{	
-				//if ((*Itemiter)->GetBridgeName() == "ScoreItem")
-				//	ObjectManager::GetInstance()->AddScore(400);
-				//else if ((*Itemiter)->GetBridgeName() == "ShieldItem")
-				//{
-				//	ObjectManager::GetInstance()->AddObject("FrontShield");
-				//	pFrontShield = ObjectManager::GetInstance()->GetObjectList("FrontShield")->front();
-				//	pFrontShield->Initialize("FrontShield");
-				//}
+				if ((*Itemiter)->GetBridgeName() == "ScoreItem")
+					ObjectManager::GetInstance()->AddScore(400);
+				else if ((*Itemiter)->GetBridgeName() == "ShieldItem")
+				{
+					if (pFrontShield != nullptr && CollisionManager::Collision(pPlayer, (*Itemiter)))
+					{
+						Itemiter = ObjectManager::GetInstance()->ThrowObject(Itemiter, *Itemiter);
+						ObjectManager::GetInstance()->AddScore(200);
+						break;
+					}
+
+					ObjectManager::GetInstance()->AddObject("FrontShield");
+					pFrontShield = ObjectManager::GetInstance()->GetObjectList("FrontShield")->front();
+					pFrontShield->Initialize("FrontShield");
+				}
+				else if ((*Itemiter)->GetBridgeName() == "LifeItem")
+				{
+					
+				}
 
 				Itemiter = ObjectManager::GetInstance()->ThrowObject(Itemiter, *Itemiter);
 			}
@@ -248,13 +266,13 @@ void Stage::Update()
 		{
 			if (CollisionManager::CircleCollision(pPlayer, *Enemyiter))
 			{
-				ObjectManager::GetInstance()->SubLife(1);
+				ObjectManager::GetInstance()->SubtractLife();
 
-				if (ObjectManager::GetInstance()->GetLife() == 0)
+				if (ObjectManager::GetInstance()->GetLife()[8])
 				{
 					Sleep(100);
 					pPlayer->Initialize("Player");
-					ObjectManager::GetInstance()->SetLife(3);
+					ObjectManager::GetInstance()->SetLife((char*)"¡á¡á¡á¡á");
 				}
 
 				pPlayer->Initialize("Player");
@@ -280,8 +298,9 @@ void Stage::Render()
 
 	_BackGround->Render();
 
-	CursorManager::GetInstance()->WriteBuffer(1.0f, 0.0f, (char*)"HP : ");
-	CursorManager::GetInstance()->WriteBuffer(6.0f, 0.0f, ObjectManager::GetInstance()->GetLife());
+	CursorManager::GetInstance()->WriteBuffer(0.0f, 0.0f, (char*)"HP [");
+	CursorManager::GetInstance()->WriteBuffer(5.0f, 0.0f, ObjectManager::GetInstance()->GetLife());
+	CursorManager::GetInstance()->WriteBuffer(14.0f, 0.0f, (char*)"]");
 
 	CursorManager::GetInstance()->WriteBuffer(45.0f, 0.0f, (char*)"Score : ");
 	CursorManager::GetInstance()->WriteBuffer(53.0f, 0.0f, ObjectManager::GetInstance()->GetStageScore());

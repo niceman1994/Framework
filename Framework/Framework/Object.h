@@ -1,7 +1,8 @@
 #pragma once
 #include "Headers.h"
+#include "Bridge.h"
 
-class Bridge;
+//class Bridge;
 class Object
 {
 protected:
@@ -28,10 +29,10 @@ public:
 	void SetScale(float _x, float _y) { TransInfo.Scale = Vector3(_x, _y); }
 
 	void SetBridge(Bridge* _Bridge) { pBridge = _Bridge; }
-	void SetBridgeName(string _BridgeKey) {}
-	string GetBridgeName() const 
-	{ 
-		if (pBridge != NULL)
+	//void SetBridgeName() {  }
+	string GetBridgeName() const
+	{
+		if (pBridge != nullptr)
 			return pBridge->GetBridgeKey();
 		else
 			return "";

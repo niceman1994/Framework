@@ -12,8 +12,6 @@ Logo::~Logo() { }
 
 void Logo::Initialize()
 {
-	ObjectManager::GetInstance()->SetLife(3);
-
 	Text[0] = (char*)"PPPPPPPPPPPPPPPPPP::::UUUUUUUU:::::UUUUUUUU:LLLLLLLLLLL:::::::::::::::::SSSSSSSSSSSSSS:::TTTTTTTTTTTTTTTTTTTTTTT::::::::::AAA::::::::::::::::RRRRRRRRRRRRRRRRR";
 	Text[1] = (char*)"P:::::::::::::::::P:::U::::::U:::::U::::::U:L:::::::::L:::::::::::::::SS:::::::::::::::S:T:::::::::::::::::::::T:::::::::A:::A:::::::::::::::R:::::::::::::::RR";
 	Text[2] = (char*)"P:::::::PPPPPP:::::P::U::::::U:::::U::::::U:L:::::::::L::::::::::::::S:::::SSSSSS::::::S:T:::::::::::::::::::::T::::::::A:::::A::::::::::::::R::::::RRRRRR:::::R";

@@ -16,9 +16,8 @@ public:
 	virtual Bridge* Clone()PURE;
 public:
 	void SetObject(Object* _Object) { pObject = _Object; }
-	void SetBridgeKey(string _BridgeKey) { BridgeKey = _BridgeKey; }
 	string GetBridgeKey() const { return BridgeKey; }
 public:
-	Bridge() : pObject(nullptr) {}
+	Bridge() : pObject(nullptr), BridgeKey() {}
 	virtual ~Bridge() {}
 };

@@ -19,11 +19,9 @@ private:
 	map<string, list<Object*>>* EnableList;
 	int Credit;
 	int Score;
-	int Life;
-	int AtkPower;
+	char* Life;
 public:
 	void AddObject(string _Key);
-	void AddObject(string _Key, Vector3 _Position);
 	void AddObject(string _Key, Bridge* _Bridge, Vector3 _Position);
 	list<Object*>* GetObjectList(string _strKey);
 	list<Object*>::iterator ThrowObject(list<Object*>::iterator _Where, Object* _Object);
@@ -37,9 +35,13 @@ public:
 	void AddScore(int _Score) { Score += _Score; }
 	int GetStageScore() { return Score; }
 
-	void SetLife(int _life) { Life = _life; }
-	void SubLife(int _life) { Life -= _life; }
-	int GetLife() const { return Life; }
+	void SetLife(char* _Life) { Life = _Life; }
+	void SubtractLife() 
+	{
+		Life++;
+		Life++;
+	}
+	char* GetLife() const { return Life; }
 
 	void Update();
 	void Render();

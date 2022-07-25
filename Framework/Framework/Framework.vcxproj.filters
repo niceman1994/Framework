@@ -133,6 +133,9 @@
     <Filter Include="소스 파일\02. Object\Item\ItemBridge\ScoreItem">
       <UniqueIdentifier>{c9bf7a3e-0599-438b-932a-e7510311f0fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02. Object\Item\ItemBridge\LifeItem">
+      <UniqueIdentifier>{01c0b89b-03e2-4a62-9374-066db56f8416}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -227,6 +230,9 @@
     </ClCompile>
     <ClCompile Include="ScoreItem.cpp">
       <Filter>소스 파일\02. Object\Item\ItemBridge\ScoreItem</Filter>
+    </ClCompile>
+    <ClCompile Include="LifeItem.cpp">
+      <Filter>소스 파일\02. Object\Item\ItemBridge\LifeItem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -355,6 +361,9 @@
     </ClInclude>
     <ClInclude Include="ScoreItem.h">
       <Filter>소스 파일\02. Object\Item\ItemBridge\ScoreItem</Filter>
+    </ClInclude>
+    <ClInclude Include="LifeItem.h">
+      <Filter>소스 파일\02. Object\Item\ItemBridge\LifeItem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
