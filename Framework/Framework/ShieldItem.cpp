@@ -3,13 +3,9 @@
 #include "CursorManager.h"
 #include "ObjectManager.h"
 
-ShieldItem::ShieldItem()
-{
-}
+ShieldItem::ShieldItem() {}
 
-ShieldItem::~ShieldItem()
-{
-}
+ShieldItem::~ShieldItem() {}
 
 void ShieldItem::Initialize()
 {

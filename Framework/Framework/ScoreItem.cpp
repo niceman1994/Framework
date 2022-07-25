@@ -3,13 +3,9 @@
 #include "CursorManager.h"
 #include "ObjectManager.h"
 
-ScoreItem::ScoreItem()
-{
-}
+ScoreItem::ScoreItem() {}
 
-ScoreItem::~ScoreItem()
-{
-}
+ScoreItem::~ScoreItem() {}
 
 void ScoreItem::Initialize()
 {
