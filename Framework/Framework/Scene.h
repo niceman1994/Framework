@@ -16,6 +16,7 @@ protected:
 	void BulletPassBy(list<Object*>* _Objectlist);
 	void EnemyBulletPassBy(list<Object*>* _Objectlist);
 	void ObjectPassBy(list<Object*>* _Object, list<Object*>* _Objectlist);
+	void PlayerLifeState();
 public:
 	Scene();
 	virtual ~Scene();

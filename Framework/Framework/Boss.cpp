@@ -22,7 +22,7 @@ Object* Boss::Initialize(string _Key)
     Buffer[4] = (char*)"¦¢£ß£ß£ß¦¢";
     Buffer[5] = (char*)"£¯£ß£ß£ß¡¬";
 
-    TransInfo.Position = Vector3(960.0f, 25.0f);
+    TransInfo.Position = Vector3(870.0f, 25.0f);
     TransInfo.Rotation = Vector3(0.0f, 0.0f);
     TransInfo.Scale = Vector3(11.0f, 6.0f);
 

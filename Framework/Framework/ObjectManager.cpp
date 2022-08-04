@@ -7,9 +7,12 @@
 
 ObjectManager* ObjectManager::Instance = nullptr;
 
-ObjectManager::ObjectManager() : HitCount(0)
+ObjectManager::ObjectManager()
 {
+	HitCount = 0;
+	PlayerHitCount = 0;
 	EnableList = ObjectPool::GetEnableList();
+	Life = (char*)"¡á¡á¡á¡á";
 }
 
 ObjectManager::~ObjectManager() 

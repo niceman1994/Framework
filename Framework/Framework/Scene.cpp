@@ -1,6 +1,5 @@
 #include "Scene.h"
 #include "ObjectManager.h"
-#include "CollisionManager.h"
 #include "ScoreManager.h"
 #include "CursorManager.h"
 
@@ -52,10 +51,30 @@ void Scene::ObjectPassBy(list<Object*>* _Object, list<Object*>* _Objectlist)
 				}
 			}
 
-			if ((*Enemyiter)->GetPosition().x <= -1.0f)
+			if ((*Enemyiter)->GetPosition().x <= 0.0f)
 				Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, *Enemyiter);
 			else
 				++Enemyiter;
 		}
+	}
+}
+
+void Scene::PlayerLifeState()
+{
+	ObjectManager::GetInstance()->GetPlayerHitCount();
+
+	if (ObjectManager::GetInstance()->GetPlayerHitCount() == 1)
+		ObjectManager::GetInstance()->SetLife((char*)"бсбсбс");
+
+	else if (ObjectManager::GetInstance()->GetPlayerHitCount() == 2)
+		ObjectManager::GetInstance()->SetLife((char*)"бсбс");
+
+	else if (ObjectManager::GetInstance()->GetPlayerHitCount() == 3)
+		ObjectManager::GetInstance()->SetLife((char*)"бс");
+
+	else if (ObjectManager::GetInstance()->GetPlayerHitCount() == 4)
+	{
+		ObjectManager::GetInstance()->SetLife((char*)"бсбсбсбс");
+		ObjectManager::GetInstance()->ResetPlayerHitCount();
 	}
 }

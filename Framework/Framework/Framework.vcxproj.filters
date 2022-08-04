@@ -142,11 +142,11 @@
     <Filter Include="소스 파일\01. Scene\StageClear">
       <UniqueIdentifier>{9151a158-87a5-41ad-b260-2792d984611b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02. Object\Enemy\FlyingEnemy">
-      <UniqueIdentifier>{f5569b73-e2ee-4e24-b08b-dfcc26eb27f1}</UniqueIdentifier>
+    <Filter Include="소스 파일\02. Object\Enemy\EnemyBridge">
+      <UniqueIdentifier>{64f34b79-8dce-4894-98cf-0261d7c1d8aa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02. Object\Enemy\RollingEnemy">
-      <UniqueIdentifier>{30dde0ea-4915-442a-8216-6dee5b197d16}</UniqueIdentifier>
+    <Filter Include="소스 파일\02. Object\Enemy\EnemyBridge\FlyingEnemy">
+      <UniqueIdentifier>{c50e4780-1c20-46e1-a2ee-85cddca4dee2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -253,10 +253,7 @@
       <Filter>소스 파일\01. Scene\StageClear</Filter>
     </ClCompile>
     <ClCompile Include="FlyingEnemy.cpp">
-      <Filter>소스 파일\02. Object\Enemy\FlyingEnemy</Filter>
-    </ClCompile>
-    <ClCompile Include="RollingEnemy.cpp">
-      <Filter>소스 파일\02. Object\Enemy\RollingEnemy</Filter>
+      <Filter>소스 파일\02. Object\Enemy\EnemyBridge\FlyingEnemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -395,11 +392,11 @@
     <ClInclude Include="StageClear.h">
       <Filter>소스 파일\01. Scene\StageClear</Filter>
     </ClInclude>
-    <ClInclude Include="FlyingEnemy.h">
-      <Filter>소스 파일\02. Object\Enemy\FlyingEnemy</Filter>
+    <ClInclude Include="EnemyBridge.h">
+      <Filter>소스 파일\02. Object\Enemy\EnemyBridge</Filter>
     </ClInclude>
-    <ClInclude Include="RollingEnemy.h">
-      <Filter>소스 파일\02. Object\Enemy\RollingEnemy</Filter>
+    <ClInclude Include="FlyingEnemy.h">
+      <Filter>소스 파일\02. Object\Enemy\EnemyBridge\FlyingEnemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

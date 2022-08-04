@@ -4,7 +4,8 @@ ScoreManager* ScoreManager::Instance = nullptr;
 
 ScoreManager::ScoreManager()
 {
-	Life = (char*)"¡á¡á¡á¡á";
+	Credit = 0;
+	Score = 0;
 }
 
 ScoreManager::~ScoreManager() {}
@@ -32,15 +33,4 @@ void ScoreManager::SetScore(int _Score)
 void ScoreManager::AddScore(int _Score)
 {
 	Score += _Score;
-}
-
-void ScoreManager::SetLife(char* _Life)
-{
-	Life = _Life;
-}
-
-void ScoreManager::SubtractLife()
-{
-	++Life;
-	++Life;
 }

@@ -19,6 +19,8 @@ public:
 private:
 	map<string, list<Object*>>* EnableList;
 	int HitCount;
+	int PlayerHitCount;
+	char* Life;
 public:
 	void AddObject(string _Key);
 	void AddObject(string _Key, Bridge* _Bridge, Vector3 _Position);
@@ -28,6 +30,13 @@ public:
 	void ResetHitCount() { HitCount = 0; }
 	void AddHitCount(int _Count) { HitCount += _Count; }
 	int GetHitCount() const { return HitCount; }
+
+	void ResetPlayerHitCount() { PlayerHitCount = 0; }
+	void AddPlayerHitCount(int _Count) { PlayerHitCount += _Count; }
+	int GetPlayerHitCount() const { return PlayerHitCount; }
+
+	void SetLife(char* _Life) { Life = _Life; }
+	char* LifeState() const { return Life; }
 
 	void Update();
 	void Render();

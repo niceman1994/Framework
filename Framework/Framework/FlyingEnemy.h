@@ -1,18 +1,16 @@
 #pragma once
-#include "Enemy.h"
+#include "EnemyBridge.h"
 
-class FlyingEnemy : public Enemy
+class FlyingEnemy : public EnemyBridge
 {
 public:
-	virtual Object* Initialize(string _Key) override;
-	virtual int Update() override;
-	virtual void Render() override;
-	virtual void Release() override;
+	virtual void Initialize()override;
+	virtual int Update(Transform& Info)override;
+	virtual void Render()override;
+	virtual void Release()override;
 
-	virtual Object* Clone() override { return new FlyingEnemy(*this); }
+	virtual Bridge* Clone()override { return new FlyingEnemy(*this); }
 public:
 	FlyingEnemy();
-	FlyingEnemy(Transform _TransInfo);
 	virtual ~FlyingEnemy();
 };
-

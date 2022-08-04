@@ -1,6 +1,6 @@
 #include "Stage_1.h"
 #include "Player.h"
-#include "Enemy.h"
+#include "FlyingEnemy.h"
 #include "Boss.h"
 
 #include "ScrollBox.h"
@@ -16,7 +16,6 @@
 #include "Prototype.h"
 #include "ObjectFactory.h"
 
-#include "Item.h"
 #include "ScoreItem.h"
 #include "ShieldItem.h"
 #include "FrontShield.h"
@@ -27,9 +26,10 @@ Stage_1::~Stage_1() { Release(); }
 
 void Stage_1::Initialize()
 {
-	ScoreManager::GetInstance()->GetLife();
+	ObjectManager::GetInstance()->LifeState();
 	ScoreManager::GetInstance()->GetStageScore();
 	ObjectManager::GetInstance()->GetHitCount();
+	ObjectManager::GetInstance()->GetPlayerHitCount();
 
 	Check = 0;
 	count = 0;
@@ -53,9 +53,11 @@ void Stage_1::Initialize()
 	{
 		srand(DWORD(GetTickCount64() * (i + 1)));
 	
+		Bridge* pBridge = new FlyingEnemy;
+		pBridge->GetBridgeKey();
 		pEnemy->SetPosition(float(rand() % 150 + (80 + (i * 30))), float(rand() % 30 + 10));
 		pEnemyBullet->SetPosition(pEnemy->GetPosition().x, pEnemy->GetPosition().y);
-		ObjectManager::GetInstance()->AddObject("Enemy");
+		ObjectManager::GetInstance()->AddObject("Enemy", pBridge, pEnemy->GetPosition());
 		ObjectManager::GetInstance()->AddObject("EnemyBullet");
 	}
 }
@@ -116,14 +118,8 @@ void Stage_1::PlayerCollision(Object* _Object, list<Object*>* _Objectlist)
 		{
 			if (CollisionManager::CircleCollision(_Object, *Enemyiter))
 			{
-				ScoreManager::GetInstance()->SubtractLife();
-
-				if (ScoreManager::GetInstance()->GetLife()[8])
-				{
-					Sleep(100);
-					_Object->Initialize("Player");
-					ScoreManager::GetInstance()->SetLife((char*)"¡á¡á¡á¡á");
-				}
+				ObjectManager::GetInstance()->AddPlayerHitCount(1);
+				Scene::PlayerLifeState();
 
 				_Object->Initialize("Player");
 				Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, *Enemyiter);
@@ -144,14 +140,8 @@ void Stage_1::EnemyBulletCollision(Object* _Object, list<Object*>* _Objectlist)
 			{
 				if (CollisionManager::Collision(_Object, *EnemyBulletiter))
 				{
-					ScoreManager::GetInstance()->SubtractLife();
-
-					if (ScoreManager::GetInstance()->GetLife()[8])
-					{
-						Sleep(100);
-						_Object->Initialize("Player");
-						ScoreManager::GetInstance()->SetLife((char*)"¡á¡á¡á¡á");
-					}
+					ObjectManager::GetInstance()->AddPlayerHitCount(1);
+					Scene::PlayerLifeState();
 
 					EnemyBulletiter = ObjectManager::GetInstance()->ThrowObject(EnemyBulletiter, *EnemyBulletiter);
 				}
@@ -320,7 +310,7 @@ void Stage_1::Render()
 	_BackGround->Render();
 
 	CursorManager::GetInstance()->WriteBuffer(1.0f, 0.0f, (char*)"HP [");
-	CursorManager::GetInstance()->WriteBuffer(6.0f, 0.0f, ScoreManager::GetInstance()->GetLife());
+	CursorManager::GetInstance()->WriteBuffer(6.0f, 0.0f, ObjectManager::GetInstance()->LifeState());
 	CursorManager::GetInstance()->WriteBuffer(15.0f, 0.0f, (char*)"]");
 
 	CursorManager::GetInstance()->WriteBuffer(45.0f, 0.0f, (char*)"Score : ");
