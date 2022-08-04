@@ -7,15 +7,14 @@
 
 ObjectManager* ObjectManager::Instance = nullptr;
 
-ObjectManager::ObjectManager() : Credit(0), Score(0), Life()
+ObjectManager::ObjectManager() : HitCount(0)
 {
 	EnableList = ObjectPool::GetEnableList();
-	Life = (char*)"¡á¡á¡á¡á";
 }
 
 ObjectManager::~ObjectManager() 
 {
-
+	
 }
 
 void ObjectManager::AddObject(string _Key)

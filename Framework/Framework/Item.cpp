@@ -2,8 +2,6 @@
 #include "Bridge.h"
 #include "CursorManager.h"
 #include "ObjectManager.h"
-//#include "ScoreItem.h"
-//#include "ShieldItem.h"
 
 Item::Item() {}
 
@@ -31,21 +29,8 @@ Object* Item::Initialize(string _Key)
 
 int Item::Update()
 {
-    //TransInfo.Position.x -= 1.2f * 1;
-
     if (pBridge)
         pBridge->Update(TransInfo);
-
-    //if (Key == "ShieldItem")
-    //{
-    //    Bridge* pBridge = new ShieldItem;
-    //    ObjectManager::GetInstance()->AddObject("Item", pBridge, TransInfo.Position);
-    //}
-    //else if (Key == "ScoreItem")
-    //{
-    //    Bridge* pBridge = new ScoreItem;
-    //    ObjectManager::GetInstance()->AddObject("Item", pBridge, TransInfo.Position);
-    //}
 
     return 0;
 }

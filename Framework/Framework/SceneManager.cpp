@@ -4,7 +4,8 @@
 #include "Manual.h"
 #include "Menu.h"
 #include "StageUI.h"
-#include "Stage.h" // Scene.h 파일은 추상클래스로 만들어서 추가해도 쓸 수 없으니 파생 클래스들의 헤더 파일을 추가한다.
+#include "Stage_1.h"
+#include "StageClear.h" // Scene.h 파일은 추상클래스로 만들어서 추가해도 쓸 수 없으니 파생 클래스들의 헤더 파일을 추가한다.
 
 SceneManager* SceneManager::Instance = nullptr;
 
@@ -35,8 +36,12 @@ void SceneManager::SetScene(SCENEID _SceneState)
 		SceneState = new StageUI;
 		break;
 
-	case SCENEID::STAGE:
-		SceneState = new Stage;
+	case SCENEID::STAGE_1:
+		SceneState = new Stage_1;
+		break;
+
+	case SCENEID::STAGE_CLEAR:
+		SceneState = new StageClear;
 		break;
 
 	case SCENEID::EXIT:

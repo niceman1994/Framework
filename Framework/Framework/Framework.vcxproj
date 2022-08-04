@@ -141,15 +141,16 @@
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="BossBullet.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Cloud.cpp" />
     <ClCompile Include="CursorManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyBullet.cpp" />
+    <ClCompile Include="FlyingEnemy.cpp" />
     <ClCompile Include="FrontShield.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Item.cpp" />
-    <ClCompile Include="LifeItem.cpp" />
     <ClCompile Include="Logo.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainUpdate.cpp" />
@@ -162,12 +163,15 @@
     <ClCompile Include="ObjectPool.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Prototype.cpp" />
+    <ClCompile Include="RollingEnemy.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScoreItem.cpp" />
+    <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="ScrollBox.cpp" />
     <ClCompile Include="ShieldItem.cpp" />
-    <ClCompile Include="Stage.cpp" />
+    <ClCompile Include="StageClear.cpp" />
+    <ClCompile Include="Stage_1.cpp" />
     <ClCompile Include="StageUI.cpp" />
     <ClCompile Include="TwinBullet.cpp" />
     <ClCompile Include="UserInterface.cpp" />
@@ -175,6 +179,7 @@
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="Boss.h" />
+    <ClInclude Include="BossBullet.h" />
     <ClInclude Include="Bridge.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletBridge.h" />
@@ -187,12 +192,12 @@
     <ClInclude Include="EnemyBulletBridge.h" />
     <ClInclude Include="EnemyBullet.h" />
     <ClInclude Include="Enum.h" />
+    <ClInclude Include="FlyingEnemy.h" />
     <ClInclude Include="FrontShield.h" />
     <ClInclude Include="Headers.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemBridge.h" />
-    <ClInclude Include="LifeItem.h" />
     <ClInclude Include="Logo.h" />
     <ClInclude Include="MainUpdate.h" />
     <ClInclude Include="Manual.h" />
@@ -206,12 +211,15 @@
     <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Prototype.h" />
+    <ClInclude Include="RollingEnemy.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScoreItem.h" />
+    <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="ScrollBox.h" />
     <ClInclude Include="ShieldItem.h" />
-    <ClInclude Include="Stage.h" />
+    <ClInclude Include="StageClear.h" />
+    <ClInclude Include="Stage_1.h" />
     <ClInclude Include="StageUI.h" />
     <ClInclude Include="Struct.h" />
     <ClInclude Include="TwinBullet.h" />

@@ -3,6 +3,7 @@
 
 class Object;
 class Bridge;
+class ObjectBridge;
 class ObjectManager
 {
 private:
@@ -17,31 +18,16 @@ public:
 	}
 private:
 	map<string, list<Object*>>* EnableList;
-	int Credit;
-	int Score;
-	char* Life;
+	int HitCount;
 public:
 	void AddObject(string _Key);
 	void AddObject(string _Key, Bridge* _Bridge, Vector3 _Position);
 	list<Object*>* GetObjectList(string _strKey);
 	list<Object*>::iterator ThrowObject(list<Object*>::iterator _Where, Object* _Object);
 
-	void SetCredit(int _Credit) { Credit = _Credit; }
-	int GetCredit() const { return Credit; }
-	void IncreaseCredit() { Credit += 1; }
-	void DecreaseCredit() { Credit -= 1; }
-
-	void SetScore(int _Score) { Score = _Score; }
-	void AddScore(int _Score) { Score += _Score; }
-	int GetStageScore() { return Score; }
-
-	void SetLife(char* _Life) { Life = _Life; }
-	void SubtractLife() 
-	{
-		Life++;
-		Life++;
-	}
-	char* GetLife() const { return Life; }
+	void ResetHitCount() { HitCount = 0; }
+	void AddHitCount(int _Count) { HitCount += _Count; }
+	int GetHitCount() const { return HitCount; }
 
 	void Update();
 	void Render();

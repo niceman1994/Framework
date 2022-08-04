@@ -1,6 +1,7 @@
 #pragma once
 #include "Headers.h"
-class Object;
+#include "Object.h"
+
 class Scene
 {
 protected:
@@ -11,10 +12,10 @@ public:
 	virtual void Update()PURE;
 	virtual void Render()PURE;
 	virtual void Release()PURE;
-
 protected:
-	
-	void Collsion(list<Object*>* Bullet);
+	void BulletPassBy(list<Object*>* _Objectlist);
+	void EnemyBulletPassBy(list<Object*>* _Objectlist);
+	void ObjectPassBy(list<Object*>* _Object, list<Object*>* _Objectlist);
 public:
 	Scene();
 	virtual ~Scene();

@@ -37,9 +37,6 @@
     <Filter Include="소스 파일\01. Scene\Menu">
       <UniqueIdentifier>{bd55c56b-25be-44bc-b0cf-25facaeb56ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01. Scene\Stage">
-      <UniqueIdentifier>{3e32290b-898e-4544-88bd-29fccd0eef1f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\02. Object">
       <UniqueIdentifier>{551f9d14-0e8c-416e-b8ed-fee1317db2bf}</UniqueIdentifier>
     </Filter>
@@ -133,8 +130,23 @@
     <Filter Include="소스 파일\02. Object\Item\ItemBridge\ScoreItem">
       <UniqueIdentifier>{c9bf7a3e-0599-438b-932a-e7510311f0fa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02. Object\Item\ItemBridge\LifeItem">
-      <UniqueIdentifier>{01c0b89b-03e2-4a62-9374-066db56f8416}</UniqueIdentifier>
+    <Filter Include="소스 파일\99. Manager\ScoreManager">
+      <UniqueIdentifier>{47e31831-e9a1-4388-95fe-033a9ab6be94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01. Scene\Stage_1">
+      <UniqueIdentifier>{3e32290b-898e-4544-88bd-29fccd0eef1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\EnemyBullet\EnemyBulletBridge\BossBullet">
+      <UniqueIdentifier>{e5a8c49c-d378-401b-9cd3-eed3203f3abe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01. Scene\StageClear">
+      <UniqueIdentifier>{9151a158-87a5-41ad-b260-2792d984611b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Enemy\FlyingEnemy">
+      <UniqueIdentifier>{f5569b73-e2ee-4e24-b08b-dfcc26eb27f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Enemy\RollingEnemy">
+      <UniqueIdentifier>{30dde0ea-4915-442a-8216-6dee5b197d16}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -156,8 +168,8 @@
     <ClCompile Include="Menu.cpp">
       <Filter>소스 파일\01. Scene\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="Stage.cpp">
-      <Filter>소스 파일\01. Scene\Stage</Filter>
+    <ClCompile Include="Stage_1.cpp">
+      <Filter>소스 파일\01. Scene\Stage_1</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>소스 파일\01. Scene</Filter>
@@ -231,8 +243,20 @@
     <ClCompile Include="ScoreItem.cpp">
       <Filter>소스 파일\02. Object\Item\ItemBridge\ScoreItem</Filter>
     </ClCompile>
-    <ClCompile Include="LifeItem.cpp">
-      <Filter>소스 파일\02. Object\Item\ItemBridge\LifeItem</Filter>
+    <ClCompile Include="ScoreManager.cpp">
+      <Filter>소스 파일\99. Manager\ScoreManager</Filter>
+    </ClCompile>
+    <ClCompile Include="BossBullet.cpp">
+      <Filter>소스 파일\02. Object\EnemyBullet\EnemyBulletBridge\BossBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="StageClear.cpp">
+      <Filter>소스 파일\01. Scene\StageClear</Filter>
+    </ClCompile>
+    <ClCompile Include="FlyingEnemy.cpp">
+      <Filter>소스 파일\02. Object\Enemy\FlyingEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="RollingEnemy.cpp">
+      <Filter>소스 파일\02. Object\Enemy\RollingEnemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -260,8 +284,8 @@
     <ClInclude Include="Menu.h">
       <Filter>소스 파일\01. Scene\Menu</Filter>
     </ClInclude>
-    <ClInclude Include="Stage.h">
-      <Filter>소스 파일\01. Scene\Stage</Filter>
+    <ClInclude Include="Stage_1.h">
+      <Filter>소스 파일\01. Scene\Stage_1</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>소스 파일\01. Scene</Filter>
@@ -362,8 +386,20 @@
     <ClInclude Include="ScoreItem.h">
       <Filter>소스 파일\02. Object\Item\ItemBridge\ScoreItem</Filter>
     </ClInclude>
-    <ClInclude Include="LifeItem.h">
-      <Filter>소스 파일\02. Object\Item\ItemBridge\LifeItem</Filter>
+    <ClInclude Include="ScoreManager.h">
+      <Filter>소스 파일\99. Manager\ScoreManager</Filter>
+    </ClInclude>
+    <ClInclude Include="BossBullet.h">
+      <Filter>소스 파일\02. Object\EnemyBullet\EnemyBulletBridge\BossBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="StageClear.h">
+      <Filter>소스 파일\01. Scene\StageClear</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyingEnemy.h">
+      <Filter>소스 파일\02. Object\Enemy\FlyingEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="RollingEnemy.h">
+      <Filter>소스 파일\02. Object\Enemy\RollingEnemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

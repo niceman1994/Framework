@@ -3,6 +3,7 @@
 #include "CursorManager.h"
 #include "Bullet.h"
 #include "ObjectManager.h"
+#include "ScoreManager.h"
 #include "ObjectFactory.h"
 #include "Prototype.h"
 #include "NormalBullet.h"
@@ -65,25 +66,25 @@ int Player::Update()
 			TransInfo.Position = Vector3(170.0f, TransInfo.Position.y);
 	}	
 
-	if (dwKey & KEY_SPACE && ObjectManager::GetInstance()->GetStageScore() < 5000)
+	if (dwKey & KEY_SPACE && ScoreManager::GetInstance()->GetStageScore() < 3500)
 	{
 		Bridge* pBridge = new NormalBullet;
 		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
 	}
 
-	if (dwKey & KEY_SPACE && ObjectManager::GetInstance()->GetStageScore() >= 5000)
+	if (dwKey & KEY_SPACE && ScoreManager::GetInstance()->GetStageScore() >= 3500)
 	{
 		Bridge* pBridge = new TwinBullet;
 		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
 	}
 
-	if (dwKey & KEY_CTRL && ObjectManager::GetInstance()->GetStageScore() < 5000)
+	if (dwKey & KEY_CTRL && ScoreManager::GetInstance()->GetStageScore() < 3500)
 	{
 		Bridge* pBridge = new NormalBullet;
 		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
 	}
 
-	if (dwKey & KEY_CTRL && ObjectManager::GetInstance()->GetStageScore() >= 5000)
+	if (dwKey & KEY_CTRL && ScoreManager::GetInstance()->GetStageScore() >= 3500)
 	{
 		Bridge* pBridge = new TwinBullet;
 		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);

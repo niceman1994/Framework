@@ -2,13 +2,13 @@
 #include "Headers.h"
 #include "Bridge.h"
 
-//class Bridge;
 class Object
 {
 protected:
 	Transform TransInfo;
 	string strKey;
 	char* Buffer[64];
+	int HitCount;
 
 	Bridge* pBridge;
 public:
@@ -21,7 +21,7 @@ public:
 public:
 	string GetKey() const { return strKey; }
 
-	Vector3 GetPosition() const { return TransInfo.Position; }
+  	Vector3 GetPosition() const { return TransInfo.Position; }
 	void SetPosition(float _x, float _y) { TransInfo.Position = Vector3(_x, _y); }
 	void SetPosition(Vector3 _Position) { TransInfo.Position = _Position; }
 
@@ -29,7 +29,7 @@ public:
 	void SetScale(float _x, float _y) { TransInfo.Scale = Vector3(_x, _y); }
 
 	void SetBridge(Bridge* _Bridge) { pBridge = _Bridge; }
-	//void SetBridgeName() {  }
+
 	string GetBridgeName() const
 	{
 		if (pBridge != nullptr)

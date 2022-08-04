@@ -1,7 +1,6 @@
 #include "ScoreItem.h"
 #include "MathManager.h"
 #include "CursorManager.h"
-#include "ObjectManager.h"
 
 ScoreItem::ScoreItem() {}
 

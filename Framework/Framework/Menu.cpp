@@ -1,7 +1,7 @@
 ﻿#include "Menu.h"
 #include "SceneManager.h"
 #include "InputManager.h"
-#include "ObjectManager.h"
+#include "ScoreManager.h"
 #include "CursorManager.h"
 
 Menu::Menu() { }
@@ -19,29 +19,29 @@ void Menu::Initialize()
 	Text[5] = (char*)"#     #    #    #     # #     # #              #   ";
 	Text[6] = (char*)" #####     #    #     #  #####  #######     #######";
 
-	Text[7] = (char*)" #####  #######    #     #####  #######      ##### ";
-	Text[8] = (char*)"#     #    #      # #   #     # #           #     #";
-	Text[9] = (char*)"#          #     #   #  #       #                 #";
-	Text[10] = (char*)" #####     #    #     # #  #### #####        ##### ";
-	Text[11] = (char*)"      #    #    ####### #     # #           #      ";
-	Text[12] = (char*)"#     #    #    #     # #     # #           #      ";
-	Text[13] = (char*)" #####     #    #     #  #####  #######     #######";
-
-	Text[14] = (char*)" #####  #######    #     #####  #######      ##### ";
-	Text[15] = (char*)"#     #    #      # #   #     # #           #     #";
-	Text[16] = (char*)"#          #     #   #  #       #                 #";
-	Text[17] = (char*)" #####     #    #     # #  #### #####        ##### ";
-	Text[18] = (char*)"      #    #    ####### #     # #                 #";
-	Text[19] = (char*)"#     #    #    #     # #     # #           #     #";
-	Text[20] = (char*)" #####     #    #     #  #####  #######      ##### ";
-
-	Text[21] = (char*)" #####  #######    #     #####  #######         ## ";
-	Text[22] = (char*)"#     #    #      # #   #     # #              # # ";
-	Text[23] = (char*)"#          #     #   #  #       #             #  # ";
-	Text[24] = (char*)" #####     #    #     # #  #### #####        #   # ";
-	Text[25] = (char*)"      #    #    ####### #     # #           #######";
-	Text[26] = (char*)"#     #    #    #     # #     # #                # ";
-	Text[27] = (char*)" #####     #    #     #  #####  #######          # ";
+	//Text[7] = (char*)" #####  #######    #     #####  #######      ##### ";
+	//Text[8] = (char*)"#     #    #      # #   #     # #           #     #";
+	//Text[9] = (char*)"#          #     #   #  #       #                 #";
+	//Text[10] = (char*)" #####     #    #     # #  #### #####        ##### ";
+	//Text[11] = (char*)"      #    #    ####### #     # #           #      ";
+	//Text[12] = (char*)"#     #    #    #     # #     # #           #      ";
+	//Text[13] = (char*)" #####     #    #     #  #####  #######     #######";
+	//
+	//Text[14] = (char*)" #####  #######    #     #####  #######      ##### ";
+	//Text[15] = (char*)"#     #    #      # #   #     # #           #     #";
+	//Text[16] = (char*)"#          #     #   #  #       #                 #";
+	//Text[17] = (char*)" #####     #    #     # #  #### #####        ##### ";
+	//Text[18] = (char*)"      #    #    ####### #     # #                 #";
+	//Text[19] = (char*)"#     #    #    #     # #     # #           #     #";
+	//Text[20] = (char*)" #####     #    #     #  #####  #######      ##### ";
+	//
+	//Text[21] = (char*)" #####  #######    #     #####  #######         ## ";
+	//Text[22] = (char*)"#     #    #      # #   #     # #              # # ";
+	//Text[23] = (char*)"#          #     #   #  #       #             #  # ";
+	//Text[24] = (char*)" #####     #    #     # #  #### #####        #   # ";
+	//Text[25] = (char*)"      #    #    ####### #     # #           #######";
+	//Text[26] = (char*)"#     #    #    #     # #     # #                # ";
+	//Text[27] = (char*)" #####     #    #     #  #####  #######          # ";
 }
 
 void Menu::Update()
@@ -52,23 +52,23 @@ void Menu::Update()
 	{
 		count += 1;
 
-		if (count >= 3)
-			count = 3;
-	}
-
-	if (dwKey & KEY_UP)
-	{
-		count -= 1;
-
-		if (count <= 0)
+		if (count >= 0)
 			count = 0;
 	}
+
+	//if (dwKey & KEY_UP)
+	//{
+	//	count -= 1;
+	//
+	//	if (count <= 0)
+	//		count = 0;
+	//}
 
 	if (dwKey & KEY_ENTER)
 	{
 		if (count == 0)
 		{
-			ObjectManager::GetInstance()->DecreaseCredit();
+			ScoreManager::GetInstance()->DecreaseCredit();
 			SceneManager::GetInstance()->SetScene(STAGEUI);
 		}
 	}
@@ -78,12 +78,12 @@ void Menu::Update()
 
 	if (dwKey & KEY_0)
 	{
-		ObjectManager::GetInstance()->IncreaseCredit();
+		ScoreManager::GetInstance()->IncreaseCredit();
 		CursorManager::GetInstance()->ClearBuffer();
 		Sleep(100);
 
-		if (ObjectManager::GetInstance()->GetCredit() >= 99)
-			ObjectManager::GetInstance()->SetCredit(99);
+		if (ScoreManager::GetInstance()->GetCredit() >= 99)
+			ScoreManager::GetInstance()->SetCredit(99);
 	}
 }
 
@@ -130,30 +130,30 @@ void Menu::Render()
 
 		Sleep(150);
 	}
-	else if (count == 2)
-	{
-		for (int i = 14; i < 21; ++i)
-			CursorManager::GetInstance()->WriteBuffer(66.0f, 10.0f + i, Text[i], 6);
+	//else if (count == 2)
+	//{
+	//	for (int i = 14; i < 21; ++i)
+	//		CursorManager::GetInstance()->WriteBuffer(66.0f, 10.0f + i, Text[i], 6);
+	//
+	//	Sleep(150);
+	//}
+	//else if (count == 3)
+	//{
+	//	for (int i = 21; i < 28; ++i)
+	//		CursorManager::GetInstance()->WriteBuffer(66.0f, 3.0f + i, Text[i], 12);
+	//
+	//	Sleep(150);
+	//}
 
-		Sleep(150);
-	}
-	else if (count == 3)
-	{
-		for (int i = 21; i < 28; ++i)
-			CursorManager::GetInstance()->WriteBuffer(66.0f, 3.0f + i, Text[i], 12);
-
-		Sleep(150);
-	}
-
-	CursorManager::GetInstance()->WriteBuffer(81.0f, 49.0f, (char*)"ESC : 돌아가기");
+	CursorManager::GetInstance()->WriteBuffer(85.0f, 49.0f, (char*)"ESC : 돌아가기");
 
 	CursorManager::GetInstance()->WriteBuffer(59.0f, 35.0f, (char*)"――――――――――――――――――――――――――――――――", 8);
 
 	CursorManager::GetInstance()->WriteBuffer(152.0f, 49.0f, (char*)"CREDIT : ", 14);
-	CursorManager::GetInstance()->WriteBuffer(161.0f, 49.0f, ObjectManager::GetInstance()->GetCredit(), 14);
+	CursorManager::GetInstance()->WriteBuffer(161.0f, 49.0f, ScoreManager::GetInstance()->GetCredit(), 14);
 }
 
 void Menu::Release()
 {
-
+	
 }

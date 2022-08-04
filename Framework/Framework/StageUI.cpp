@@ -40,7 +40,7 @@ void StageUI::Update()
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
 	if (dwKey & KEY_ENTER)
-		SceneManager::GetInstance()->SetScene(STAGE);
+		SceneManager::GetInstance()->SetScene(STAGE_1);
 }
 
 void StageUI::Render()

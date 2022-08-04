@@ -2,7 +2,7 @@
 #include "SceneManager.h"
 #include "InputManager.h"
 #include "CursorManager.h"
-#include "ObjectManager.h"
+#include "ScoreManager.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "Prototype.h"
@@ -36,15 +36,15 @@ void Logo::Update()
 
 	if (dwKey & KEY_0)
 	{
-		ObjectManager::GetInstance()->IncreaseCredit();
+		ScoreManager::GetInstance()->IncreaseCredit();
 		CursorManager::GetInstance()->ClearBuffer();
 		Sleep(100);
 
-		if (ObjectManager::GetInstance()->GetCredit() >= 99)
-			ObjectManager::GetInstance()->SetCredit(99);
+		if (ScoreManager::GetInstance()->GetCredit() >= 99)
+			ScoreManager::GetInstance()->SetCredit(99);
 	}
 
-	if (dwKey & KEY_1 && ObjectManager::GetInstance()->GetCredit() >= 1)
+	if (dwKey & KEY_1 && ScoreManager::GetInstance()->GetCredit() >= 1)
 		SceneManager::GetInstance()->SetScene(MENU);
 
 	if (dwKey & KEY_2)
@@ -72,7 +72,7 @@ void Logo::Render()
 
 
 	CursorManager::GetInstance()->WriteBuffer(152.0f, 49.0f, (char*)"CREDIT : ", 14);
-	CursorManager::GetInstance()->WriteBuffer(161.0f, 49.0f, ObjectManager::GetInstance()->GetCredit(), 14);
+	CursorManager::GetInstance()->WriteBuffer(161.0f, 49.0f, ScoreManager::GetInstance()->GetCredit(), 14);
 }
 
 void Logo::Release()

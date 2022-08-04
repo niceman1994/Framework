@@ -1,7 +1,6 @@
 #include "Enemy.h"
-#include "EnemyBullet.h"
-#include "CursorManager.h"
 #include "ObjectManager.h"
+#include "CursorManager.h"
 #include "NormalEnemyBullet.h"
 
 Enemy::Enemy() { }
@@ -20,9 +19,17 @@ Object* Enemy::Initialize(string _Key)
 	Buffer[3] = (char*)"  ¡á  ¡å";
 	Buffer[4] = (char*)"  ¡å    ";
 
+	//Buffer[0] = (char*)"";
+	//Buffer[1] = (char*)"";
+	//Buffer[2] = (char*)"";
+	//Buffer[3] = (char*)"";
+	//Buffer[4] = (char*)"";
+
 	TransInfo.Position = Vector3(0.0f, 0.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
 	TransInfo.Scale = Vector3(10.0f, 5.0f);
+
+	TransInfo.Direction = Vector3(0.0f, 0.0f);
 
 	return this;
 }
@@ -30,10 +37,8 @@ Object* Enemy::Initialize(string _Key)
 int Enemy::Update()
 {
 	TransInfo.Position.x -= 1.5f;
-
-	int time = rand() % 200;
 	
-	if (time == 5)
+	if (rand() % 150 == 5)
 	{
 		Bridge* pBridge = new NormalEnemyBullet;
 		ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge, TransInfo.Position);
@@ -55,5 +60,5 @@ void Enemy::Render()
 
 void Enemy::Release()
 {
-
+	
 }
