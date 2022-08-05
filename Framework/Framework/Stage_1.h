@@ -26,6 +26,7 @@ public:
 	void PlayerCollision(Object* _Object, list<Object*>* _Objectlist);
 	void EnemyBulletCollision(Object* _Object, list<Object*>* _Objectlist);
 	void BossCollision(Object* _Object, list<Object*>* _ObjectlistA, list<Object*>* _ObjectlistB);
+	void PlayerBossCollision(Object* _Object, list<Object*>* _Objectlist);
 public:
 	Stage_1();
 	virtual ~Stage_1();

@@ -49,11 +49,12 @@ void Stage_1::Initialize()
 	Object* pEnemy = Prototype::GetInstance()->ProtoTypeObject("Enemy");
 	Object* pEnemyBullet = Prototype::GetInstance()->ProtoTypeObject("EnemyBullet");
 
-	Bridge* pBridge = new BossParts_Body;
-	pBridge->GetBridgeKey();
-	Object* pBoss = Prototype::GetInstance()->ProtoTypeObject("Boss");
-	pBoss->SetPosition(200.0f, 25.0f);
-	ObjectManager::GetInstance()->AddObject("Boss", pBridge, pBoss->GetPosition()); 
+	{
+		Bridge* pBridge1 = new BossParts_Body;
+		Object* pBoss = Prototype::GetInstance()->ProtoTypeObject("Boss");
+		pBoss->SetPosition(200.0f, 25.0f);
+		ObjectManager::GetInstance()->AddObject("Boss", pBridge1, pBoss->GetPosition()); 
+	}
 
 	//for (int i = 0; i < 20; ++i)
 	//{
@@ -89,19 +90,16 @@ void Stage_1::CreateItem(Object* _Object, list<Object*>* _ObjectlistA, list<Obje
 							if (rand() % 20 == 1 || rand() % 20 == 3 || rand() % 20 == 4 || rand() % 20 == 5)
 							{
 								Bridge* pBridge = new ScoreItem;
-								pBridge->GetBridgeKey();
 								ObjectManager::GetInstance()->AddObject("Item", pBridge, (*Enemyiter)->GetPosition());
 							}
 							else if (rand() % 20 == 2)
 							{
 								Bridge* pBridge = new ShieldItem;
-								pBridge->GetBridgeKey();
 								ObjectManager::GetInstance()->AddObject("Item", pBridge, (*Enemyiter)->GetPosition());
 							}
-							else if (rand() % 100 == 10)
+							else if (rand() % 50 == 10)
 							{
 								Bridge* pBridge = new LifeUpItem;
-								pBridge->GetBridgeKey();
 								ObjectManager::GetInstance()->AddObject("Item", pBridge, (*Enemyiter)->GetPosition());
 							}
 							list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
@@ -189,9 +187,11 @@ void Stage_1::PlayerCollision(Object* _Object, list<Object*>* _Objectlist)
 			if (CollisionManager::CircleCollision(_Object, *Enemyiter))
 			{
 				ObjectManager::GetInstance()->AddPlayerHitCount(1);
-				Scene::PlayerLifeState();
 
-				_Object->Initialize("Player");
+				if(ObjectManager::GetInstance()->GetPlayerHitCount())
+					_Object->Initialize("Player");
+
+				Scene::PlayerLifeState();
 				Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, *Enemyiter);
 			}
 			else
@@ -212,7 +212,6 @@ void Stage_1::EnemyBulletCollision(Object* _Object, list<Object*>* _Objectlist)
 				{
 					ObjectManager::GetInstance()->AddPlayerHitCount(1);
 					Scene::PlayerLifeState();
-
 					EnemyBulletiter = ObjectManager::GetInstance()->ThrowObject(EnemyBulletiter, *EnemyBulletiter);
 				}
 				else
@@ -241,9 +240,9 @@ void Stage_1::BossCollision(Object* _Object, list<Object*>* _ObjectlistA, list<O
 							ObjectManager::GetInstance()->AddHitCount(1);
 							Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, *Bulletiter);
 
-							if (ObjectManager::GetInstance()->GetHitCount() == 50)
+							if (ObjectManager::GetInstance()->GetHitCount() == 100)
 							{
-								ScoreManager::GetInstance()->AddScore(2000);
+								ScoreManager::GetInstance()->AddScore(5000);
 								Bossiter = ObjectManager::GetInstance()->ThrowObject(Bossiter, *Bossiter);
 								ObjectManager::GetInstance()->ResetHitCount();
 							}
@@ -257,6 +256,28 @@ void Stage_1::BossCollision(Object* _Object, list<Object*>* _ObjectlistA, list<O
 				else
 					++Bossiter;
 			}
+		}
+	}
+}
+
+void Stage_1::PlayerBossCollision(Object* _Object, list<Object*>* _Objectlist)
+{
+	if (_Objectlist != nullptr)
+	{
+		for (list<Object*>::iterator Bossiter = _Objectlist->begin(); Bossiter != _Objectlist->end(); )
+		{
+			if (CollisionManager::BossCollision(_Object, *Bossiter))
+			{
+				ObjectManager::GetInstance()->AddPlayerHitCount(1);
+
+				if (ObjectManager::GetInstance()->GetPlayerHitCount())
+					_Object->Initialize("Player");
+
+				Scene::PlayerLifeState();
+				//Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, *Enemyiter);
+			}
+			else
+				++Bossiter;
 		}
 	}
 }
@@ -312,6 +333,8 @@ void Stage_1::Update()
 	GetItem(pPlayer, pFrontShield, pItemList, pEnemyBulletList);
 
 	BossCollision(pPlayer, pBossList, pBulletList);
+
+	PlayerBossCollision(pPlayer, pBossList);
 
 	Scene::ObjectPassBy(pBossList, pEnemyBulletList);
 

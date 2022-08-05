@@ -26,7 +26,7 @@ void Scene::EnemyBulletPassBy(list<Object*>* _Objectlist)
 	{
 		for (list<Object*>::iterator iter = _Objectlist->begin(); iter != _Objectlist->end();)
 		{
-			if ((*iter)->GetPosition().x <= 1.0f)
+			if ((*iter)->GetPosition().x <= 0.0f)
 				iter = ObjectManager::GetInstance()->ThrowObject(iter, (*iter));
 			else
 				++iter;
@@ -75,7 +75,10 @@ void Scene::PlayerLifeState()
 
 	else if (ObjectManager::GetInstance()->GetPlayerHitCount() == 4)
 	{
+		Object* pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
+
 		ObjectManager::GetInstance()->SetLife((char*)"¡á¡á¡á¡á");
+		pPlayer->Initialize("Player");
 		ObjectManager::GetInstance()->ResetPlayerHitCount();
 	}
 }

@@ -141,7 +141,7 @@
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="Boss.cpp" />
-    <ClCompile Include="BossBullet.cpp" />
+    <ClCompile Include="BossNormalBullet.cpp" />
     <ClCompile Include="BossParts_LeftArms.cpp" />
     <ClCompile Include="BossParts_Body.cpp" />
     <ClCompile Include="BossParts_RightArms.cpp" />
@@ -182,7 +182,7 @@
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="Boss.h" />
-    <ClInclude Include="BossBullet.h" />
+    <ClInclude Include="BossNormalBullet.h" />
     <ClInclude Include="BossParts.h" />
     <ClInclude Include="BossParts_LeftArms.h" />
     <ClInclude Include="BossParts_Body.h" />

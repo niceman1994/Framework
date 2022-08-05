@@ -133,9 +133,6 @@
     <Filter Include="소스 파일\01. Scene\Stage_1">
       <UniqueIdentifier>{3e32290b-898e-4544-88bd-29fccd0eef1f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02. Object\EnemyBullet\EnemyBulletBridge\BossBullet">
-      <UniqueIdentifier>{e5a8c49c-d378-401b-9cd3-eed3203f3abe}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\01. Scene\StageClear">
       <UniqueIdentifier>{9151a158-87a5-41ad-b260-2792d984611b}</UniqueIdentifier>
     </Filter>
@@ -162,6 +159,9 @@
     </Filter>
     <Filter Include="소스 파일\02. Object\BackGround%28보류%29">
       <UniqueIdentifier>{57fee578-aa61-4c61-ae36-3dc702eb9a86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\EnemyBullet\EnemyBulletBridge\BossNormalBullet">
+      <UniqueIdentifier>{e5a8c49c-d378-401b-9cd3-eed3203f3abe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -261,8 +261,8 @@
     <ClCompile Include="ScoreManager.cpp">
       <Filter>소스 파일\99. Manager\ScoreManager</Filter>
     </ClCompile>
-    <ClCompile Include="BossBullet.cpp">
-      <Filter>소스 파일\02. Object\EnemyBullet\EnemyBulletBridge\BossBullet</Filter>
+    <ClCompile Include="BossNormalBullet.cpp">
+      <Filter>소스 파일\02. Object\EnemyBullet\EnemyBulletBridge\BossNormalBullet</Filter>
     </ClCompile>
     <ClCompile Include="StageClear.cpp">
       <Filter>소스 파일\01. Scene\StageClear</Filter>
@@ -413,8 +413,8 @@
     <ClInclude Include="ScoreManager.h">
       <Filter>소스 파일\99. Manager\ScoreManager</Filter>
     </ClInclude>
-    <ClInclude Include="BossBullet.h">
-      <Filter>소스 파일\02. Object\EnemyBullet\EnemyBulletBridge\BossBullet</Filter>
+    <ClInclude Include="BossNormalBullet.h">
+      <Filter>소스 파일\02. Object\EnemyBullet\EnemyBulletBridge\BossNormalBullet</Filter>
     </ClInclude>
     <ClInclude Include="StageClear.h">
       <Filter>소스 파일\01. Scene\StageClear</Filter>

@@ -1,24 +1,24 @@
-#include "BossBullet.h"
+#include "BossNormalBullet.h"
 #include "MathManager.h"
 #include "CursorManager.h"
 
-BossBullet::BossBullet()
+BossNormalBullet::BossNormalBullet()
 {
 }
 
-BossBullet::~BossBullet()
+BossNormalBullet::~BossNormalBullet()
 {
 }
 
-void BossBullet::Initialize()
+void BossNormalBullet::Initialize()
 {
-    BridgeKey = "BossBullet";
+    BridgeKey = "BossNormalBullet";
 
     Speed = -1.75f;
     Color = 15;
 }
 
-int BossBullet::Update(Transform& Info)
+int BossNormalBullet::Update(Transform& Info)
 {
     Info.Direction = MathManager::GetDirection(
         Info.Position, Vector3(0.0f, Info.Position.y));
@@ -28,21 +28,21 @@ int BossBullet::Update(Transform& Info)
     return 0;
 }
 
-void BossBullet::Render()
+void BossNormalBullet::Render()
 {
     CursorManager::GetInstance()->WriteBuffer(
-        pObject->GetPosition().x + (pObject->GetScale().x * 0.5f),
+        pObject->GetPosition().x + (pObject->GetScale().x),
         pObject->GetPosition().y - (pObject->GetScale().y * 0.5f),
         (char*)"£ª",
         Color);
 
     CursorManager::GetInstance()->WriteBuffer(
-        pObject->GetPosition().x + (pObject->GetScale().x * 0.5f),
+        pObject->GetPosition().x + (pObject->GetScale().x),
         pObject->GetPosition().y + (pObject->GetScale().y * 0.25f),
         (char*)"£ª",
         Color);
 }
 
-void BossBullet::Release()
+void BossNormalBullet::Release()
 {
 }

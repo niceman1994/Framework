@@ -1,7 +1,7 @@
 #pragma once
 #include "EnemyBulletBridge.h"
 
-class BossBullet : public EnemyBulletBridge
+class BossNormalBullet : public EnemyBulletBridge
 {
 public:
 	virtual void Initialize()override;
@@ -9,8 +9,8 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 
-	virtual Bridge* Clone()override { return new BossBullet(*this); }
+	virtual Bridge* Clone()override { return new BossNormalBullet(*this); }
 public:
-	BossBullet();
-	virtual ~BossBullet();
+	BossNormalBullet();
+	virtual ~BossNormalBullet();
 };

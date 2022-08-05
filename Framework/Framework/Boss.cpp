@@ -37,34 +37,6 @@ Object* Boss::Initialize(string _Key)
 
 int Boss::Update()
 {
-    //TransInfo.Position.x -= 2.0f;
-    //
-    //if (TransInfo.Position.x <= 150.0f)
-    //{
-    //    TransInfo.Position.x = 150.0f;
-    //
-    //    if (rand() % 20 == 1)
-    //    {
-    //        Bridge* pBridge = new BossBullet;
-    //        ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge, TransInfo.Position);
-    //    }
-    //
-    //    if (rand() % 10 == 0 || rand() % 10 == 1 || rand() % 10 == 2)
-    //    {
-    //        TransInfo.Position.y -= 1.0f;
-    //
-    //        if (TransInfo.Position.y <= 15.0f)
-    //            TransInfo.Position.y = 15.0f;
-    //    }
-    //    else if (rand() % 10 == 5 || rand() % 10 == 6 || rand() % 10 == 7 || rand() % 10 == 8)
-    //    {
-    //        TransInfo.Position.y += 1.0f;
-    //
-    //        if (TransInfo.Position.y >= 35.0f)
-    //            TransInfo.Position.y += 35.0f;
-    //    }
-    //}
-
     if (pBridge)
         pBridge->Update(TransInfo);
 
@@ -73,14 +45,6 @@ int Boss::Update()
 
 void Boss::Render()
 {
-    //for (int i = 0; i < 6; ++i)
-    //{
-    //    CursorManager::GetInstance()->WriteBuffer(
-    //        TransInfo.Position.x,
-    //        TransInfo.Position.y - (TransInfo.Scale.y * 0.5f) + i,
-    //        Buffer[i]);
-    //}
-
     if (pBridge)
         pBridge->Render();
 }

@@ -49,6 +49,7 @@ void ObjectManager::AddObject(string _Key, Bridge* _Bridge, Vector3 _Position)
 
 	_Bridge->Initialize();
 	_Bridge->SetObject(pObject);
+	_Bridge->GetBridgeKey();
 
 	pObject->SetBridge(_Bridge);
 	pObject->SetPosition(_Position);
