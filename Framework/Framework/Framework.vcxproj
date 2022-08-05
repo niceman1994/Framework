@@ -142,6 +142,9 @@
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BossBullet.cpp" />
+    <ClCompile Include="BossParts_LeftArms.cpp" />
+    <ClCompile Include="BossParts_Body.cpp" />
+    <ClCompile Include="BossParts_RightArms.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Cloud.cpp" />
     <ClCompile Include="CursorManager.cpp" />
@@ -151,6 +154,7 @@
     <ClCompile Include="FrontShield.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="LifeUpItem.cpp" />
     <ClCompile Include="Logo.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainUpdate.cpp" />
@@ -179,6 +183,10 @@
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="BossBullet.h" />
+    <ClInclude Include="BossParts.h" />
+    <ClInclude Include="BossParts_LeftArms.h" />
+    <ClInclude Include="BossParts_Body.h" />
+    <ClInclude Include="BossParts_RightArms.h" />
     <ClInclude Include="Bridge.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletBridge.h" />
@@ -198,6 +206,7 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemBridge.h" />
+    <ClInclude Include="LifeUpItem.h" />
     <ClInclude Include="Logo.h" />
     <ClInclude Include="MainUpdate.h" />
     <ClInclude Include="Manual.h" />

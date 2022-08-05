@@ -33,6 +33,11 @@ public:
 
 	void ResetPlayerHitCount() { PlayerHitCount = 0; }
 	void AddPlayerHitCount(int _Count) { PlayerHitCount += _Count; }
+	void SubtractPlayerHitCount(int _Count) 
+	{ 
+		if(PlayerHitCount >=1 && PlayerHitCount <=3)
+			PlayerHitCount -= _Count; 
+	}
 	int GetPlayerHitCount() const { return PlayerHitCount; }
 
 	void SetLife(char* _Life) { Life = _Life; }

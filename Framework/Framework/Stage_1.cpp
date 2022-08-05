@@ -1,7 +1,7 @@
 #include "Stage_1.h"
 #include "Player.h"
 #include "FlyingEnemy.h"
-#include "Boss.h"
+#include "BossParts_Body.h"
 
 #include "ScrollBox.h"
 
@@ -18,10 +18,10 @@
 
 #include "ScoreItem.h"
 #include "ShieldItem.h"
+#include "LifeUpItem.h"
 #include "FrontShield.h"
-#include "BackGround.h"
 
-Stage_1::Stage_1() : pPlayer(nullptr), pFrontShield(nullptr), LifeItem(nullptr), pUI(nullptr), _BackGround(nullptr), Check(0) { }
+Stage_1::Stage_1() : pPlayer(nullptr), pFrontShield(nullptr), pUI(nullptr), TextureList(), Check(0) { }
 Stage_1::~Stage_1() { Release(); }
 
 void Stage_1::Initialize()
@@ -31,14 +31,17 @@ void Stage_1::Initialize()
 	ObjectManager::GetInstance()->GetHitCount();
 	ObjectManager::GetInstance()->GetPlayerHitCount();
 
+	TextureList[0] = (char*)
+		"£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß";
+
+	TextureList[1] = (char*)
+		"£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ";
+
 	Check = 0;
 	count = 0;
 
 	pUI = new ScrollBox;
 	pUI->Initialize();
-
-	_BackGround = new BackGround;
-	_BackGround->Initialize("BackGround");
 
 	ObjectManager::GetInstance()->AddObject("Player");
 	pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
@@ -46,20 +49,23 @@ void Stage_1::Initialize()
 	Object* pEnemy = Prototype::GetInstance()->ProtoTypeObject("Enemy");
 	Object* pEnemyBullet = Prototype::GetInstance()->ProtoTypeObject("EnemyBullet");
 
+	Bridge* pBridge = new BossParts_Body;
+	pBridge->GetBridgeKey();
 	Object* pBoss = Prototype::GetInstance()->ProtoTypeObject("Boss");
-	ObjectManager::GetInstance()->AddObject("Boss");
+	pBoss->SetPosition(200.0f, 25.0f);
+	ObjectManager::GetInstance()->AddObject("Boss", pBridge, pBoss->GetPosition()); 
 
-	for (int i = 0; i < 15; ++i)
-	{
-		srand(DWORD(GetTickCount64() * (i + 1)));
-	
-		Bridge* pBridge = new FlyingEnemy;
-		pBridge->GetBridgeKey();
-		pEnemy->SetPosition(float(rand() % 150 + (80 + (i * 30))), float(rand() % 30 + 10));
-		pEnemyBullet->SetPosition(pEnemy->GetPosition().x, pEnemy->GetPosition().y);
-		ObjectManager::GetInstance()->AddObject("Enemy", pBridge, pEnemy->GetPosition());
-		ObjectManager::GetInstance()->AddObject("EnemyBullet");
-	}
+	//for (int i = 0; i < 20; ++i)
+	//{
+	//	srand(DWORD(GetTickCount64() * (i + 1)));
+	//
+	//	Bridge* pBridge = new FlyingEnemy;
+	//	pBridge->GetBridgeKey();
+	//	pEnemy->SetPosition(float(rand() % 150 + (80 + (i * 30))), float(rand() % 30 + 10));
+	//	pEnemyBullet->SetPosition(pEnemy->GetPosition().x, pEnemy->GetPosition().y);
+	//	ObjectManager::GetInstance()->AddObject("Enemy", pBridge, pEnemy->GetPosition());
+	//	ObjectManager::GetInstance()->AddObject("EnemyBullet");
+	//}
 }
 
 void Stage_1::CreateItem(Object* _Object, list<Object*>* _ObjectlistA, list<Object*>* _ObjectlistB)
@@ -92,6 +98,12 @@ void Stage_1::CreateItem(Object* _Object, list<Object*>* _ObjectlistA, list<Obje
 								pBridge->GetBridgeKey();
 								ObjectManager::GetInstance()->AddObject("Item", pBridge, (*Enemyiter)->GetPosition());
 							}
+							else if (rand() % 100 == 10)
+							{
+								Bridge* pBridge = new LifeUpItem;
+								pBridge->GetBridgeKey();
+								ObjectManager::GetInstance()->AddObject("Item", pBridge, (*Enemyiter)->GetPosition());
+							}
 							list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
 
 							Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, *Enemyiter);
@@ -105,6 +117,64 @@ void Stage_1::CreateItem(Object* _Object, list<Object*>* _ObjectlistA, list<Obje
 					break;
 				else
 					++Enemyiter;
+			}
+		}
+	}
+}
+
+void Stage_1::GetItem(Object* _ObjectA, Object* _ObjectB, list<Object*>* _ObjectlistA, list<Object*>* _ObjectlistB)
+{
+	if (_ObjectA != nullptr)
+	{
+		for (list<Object*>::iterator Itemiter = _ObjectlistA->begin(); Itemiter != _ObjectlistA->end();)
+		{
+			if (Itemiter == _ObjectlistA->end())
+				break;
+			if (CollisionManager::Collision(_ObjectA, (*Itemiter)))
+			{
+				if ((*Itemiter)->GetBridgeName() == "ScoreItem")
+					ScoreManager::GetInstance()->AddScore(400);
+				else if ((*Itemiter)->GetBridgeName() == "ShieldItem")
+				{
+					if (_ObjectB != nullptr && CollisionManager::Collision(_ObjectA, (*Itemiter)))
+					{
+						Itemiter = ObjectManager::GetInstance()->ThrowObject(Itemiter, *Itemiter);
+						ScoreManager::GetInstance()->AddScore(200);
+						break;
+					}
+
+					ObjectManager::GetInstance()->AddObject("FrontShield");
+					_ObjectB = ObjectManager::GetInstance()->GetObjectList("FrontShield")->front();
+					_ObjectB->Initialize("FrontShield");
+				}
+				else if ((*Itemiter)->GetBridgeName() == "LifeUpItem")
+				{
+					ObjectManager::GetInstance()->SubtractPlayerHitCount(1);
+					Scene::PlayerLifeState();
+
+					if ((ObjectManager::GetInstance()->GetPlayerHitCount() == 0 || ObjectManager::GetInstance()->GetPlayerHitCount() == 4)
+						&& CollisionManager::Collision(_ObjectA, (*Itemiter)))
+						ScoreManager::GetInstance()->AddScore(1000);
+				}
+				Itemiter = ObjectManager::GetInstance()->ThrowObject(Itemiter, *Itemiter);
+			}
+			else if ((*Itemiter)->GetPosition().x <= 2.0f)
+				Itemiter = ObjectManager::GetInstance()->ThrowObject(Itemiter, *Itemiter);
+			else
+				++Itemiter;
+		}
+
+		if (_ObjectB != nullptr)
+		{
+			if (_ObjectlistB != nullptr)
+			{
+				for (list<Object*>::iterator EnemyBulletiter = _ObjectlistB->begin(); EnemyBulletiter != _ObjectlistB->end();)
+				{
+					if (CollisionManager::Collision(_ObjectB, *EnemyBulletiter))
+						EnemyBulletiter = ObjectManager::GetInstance()->ThrowObject(EnemyBulletiter, *EnemyBulletiter);
+					else
+						++EnemyBulletiter;
+				}
 			}
 		}
 	}
@@ -239,51 +309,7 @@ void Stage_1::Update()
 
 	list<Object*>* pItemList = ObjectManager::GetInstance()->GetObjectList("Item");
 
-	if (pPlayer != nullptr)
-	{
-		for (list<Object*>::iterator Itemiter = pItemList->begin(); Itemiter != pItemList->end();)
-		{
-			if (Itemiter == pItemList->end())
-				break;
-			if (CollisionManager::Collision(pPlayer, (*Itemiter)))
-			{
-				if ((*Itemiter)->GetBridgeName() == "ScoreItem")
-					ScoreManager::GetInstance()->AddScore(400);
-				else if ((*Itemiter)->GetBridgeName() == "ShieldItem")
-				{
-					if (pFrontShield != nullptr && CollisionManager::Collision(pPlayer, (*Itemiter)))
-					{
-						Itemiter = ObjectManager::GetInstance()->ThrowObject(Itemiter, *Itemiter);
-						ScoreManager::GetInstance()->AddScore(200);
-						break;
-					}
-
-					ObjectManager::GetInstance()->AddObject("FrontShield");
-					pFrontShield = ObjectManager::GetInstance()->GetObjectList("FrontShield")->front();
-					pFrontShield->Initialize("FrontShield");
-				}
-				Itemiter = ObjectManager::GetInstance()->ThrowObject(Itemiter, *Itemiter);
-			}
-			else if ((*Itemiter)->GetPosition().x <= 2.0f)
-				Itemiter = ObjectManager::GetInstance()->ThrowObject(Itemiter, *Itemiter);
-			else
-				++Itemiter;
-		}
-
-		if (pFrontShield != nullptr)
-		{
-			if (pEnemyBulletList != nullptr)
-			{
-				for (list<Object*>::iterator EnemyBulletiter = pEnemyBulletList->begin(); EnemyBulletiter != pEnemyBulletList->end();)
-				{
-					if (CollisionManager::Collision(pFrontShield, *EnemyBulletiter))
-						EnemyBulletiter = ObjectManager::GetInstance()->ThrowObject(EnemyBulletiter, *EnemyBulletiter);
-					else
-						++EnemyBulletiter;
-				}
-			}
-		}
-	}
+	GetItem(pPlayer, pFrontShield, pItemList, pEnemyBulletList);
 
 	BossCollision(pPlayer, pBossList, pBulletList);
 
@@ -293,9 +319,6 @@ void Stage_1::Update()
 
 	if (Check)
 		pUI->Update();
-
-	if (_BackGround)
-		_BackGround->Update();
 }
 
 void Stage_1::Render()
@@ -307,8 +330,6 @@ void Stage_1::Render()
 	if (Check)
 		pUI->Render();
 
-	_BackGround->Render();
-
 	CursorManager::GetInstance()->WriteBuffer(1.0f, 0.0f, (char*)"HP [");
 	CursorManager::GetInstance()->WriteBuffer(6.0f, 0.0f, ObjectManager::GetInstance()->LifeState());
 	CursorManager::GetInstance()->WriteBuffer(15.0f, 0.0f, (char*)"]");
@@ -318,6 +339,9 @@ void Stage_1::Render()
 
 	CursorManager::GetInstance()->WriteBuffer(152.0f, 49.0f, (char*)"CREDIT : ", 14);
 	CursorManager::GetInstance()->WriteBuffer(161.0f, 49.0f, ScoreManager::GetInstance()->GetCredit(), 14);
+
+	CursorManager::GetInstance()->WriteBuffer(0.0f, 1.0f, TextureList[0]);
+	CursorManager::GetInstance()->WriteBuffer(0.0f, 48.0f, TextureList[1]);
 }
 
 void Stage_1::Release()

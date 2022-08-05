@@ -61,9 +61,10 @@ void Scene::ObjectPassBy(list<Object*>* _Object, list<Object*>* _Objectlist)
 
 void Scene::PlayerLifeState()
 {
-	ObjectManager::GetInstance()->GetPlayerHitCount();
+	if (ObjectManager::GetInstance()->GetPlayerHitCount() == 0)
+		ObjectManager::GetInstance()->SetLife((char*)"¡á¡á¡á¡á");
 
-	if (ObjectManager::GetInstance()->GetPlayerHitCount() == 1)
+	else if (ObjectManager::GetInstance()->GetPlayerHitCount() == 1)
 		ObjectManager::GetInstance()->SetLife((char*)"¡á¡á¡á");
 
 	else if (ObjectManager::GetInstance()->GetPlayerHitCount() == 2)

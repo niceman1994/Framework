@@ -78,16 +78,9 @@ int Player::Update()
 		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
 	}
 
-	if (dwKey & KEY_CTRL && ScoreManager::GetInstance()->GetStageScore() < 3500)
+	if (dwKey & KEY_CTRL)
 	{
-		Bridge* pBridge = new NormalBullet;
-		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
-	}
-
-	if (dwKey & KEY_CTRL && ScoreManager::GetInstance()->GetStageScore() >= 3500)
-	{
-		Bridge* pBridge = new TwinBullet;
-		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
+		
 	}
 
 	return 0;

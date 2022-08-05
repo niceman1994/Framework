@@ -7,7 +7,7 @@ BackGround::~BackGround() {}
 
 Object* BackGround::Initialize(string _Key)
 {
-    strKey = "BackGround";
+    strKey = _Key;
 
     TextureList[0] = (char*)
         "�ߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣߣ�";
@@ -30,8 +30,8 @@ int BackGround::Update()
 
 void BackGround::Render()
 {
-    CursorManager::GetInstance()->WriteBuffer(TransInfo.Position.x, TransInfo.Position.y + 1.0f , TextureList[0]);
-    CursorManager::GetInstance()->WriteBuffer(TransInfo.Position.x, TransInfo.Position.y + 48.0f, TextureList[1]);
+    CursorManager::GetInstance()->WriteBuffer(0.0f, 1.0f, TextureList[0]);
+    CursorManager::GetInstance()->WriteBuffer(0.0f, 48.0f, TextureList[1]);
 }
 
 void BackGround::Release()

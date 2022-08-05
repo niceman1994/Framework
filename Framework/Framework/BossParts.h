@@ -1,10 +1,10 @@
 #pragma once
 #include "Bridge.h"
 
-class BulletBridge : public Bridge
+class BossParts : public Bridge
 {
 protected:
-	// Bullet의 데이터만 넣음
+	char* BossPartsText[16];
 	float Speed;
 	int Color;
 public:
@@ -15,6 +15,6 @@ public:
 
 	virtual Bridge* Clone()PURE;
 public:
-	BulletBridge() : Speed(0), Color(0) {};
-	virtual ~BulletBridge() {};
+	BossParts() : Speed(0), Color(0), BossPartsText() {};
+	virtual ~BossParts() {};
 };

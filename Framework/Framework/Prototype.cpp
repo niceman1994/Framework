@@ -31,6 +31,9 @@ void Prototype::Initialize()
 	Key = "FrontShield";
 	ProtoTypeList[Key] = (new FrontShield(Info))->Initialize(Key);
 
+	Key = "BackGround";
+	ProtoTypeList[Key] = (new FrontShield(Info))->Initialize(Key);
+
 	Key = "Boss";
 	ProtoTypeList[Key] = (new Boss(Info))->Initialize(Key);
 

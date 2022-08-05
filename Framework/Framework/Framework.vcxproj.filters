@@ -61,9 +61,6 @@
     <Filter Include="소스 파일\02. Object\Cloud">
       <UniqueIdentifier>{da25eb7a-46a0-45b1-ad4d-3eb87d00a622}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02. Object\BackGround">
-      <UniqueIdentifier>{57fee578-aa61-4c61-ae36-3dc702eb9a86}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\99. Manager\MathManager">
       <UniqueIdentifier>{2a6225bc-df93-4e94-956c-4ccf9b09bf77}</UniqueIdentifier>
     </Filter>
@@ -148,6 +145,24 @@
     <Filter Include="소스 파일\02. Object\Enemy\EnemyBridge\FlyingEnemy">
       <UniqueIdentifier>{c50e4780-1c20-46e1-a2ee-85cddca4dee2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02. Object\Item\ItemBridge\LifeUpItem">
+      <UniqueIdentifier>{33e814da-42f4-4688-8d46-08d59cd8a53b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Boss\BossParts">
+      <UniqueIdentifier>{4df0fdcb-001e-4b84-a9a5-0e9eacd6e154}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Boss\BossParts\BossParts_Body">
+      <UniqueIdentifier>{74415a06-6bf8-426b-aaf7-2293cee0466f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Boss\BossParts\BossParts_LeftArms">
+      <UniqueIdentifier>{83867e0a-67cd-493c-b7bf-3b021c8ed381}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Boss\BossParts\BossParts_RightArms">
+      <UniqueIdentifier>{ab024a7b-e733-47e3-a678-6931ba928178}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\BackGround%28보류%29">
+      <UniqueIdentifier>{57fee578-aa61-4c61-ae36-3dc702eb9a86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -199,7 +214,7 @@
       <Filter>소스 파일\02. Object\Cloud</Filter>
     </ClCompile>
     <ClCompile Include="BackGround.cpp">
-      <Filter>소스 파일\02. Object\BackGround</Filter>
+      <Filter>소스 파일\02. Object\BackGround%28보류%29</Filter>
     </ClCompile>
     <ClCompile Include="CursorManager.cpp">
       <Filter>소스 파일\99. Manager\CursorManager</Filter>
@@ -254,6 +269,18 @@
     </ClCompile>
     <ClCompile Include="FlyingEnemy.cpp">
       <Filter>소스 파일\02. Object\Enemy\EnemyBridge\FlyingEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="LifeUpItem.cpp">
+      <Filter>소스 파일\02. Object\Item\ItemBridge\LifeUpItem</Filter>
+    </ClCompile>
+    <ClCompile Include="BossParts_Body.cpp">
+      <Filter>소스 파일\02. Object\Boss\BossParts\BossParts_Body</Filter>
+    </ClCompile>
+    <ClCompile Include="BossParts_LeftArms.cpp">
+      <Filter>소스 파일\02. Object\Boss\BossParts\BossParts_LeftArms</Filter>
+    </ClCompile>
+    <ClCompile Include="BossParts_RightArms.cpp">
+      <Filter>소스 파일\02. Object\Boss\BossParts\BossParts_RightArms</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -327,7 +354,7 @@
       <Filter>소스 파일\02. Object\Cloud</Filter>
     </ClInclude>
     <ClInclude Include="BackGround.h">
-      <Filter>소스 파일\02. Object\BackGround</Filter>
+      <Filter>소스 파일\02. Object\BackGround%28보류%29</Filter>
     </ClInclude>
     <ClInclude Include="MathManager.h">
       <Filter>소스 파일\99. Manager\MathManager</Filter>
@@ -397,6 +424,21 @@
     </ClInclude>
     <ClInclude Include="FlyingEnemy.h">
       <Filter>소스 파일\02. Object\Enemy\EnemyBridge\FlyingEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="LifeUpItem.h">
+      <Filter>소스 파일\02. Object\Item\ItemBridge\LifeUpItem</Filter>
+    </ClInclude>
+    <ClInclude Include="BossParts.h">
+      <Filter>소스 파일\02. Object\Boss\BossParts</Filter>
+    </ClInclude>
+    <ClInclude Include="BossParts_Body.h">
+      <Filter>소스 파일\02. Object\Boss\BossParts\BossParts_Body</Filter>
+    </ClInclude>
+    <ClInclude Include="BossParts_LeftArms.h">
+      <Filter>소스 파일\02. Object\Boss\BossParts\BossParts_LeftArms</Filter>
+    </ClInclude>
+    <ClInclude Include="BossParts_RightArms.h">
+      <Filter>소스 파일\02. Object\Boss\BossParts\BossParts_RightArms</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

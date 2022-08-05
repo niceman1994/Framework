@@ -18,7 +18,7 @@ void FlyingEnemy::Initialize()
 	ObjectText[3] = (char*)"  ¡á  ¡å";
 	ObjectText[4] = (char*)"  ¡å    ";
 
-	Speed = -1.1f;
+	Speed = -1.0f;
 	Color = 15;
 }
 
@@ -29,13 +29,10 @@ int FlyingEnemy::Update(Transform& Info)
 	
 	Info.Position -= Info.Direction * Speed;
 
-	if (Info.Position.x <= 178.0f)
+	if (Info.Position.x <= 178.0f && rand() % 50 == 5)
 	{
-		if (rand() % 10 == 5)
-		{
-			Bridge* pBridge = new NormalEnemyBullet;
-			ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge, Info.Position);
-		}
+		Bridge* pBridge = new NormalEnemyBullet;
+		ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge, Info.Position);
 	}
 
 	return 0;
