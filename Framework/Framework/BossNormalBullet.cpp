@@ -32,15 +32,15 @@ void BossNormalBullet::Render()
 {
     CursorManager::GetInstance()->WriteBuffer(
         pObject->GetPosition().x + (pObject->GetScale().x),
-        pObject->GetPosition().y - (pObject->GetScale().y * 0.5f),
+        pObject->GetPosition().y - (pObject->GetScale().y * 0.33f),
         (char*)"£ª",
         Color);
 
-    CursorManager::GetInstance()->WriteBuffer(
-        pObject->GetPosition().x + (pObject->GetScale().x),
-        pObject->GetPosition().y + (pObject->GetScale().y * 0.25f),
-        (char*)"£ª",
-        Color);
+    //CursorManager::GetInstance()->WriteBuffer(
+    //    pObject->GetPosition().x + (pObject->GetScale().x),
+    //    pObject->GetPosition().y + (pObject->GetScale().y * 0.5f) - 0.5f,
+    //    (char*)"£ª",
+    //    Color);
 }
 
 void BossNormalBullet::Release()

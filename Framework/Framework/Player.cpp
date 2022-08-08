@@ -23,7 +23,7 @@ Object* Player::Initialize(string _Key)
 	Buffer[3] = (char*)"¡ä  ¡à";
 	Buffer[4] = (char*)"    ¡ä";
 
-	TransInfo.Position = Vector3(20.0f, 15.0f);
+	TransInfo.Position = Vector3(30.0f, 25.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
 	TransInfo.Scale = Vector3(10.0f, 5.0f);
 
@@ -66,13 +66,13 @@ int Player::Update()
 			TransInfo.Position = Vector3(170.0f, TransInfo.Position.y);
 	}	
 
-	if (dwKey & KEY_SPACE && ScoreManager::GetInstance()->GetStageScore() < 3500)
+	if (dwKey & KEY_SPACE && ScoreManager::GetInstance()->GetStageScore() < 5000)
 	{
 		Bridge* pBridge = new NormalBullet;
 		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
 	}
 
-	if (dwKey & KEY_SPACE && ScoreManager::GetInstance()->GetStageScore() >= 3500)
+	if (dwKey & KEY_SPACE && ScoreManager::GetInstance()->GetStageScore() >= 5000)
 	{
 		Bridge* pBridge = new TwinBullet;
 		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);

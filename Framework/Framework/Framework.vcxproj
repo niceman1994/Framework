@@ -167,6 +167,7 @@
     <ClCompile Include="ObjectPool.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Prototype.cpp" />
+    <ClCompile Include="RushingEnemy.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScoreItem.cpp" />
@@ -220,6 +221,7 @@
     <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Prototype.h" />
+    <ClInclude Include="RushingEnemy.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScoreItem.h" />

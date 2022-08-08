@@ -24,6 +24,7 @@ private:
 public:
 	void AddObject(string _Key);
 	void AddObject(string _Key, Bridge* _Bridge, Vector3 _Position);
+	void AddObject(string _Key, Bridge* _Bridge, float _x, float _y);
 	list<Object*>* GetObjectList(string _strKey);
 	list<Object*>::iterator ThrowObject(list<Object*>::iterator _Where, Object* _Object);
 
