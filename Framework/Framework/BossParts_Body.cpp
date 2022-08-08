@@ -14,11 +14,11 @@ void BossParts_Body::Initialize()
 {
     BridgeKey = "BossParts_Body";
 
-    //BossPartsText[5] = (char*)"¦£¦¡¦¡¦¡¦¡¦¡¦¤";
+    //BossPartsText[9] = (char*)"¦£¦¡¦¡¦¡¦¡¦¡¦¤";
     //BossPartsText[6] = (char*)"¦¢   ¡á¡à¡à ¦¢";
     //BossPartsText[7] = (char*)"¦¢¡á¡à¡á¡à  ¦¢";
     //BossPartsText[8] = (char*)"¦¢  ¡á¡á¡à¡à¦¢";
-    //BossPartsText[9] = (char*)"¦¦¦¡¦¡¦¡¦¡¦¡¦¥";
+    //BossPartsText[5] = (char*)"¦¦¦¡¦¡¦¡¦¡¦¡¦¥";
 
     BossPartsText[0] = (char*)"£¯£þ£þ£þ£þ£þ¡¬";
     BossPartsText[1] = (char*)"¦¢£þ£þ£þ£þ£þ¦¢";
@@ -55,10 +55,12 @@ int BossParts_Body::Update(Transform& Info)
     //else if (rand() % 10 == 1 && Info.Position.y < 35.0f)
     //    Info.Position.y += 2.0f;
 
-    if (Info.Position.x <= 178.0f && rand() % 20 == 1)
+    if (Info.Position.x <= 178.0f && rand() % 20 == 10)
     {
         Bridge* pBridge = new BossNormalBullet;
         ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge, Info.Position);
+        ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge->Clone(), Info.Position.x, Info.Position.y - 1.0f);
+        ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge->Clone(), Info.Position.x, Info.Position.y + 1.0f);
     }
 
     return 0;
@@ -76,6 +78,22 @@ void BossParts_Body::Render()
             pObject->GetPosition().y - (pObject->GetScale().y * 0.5f) + i,
             BossPartsText[i], Color);
     }
+    
+    //for (int i = 5; i < 10; ++i)
+    //{
+    //    CursorManager::GetInstance()->WriteBuffer(
+    //        pObject->GetPosition().x,
+    //        pObject->GetPosition().y - (pObject->GetScale().y * 0.5f) - i,
+    //        BossPartsText[i], Color);
+    //}
+    //
+    //for (int i = 10; i < 15; ++i)
+    //{
+    //    CursorManager::GetInstance()->WriteBuffer(
+    //        pObject->GetPosition().x,
+    //        pObject->GetPosition().y - (pObject->GetScale().y * 0.5f) + i,
+    //        BossPartsText[i], Color);
+    //}
 }
 
 void BossParts_Body::Release()

@@ -1,7 +1,6 @@
 #include "TwinBullet.h"
 #include "CursorManager.h"
 #include "MathManager.h"
-#include "Object.h"
 
 TwinBullet::TwinBullet() {}
 

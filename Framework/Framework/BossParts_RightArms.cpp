@@ -2,6 +2,7 @@
 #include "ObjectManager.h"
 #include "CursorManager.h"
 #include "MathManager.h"
+#include "BossSpecialBullet.h"
 
 BossParts_RightArms::BossParts_RightArms() {}
 
@@ -28,6 +29,12 @@ int BossParts_RightArms::Update(Transform& Info)
 
     if (Info.Position.x > 150.0f)
         Info.Position -= Info.Direction * Speed;
+
+    if (Info.Position.x <= 178.0f && rand() % 50 == 10)
+    {
+        Bridge* pBridge = new BossSpecialBullet;
+        ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge, Info.Position);
+    }
 
     return 0;
 }

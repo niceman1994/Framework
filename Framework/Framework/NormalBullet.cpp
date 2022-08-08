@@ -2,7 +2,6 @@
 #include "ObjectManager.h"
 #include "CursorManager.h"
 #include "MathManager.h"
-#include "Object.h"
 
 NormalBullet::NormalBullet() {}
 

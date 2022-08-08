@@ -16,6 +16,8 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 public:
+	void CreateEnemy();
+
 	void CreateItem(Object* _Object, list<Object*>* _ObjectlistA, list<Object*>* _ObjectlistB);
 
 	void PlayerCollision(Object* _Object, list<Object*>* _Objectlist);

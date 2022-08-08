@@ -166,6 +166,12 @@
     <Filter Include="소스 파일\02. Object\Enemy\EnemyBridge\RushingEnemy">
       <UniqueIdentifier>{37d6137b-0479-47af-830b-13df56b1df4c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02. Object\EnemyBullet\EnemyBulletBridge\BossSpecialBullet">
+      <UniqueIdentifier>{db2da9a0-e476-4f12-92d1-287cef2f7305}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Bullet\BulletBridge\SpecialSkill">
+      <UniqueIdentifier>{9f978d25-880d-45a9-b8fe-b506b897cc06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -287,6 +293,12 @@
     </ClCompile>
     <ClCompile Include="RushingEnemy.cpp">
       <Filter>소스 파일\02. Object\Enemy\EnemyBridge\RushingEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="BossSpecialBullet.cpp">
+      <Filter>소스 파일\02. Object\EnemyBullet\EnemyBulletBridge\BossSpecialBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialSkill.cpp">
+      <Filter>소스 파일\02. Object\Bullet\BulletBridge\SpecialSkill</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -448,6 +460,12 @@
     </ClInclude>
     <ClInclude Include="RushingEnemy.h">
       <Filter>소스 파일\02. Object\Enemy\EnemyBridge\RushingEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="BossSpecialBullet.h">
+      <Filter>소스 파일\02. Object\EnemyBullet\EnemyBulletBridge\BossSpecialBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialSkill.h">
+      <Filter>소스 파일\02. Object\Bullet\BulletBridge\SpecialSkill</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

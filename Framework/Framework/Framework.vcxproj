@@ -145,6 +145,7 @@
     <ClCompile Include="BossParts_LeftArms.cpp" />
     <ClCompile Include="BossParts_Body.cpp" />
     <ClCompile Include="BossParts_RightArms.cpp" />
+    <ClCompile Include="BossSpecialBullet.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Cloud.cpp" />
     <ClCompile Include="CursorManager.cpp" />
@@ -174,6 +175,7 @@
     <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="ScrollBox.cpp" />
     <ClCompile Include="ShieldItem.cpp" />
+    <ClCompile Include="SpecialSkill.cpp" />
     <ClCompile Include="StageClear.cpp" />
     <ClCompile Include="Stage_1.cpp" />
     <ClCompile Include="StageUI.cpp" />
@@ -188,6 +190,7 @@
     <ClInclude Include="BossParts_LeftArms.h" />
     <ClInclude Include="BossParts_Body.h" />
     <ClInclude Include="BossParts_RightArms.h" />
+    <ClInclude Include="BossSpecialBullet.h" />
     <ClInclude Include="Bridge.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletBridge.h" />
@@ -228,6 +231,7 @@
     <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="ScrollBox.h" />
     <ClInclude Include="ShieldItem.h" />
+    <ClInclude Include="SpecialSkill.h" />
     <ClInclude Include="StageClear.h" />
     <ClInclude Include="Stage_1.h" />
     <ClInclude Include="StageUI.h" />
