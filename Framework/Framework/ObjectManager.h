@@ -20,6 +20,7 @@ private:
 	map<string, list<Object*>>* EnableList;
 	int HitCount;
 	int PlayerHitCount;
+	int TimeCount;
 	char* Life;
 public:
 	void AddObject(string _Key);
@@ -43,6 +44,10 @@ public:
 
 	void SetLife(char* _Life) { Life = _Life; }
 	char* LifeState() const { return Life; }
+
+	void AddTimeCount() { ++TimeCount; }
+	int GetTimeCount() const { return TimeCount; }
+	void ResetTimeCount() { TimeCount = 0; }
 
 	void Update();
 	void Render();

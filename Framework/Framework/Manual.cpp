@@ -35,7 +35,7 @@ void Manual::Render()
 
 	CursorManager::GetInstance()->WriteBuffer(88.0f, 25.0f, (char*)"[공격]");
 	CursorManager::GetInstance()->WriteBuffer(83.0f, 26.0f, (char*)"SPACE BAR : 점사");
-	CursorManager::GetInstance()->WriteBuffer(84.0f, 27.0f, (char*)"CONTROL : 연사");
+	CursorManager::GetInstance()->WriteBuffer(84.0f, 27.0f, (char*)"CONTROL : 스킬");
 
 	CursorManager::GetInstance()->WriteBuffer(83.0f, 29.0f, (char*)"ENTER : 화면 전환");
 	CursorManager::GetInstance()->WriteBuffer(84.0f, 30.0f, (char*)"ESC : 돌아가기");

@@ -8,8 +8,6 @@ private:
 	Object* pPlayer;
 	Object* pFrontShield;
 	Object* pBoss;
-
-	char* TextureList[4];
 public:
 	virtual void Initialize()override;
 	virtual void Update()override;

@@ -24,7 +24,7 @@
 #include "LifeUpItem.h"
 #include "FrontShield.h"
 
-Stage_1::Stage_1() : pPlayer(nullptr), pFrontShield(nullptr), pBoss(nullptr), TextureList() { }
+Stage_1::Stage_1() : pPlayer(nullptr), pFrontShield(nullptr), pBoss(nullptr) { }
 Stage_1::~Stage_1() { Release(); }
 
 void Stage_1::Initialize()
@@ -34,11 +34,14 @@ void Stage_1::Initialize()
 	ObjectManager::GetInstance()->GetHitCount();
 	ObjectManager::GetInstance()->GetPlayerHitCount();
 
-	TextureList[0] = (char*)
+	Text[0] = (char*)
 		"£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß";
 
-	TextureList[1] = (char*)
+	Text[1] = (char*)
 		"£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ";
+
+	Text[2] = (char*)" ";
+	Text[3] = (char*)"";
 
 	count = 0;
 
@@ -245,7 +248,7 @@ void Stage_1::BossCollision(Object* _Object, list<Object*>* _ObjectlistA, list<O
 								Bossiter = ObjectManager::GetInstance()->ThrowObject(Bossiter, *Bossiter);
 								ObjectManager::GetInstance()->ResetHitCount();
 							}
-						} 
+						}
 						else
 							++Bulletiter;
 					}
@@ -269,8 +272,7 @@ void Stage_1::PlayerBossCollision(Object* _Object, list<Object*>* _Objectlist)
 			{
 				ObjectManager::GetInstance()->AddPlayerHitCount(1);
 
-				if (ObjectManager::GetInstance()->GetPlayerHitCount())
-					_Object->Initialize("Player");
+				_Object->Initialize("Player");
 
 				Scene::PlayerLifeState();
 			}
@@ -295,7 +297,10 @@ void Stage_1::BulletToBulletCollision(Object* _Object, list<Object*>* _Objectlis
 						if (Bulletiter == _ObjectlistA->end())
 							break;
 						else if (CollisionManager::Collision(*Bulletiter, *EnemyBulletiter) && (*EnemyBulletiter)->GetBridgeName() == "BossSpecialBullet")
+						{
 							EnemyBulletiter = ObjectManager::GetInstance()->ThrowObject(EnemyBulletiter, *EnemyBulletiter);
+							Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, *Bulletiter);
+						}
 						else
 							++EnemyBulletiter;
 					}
@@ -426,8 +431,19 @@ void Stage_1::Render()
 	CursorManager::GetInstance()->WriteBuffer(152.0f, 49.0f, (char*)"CREDIT : ", 14);
 	CursorManager::GetInstance()->WriteBuffer(161.0f, 49.0f, ScoreManager::GetInstance()->GetCredit(), 14);
 
-	CursorManager::GetInstance()->WriteBuffer(0.0f, 1.0f, TextureList[0]);
-	CursorManager::GetInstance()->WriteBuffer(0.0f, 48.0f, TextureList[1]);
+	CursorManager::GetInstance()->WriteBuffer(0.0f, 1.0f, Text[0]);
+	CursorManager::GetInstance()->WriteBuffer(0.0f, 48.0f, Text[1]);
+
+	CursorManager::GetInstance()->WriteBuffer(36.0f, 0.0f, (char*)"Special Skill", 11);
+
+	for (int i = 0; i < ObjectManager::GetInstance()->GetTimeCount(); ++i)
+	{
+		if (ObjectManager::GetInstance()->GetTimeCount() <= 150)
+			CursorManager::GetInstance()->WriteBuffer(50.0f + (i / 10), 0.0f, Text[2], 34);
+		
+		if (ObjectManager::GetInstance()->GetTimeCount() == 0)
+			CursorManager::GetInstance()->WriteBuffer(50.0f, 0.0f, Text[2], 0);
+	}
 }
 
 void Stage_1::Release()

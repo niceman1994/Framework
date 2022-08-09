@@ -35,6 +35,16 @@ int BossParts_RightArms::Update(Transform& Info)
         Bridge* pBridge = new BossSpecialBullet;
         ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge, Info.Position);
     }
+    if (Info.Position.x <= 178.0f && rand() % 50 == 10)
+    {
+        Bridge* pBridge = new BossSpecialBullet;
+        ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge, Info.Position.x - 1.0f, Info.Position.y - 1.0f);
+    }
+    if (Info.Position.x <= 178.0f && rand() % 50 == 10)
+    {
+        Bridge* pBridge = new BossSpecialBullet;
+        ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge, Info.Position.x - 1.0f, Info.Position.y + 1.0f);
+    }
 
     return 0;
 }

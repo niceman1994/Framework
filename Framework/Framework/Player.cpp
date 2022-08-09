@@ -79,10 +79,26 @@ int Player::Update()
 		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
 	}
 
-	if (dwKey & KEY_CTRL)
+	if (ObjectManager::GetInstance()->GetTimeCount() >= 0)
 	{
-		Bridge* pBridge = new SpecialSkill;
-		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
+		ObjectManager::GetInstance()->AddTimeCount();
+
+		if (dwKey & KEY_CTRL && ObjectManager::GetInstance()->GetTimeCount() >= 150)
+		{
+			ObjectManager::GetInstance()->ResetTimeCount();
+			list<Object*>* pEnemyBulletList = ObjectManager::GetInstance()->GetObjectList("EnemyBullet");
+
+			Bridge* pBridge = new SpecialSkill;
+			ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
+
+			if (pEnemyBulletList != nullptr)
+			{
+				for (list<Object*>::iterator EnemyBulletiter = pEnemyBulletList->begin(); EnemyBulletiter != pEnemyBulletList->end();)
+				{
+					EnemyBulletiter = ObjectManager::GetInstance()->ThrowObject(EnemyBulletiter, *EnemyBulletiter);
+				}
+			}
+		}
 	}
 
 	return 0;
@@ -96,6 +112,7 @@ void Player::Render()
 	//CursorManager::GetInstance()->WriteBuffer(4.0f, 1.0f, (int)TransInfo.Position.x);
 	//CursorManager::GetInstance()->WriteBuffer(4.0f, 2.0f, (int)TransInfo.Position.y);
 	//CursorManager::GetInstance()->WriteBuffer(4.0f, 3.0f, (int)TransInfo.Rotation.x);
+	CursorManager::GetInstance()->WriteBuffer(1.0f, 49.0f, (int)ObjectManager::GetInstance()->GetTimeCount());
 
 	for (int i = 0; i < 5; ++i)
 	{
