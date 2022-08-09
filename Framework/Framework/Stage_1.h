@@ -17,6 +17,7 @@ public:
 	virtual void Release()override;
 public:
 	void CreateEnemy();
+	void MoveBoss();
 
 	void CreateItem(Object* _Object, list<Object*>* _ObjectlistA, list<Object*>* _ObjectlistB);
 
@@ -25,6 +26,7 @@ public:
 	void FrontShieldCollision(Object* _Object, list<Object*>* _Objectlist);
 	void BossCollision(Object* _Object, list<Object*>* _ObjectlistA, list<Object*>* _ObjectlistB);
 	void PlayerBossCollision(Object* _Object, list<Object*>* _Objectlist);
+	void BulletToBulletCollision(Object* _Object, list<Object*>* _ObjectlistA, list<Object*>* _ObjectlistB);
 public:
 	Stage_1();
 	virtual ~Stage_1();

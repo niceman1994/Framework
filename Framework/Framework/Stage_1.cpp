@@ -78,7 +78,7 @@ void Stage_1::Initialize()
 
 void Stage_1::CreateEnemy()
 {
-	if (rand() % 20 == 10 && ScoreManager::GetInstance()->GetStageScore() <= 2000)
+	if (rand() % 50 == 25 && ScoreManager::GetInstance()->GetStageScore() <= 2000)
 	{
 		Object* pEnemy = Prototype::GetInstance()->ProtoTypeObject("Enemy");
 
@@ -95,6 +95,17 @@ void Stage_1::CreateEnemy()
 			pEnemy->SetPosition(350.0f + (i * 10), 10.0f + (i * 3));
 			ObjectManager::GetInstance()->AddObject("Enemy", pBridge, pEnemy->GetPosition());
 		}
+	}
+}
+
+void Stage_1::MoveBoss()
+{
+	if (pBoss->GetPosition().x == 150.0f)
+	{
+		pBoss->SetPosition(pBoss->GetPosition().x, pBoss->GetPosition().y - 1.0f);
+
+		if (pBoss->GetPosition().y <= 15.0f)
+			return;
 	}
 }
 
@@ -233,12 +244,6 @@ void Stage_1::BossCollision(Object* _Object, list<Object*>* _ObjectlistA, list<O
 								ScoreManager::GetInstance()->AddScore(2000);
 								Bossiter = ObjectManager::GetInstance()->ThrowObject(Bossiter, *Bossiter);
 								ObjectManager::GetInstance()->ResetHitCount();
-
-								if (_ObjectlistA->empty())
-								{
-									SceneManager::GetInstance()->SetScene(STAGE_CLEAR);
-									return;
-								}
 							}
 						} 
 						else
@@ -275,6 +280,35 @@ void Stage_1::PlayerBossCollision(Object* _Object, list<Object*>* _Objectlist)
 	}
 }
 
+void Stage_1::BulletToBulletCollision(Object* _Object, list<Object*>* _ObjectlistA, list<Object*>* _ObjectlistB)
+{
+	if (_Object != nullptr)
+	{
+		if (_ObjectlistA != nullptr)
+		{
+			for (list<Object*>::iterator Bulletiter = _ObjectlistA->begin(); Bulletiter != _ObjectlistA->end();)
+			{
+				if (_ObjectlistB != nullptr)
+				{
+					for (list<Object*>::iterator EnemyBulletiter = _ObjectlistB->begin(); EnemyBulletiter != _ObjectlistB->end();)
+					{
+						if (Bulletiter == _ObjectlistA->end())
+							break;
+						else if (CollisionManager::Collision(*Bulletiter, *EnemyBulletiter) && (*EnemyBulletiter)->GetBridgeName() == "BossSpecialBullet")
+							EnemyBulletiter = ObjectManager::GetInstance()->ThrowObject(EnemyBulletiter, *EnemyBulletiter);
+						else
+							++EnemyBulletiter;
+					}
+				}
+				if (Bulletiter == _ObjectlistA->end())
+					break;
+				else
+					++Bulletiter;
+			}
+		}
+	}
+}
+
 void Stage_1::Update()
 {
 	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObjectList("Bullet");
@@ -282,7 +316,8 @@ void Stage_1::Update()
 	list<Object*>* pEnemyBulletList = ObjectManager::GetInstance()->GetObjectList("EnemyBullet");
 	list<Object*>* pBossList = ObjectManager::GetInstance()->GetObjectList("Boss");
 
-	CreateEnemy();
+	//CreateEnemy();
+	//MoveBoss();
 
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
@@ -309,9 +344,7 @@ void Stage_1::Update()
 	}
 
 	Scene::BulletPassBy(pBulletList);
-
 	Scene::EnemyBulletPassBy(pEnemyBulletList);
-
 	Scene::ObjectPassBy(pEnemyList, pEnemyBulletList);
 
 	CreateItem(pPlayer, pEnemyList, pBulletList);
@@ -366,12 +399,15 @@ void Stage_1::Update()
 	}
 
 	BossCollision(pPlayer, pBossList, pBulletList);
-
+	BulletToBulletCollision(pPlayer, pBulletList, pEnemyBulletList);
 	PlayerBossCollision(pPlayer, pBossList);
 
 	Scene::ObjectPassBy(pBossList, pEnemyBulletList);
 
 	EnemyBulletCollision(pPlayer, pEnemyBulletList);
+
+	if (pBossList->empty())
+		SceneManager::GetInstance()->SetScene(STAGE_CLEAR);
 }
 
 void Stage_1::Render()

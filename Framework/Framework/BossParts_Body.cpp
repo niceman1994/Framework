@@ -59,8 +59,16 @@ int BossParts_Body::Update(Transform& Info)
     {
         Bridge* pBridge = new BossNormalBullet;
         ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge, Info.Position);
-        ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge->Clone(), Info.Position.x, Info.Position.y - 1.0f);
-        ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge->Clone(), Info.Position.x, Info.Position.y + 1.0f);
+    }
+    if (Info.Position.x <= 178.0f && rand() % 20 == 10)
+    {
+        Bridge* pBridge = new BossNormalBullet;
+        ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge, Info.Position.x, Info.Position.y - 1.0f);
+    }
+    if (Info.Position.x <= 178.0f && rand() % 20 == 10)
+    {
+        Bridge* pBridge = new BossNormalBullet;
+        ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge, Info.Position.x, Info.Position.y + 1.0f);
     }
 
     return 0;

@@ -8,6 +8,7 @@
 #include "Prototype.h"
 #include "NormalBullet.h"
 #include "TwinBullet.h"
+#include "SpecialSkill.h"
 
 Player::Player() { }
 Player::Player(Transform _TransInfo) : Object(_TransInfo) { }
@@ -80,7 +81,8 @@ int Player::Update()
 
 	if (dwKey & KEY_CTRL)
 	{
-		
+		Bridge* pBridge = new SpecialSkill;
+		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
 	}
 
 	return 0;
