@@ -42,7 +42,7 @@ void Stage_1::Initialize()
 	Text[1] = (char*)
 		"г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■г■";
 
-	Text[2] = (char*)"";
+	Text[2] = (char*)"бр";
 
 	if (pPlayer == nullptr)
 	{
@@ -55,15 +55,17 @@ void Stage_1::Initialize()
 
 	{
 		Bridge* pBridge1 = new BossParts_Body;
-		Bridge* pBridge2 = new BossParts_RightArms;
-		Bridge* pBridge3 = new BossParts_LeftArms;
+
+		Object* BossBody = new Boss;
+		//Bridge* pBridge2 = new BossParts_RightArms;
+		//Bridge* pBridge3 = new BossParts_LeftArms;
 		
 		pBoss = Prototype::GetInstance()->ProtoTypeObject("Boss");
 		pBoss->SetPosition(200.0f, 25.0f);
 
 		ObjectManager::GetInstance()->AddObject("Boss", pBridge1, pBoss->GetPosition());
-		ObjectManager::GetInstance()->AddObject("Boss", pBridge2, pBoss->GetPosition().x, pBoss->GetPosition().y - 5.0f);
-		ObjectManager::GetInstance()->AddObject("Boss", pBridge3, pBoss->GetPosition().x, pBoss->GetPosition().y + 5.0f);
+		//ObjectManager::GetInstance()->AddObject("Boss", pBridge2, pBoss->GetPosition().x, pBoss->GetPosition().y - 5.0f);
+		//ObjectManager::GetInstance()->AddObject("Boss", pBridge3, pBoss->GetPosition().x, pBoss->GetPosition().y + 5.0f);
 	}
 
 	//for (int i = 0; i < 20; ++i)
@@ -347,10 +349,13 @@ void Stage_1::Update()
 		}
 	}
 
-	for (int i = 0; i < ObjectManager::GetInstance()->GetSkillCount(); ++i)
+	for (int i = 0; i < ObjectManager::GetInstance()->GetSkillCount() / 15; ++i)
 	{
-		if (ObjectManager::GetInstance()->GetSkillCount() < 150)
-			CursorManager::GetInstance()->WriteBuffer(50.0f + (i / 10), 0.0f, Text[2], 34);
+		if (i * strlen(Text[2]) < 20)
+		{
+			CursorManager::GetInstance()->WriteBuffer(50.0f + (i * strlen(Text[2])), 0.0f, (char*)"  ", 0);
+			CursorManager::GetInstance()->WriteBuffer(50.0f + (i * strlen(Text[2])), 0.0f, Text[2], 10);
+		}
 	}
 	
 	Scene::BulletPassBy(pBulletList);
@@ -440,8 +445,8 @@ void Stage_1::Render()
 	CursorManager::GetInstance()->WriteBuffer(0.0f, 48.0f, Text[1]);
 
 	CursorManager::GetInstance()->WriteBuffer(36.0f, 0.0f, (char*)"Special Skill", 11);
-	CursorManager::GetInstance()->WriteBuffer(50.0f, 0.0f, Text[2], 34);
-	//CursorManager::GetInstance()->WriteBuffer(50.0f, 0.0f, (int)ObjectManager::GetInstance()->GetTimeCount());
+	CursorManager::GetInstance()->WriteBuffer(50.0f, 0.0f, Text[2], 10);
+	CursorManager::GetInstance()->WriteBuffer(1.0f, 49.0f, ObjectManager::GetInstance()->GetSkillCount());
 }
 
 void Stage_1::Release()

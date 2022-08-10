@@ -2,6 +2,8 @@
 #include "Headers.h"
 #include "Bridge.h"
 
+// Object.h에 bool 변수를 
+
 class Object
 {
 protected:

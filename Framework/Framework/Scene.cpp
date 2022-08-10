@@ -65,7 +65,7 @@ void Scene::PlayerLifeState()
 		ObjectManager::GetInstance()->SetLife((char*)"¡á¡á¡á¡á");
 
 	else if (ObjectManager::GetInstance()->GetPlayerHitCount() == 1)
-		ObjectManager::GetInstance()->SetLife((char*)"¡á¡á¡á");
+ 		ObjectManager::GetInstance()->SetLife((char*)"¡á¡á¡á");
 
 	else if (ObjectManager::GetInstance()->GetPlayerHitCount() == 2)
 		ObjectManager::GetInstance()->SetLife((char*)"¡á¡á");

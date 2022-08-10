@@ -38,6 +38,11 @@ void BossParts_Body::Initialize()
     //BossPartsText[13] = (char*)"弛   ﹥﹤﹤ 弛";
     //BossPartsText[14] = (char*)"戌式式式式式戎";
 
+    Boss_Left->SetBridge(new BossParts_LeftArms);
+    Boss_Left->Initialize("Boss");
+    Boss_Right->SetBridge(new BossParts_RightArms);
+    Boss_Right->Initialize("Boss");
+
     Speed = -1.0f;
     Color = 15;
 }

@@ -79,7 +79,7 @@ int Player::Update()
 		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
 	}
 
-	if (ObjectManager::GetInstance()->GetSkillCount() >= 0)
+	if (ObjectManager::GetInstance()->GetSkillCount() >= 0 && ObjectManager::GetInstance()->GetSkillCount() <= 999)
 	{
 		ObjectManager::GetInstance()->AddSkillCount();
 
