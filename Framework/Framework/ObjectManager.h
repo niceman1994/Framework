@@ -20,8 +20,9 @@ private:
 	map<string, list<Object*>>* EnableList;
 	int HitCount;
 	int PlayerHitCount;
-	int TimeCount;
+	int SkillCount;
 	char* Life;
+	char* SkillBar;
 public:
 	void AddObject(string _Key);
 	void AddObject(string _Key, Bridge* _Bridge, Vector3 _Position);
@@ -45,9 +46,12 @@ public:
 	void SetLife(char* _Life) { Life = _Life; }
 	char* LifeState() const { return Life; }
 
-	void AddTimeCount() { ++TimeCount; }
-	int GetTimeCount() const { return TimeCount; }
-	void ResetTimeCount() { TimeCount = 0; }
+	void AddSkillCount() { SkillCount++; }
+	int GetSkillCount() const { return SkillCount; }
+	void ResetSkillCount() { SkillCount = 0; }
+
+	void SetSkillBar(char* _SkillBar) { SkillBar = _SkillBar; }
+	char* GetSkillBar() const { return SkillBar; }
 
 	void Update();
 	void Render();

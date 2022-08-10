@@ -79,13 +79,13 @@ int Player::Update()
 		ObjectManager::GetInstance()->AddObject("Bullet", pBridge, TransInfo.Position);
 	}
 
-	if (ObjectManager::GetInstance()->GetTimeCount() >= 0)
+	if (ObjectManager::GetInstance()->GetSkillCount() >= 0)
 	{
-		ObjectManager::GetInstance()->AddTimeCount();
+		ObjectManager::GetInstance()->AddSkillCount();
 
-		if (dwKey & KEY_CTRL && ObjectManager::GetInstance()->GetTimeCount() >= 150)
+		if (dwKey & KEY_CTRL && ObjectManager::GetInstance()->GetSkillCount() >= 150)
 		{
-			ObjectManager::GetInstance()->ResetTimeCount();
+			ObjectManager::GetInstance()->ResetSkillCount();
 			list<Object*>* pEnemyBulletList = ObjectManager::GetInstance()->GetObjectList("EnemyBullet");
 
 			Bridge* pBridge = new SpecialSkill;
@@ -112,7 +112,7 @@ void Player::Render()
 	//CursorManager::GetInstance()->WriteBuffer(4.0f, 1.0f, (int)TransInfo.Position.x);
 	//CursorManager::GetInstance()->WriteBuffer(4.0f, 2.0f, (int)TransInfo.Position.y);
 	//CursorManager::GetInstance()->WriteBuffer(4.0f, 3.0f, (int)TransInfo.Rotation.x);
-	CursorManager::GetInstance()->WriteBuffer(1.0f, 49.0f, (int)ObjectManager::GetInstance()->GetTimeCount());
+	CursorManager::GetInstance()->WriteBuffer(1.0f, 49.0f, ObjectManager::GetInstance()->GetSkillCount());
 
 	for (int i = 0; i < 5; ++i)
 	{

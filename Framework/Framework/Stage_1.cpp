@@ -33,6 +33,8 @@ void Stage_1::Initialize()
 	ScoreManager::GetInstance()->GetStageScore();
 	ObjectManager::GetInstance()->GetHitCount();
 	ObjectManager::GetInstance()->GetPlayerHitCount();
+	ObjectManager::GetInstance()->GetSkillCount();
+	ObjectManager::GetInstance()->GetSkillBar();
 
 	Text[0] = (char*)
 		"£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß£ß";
@@ -40,10 +42,7 @@ void Stage_1::Initialize()
 	Text[1] = (char*)
 		"£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ£þ";
 
-	Text[2] = (char*)" ";
-	Text[3] = (char*)"";
-
-	count = 0;
+	Text[2] = (char*)"";
 
 	if (pPlayer == nullptr)
 	{
@@ -348,6 +347,12 @@ void Stage_1::Update()
 		}
 	}
 
+	for (int i = 0; i < ObjectManager::GetInstance()->GetSkillCount(); ++i)
+	{
+		if (ObjectManager::GetInstance()->GetSkillCount() < 150)
+			CursorManager::GetInstance()->WriteBuffer(50.0f + (i / 10), 0.0f, Text[2], 34);
+	}
+	
 	Scene::BulletPassBy(pBulletList);
 	Scene::EnemyBulletPassBy(pEnemyBulletList);
 	Scene::ObjectPassBy(pEnemyList, pEnemyBulletList);
@@ -435,15 +440,8 @@ void Stage_1::Render()
 	CursorManager::GetInstance()->WriteBuffer(0.0f, 48.0f, Text[1]);
 
 	CursorManager::GetInstance()->WriteBuffer(36.0f, 0.0f, (char*)"Special Skill", 11);
-
-	for (int i = 0; i < ObjectManager::GetInstance()->GetTimeCount(); ++i)
-	{
-		if (ObjectManager::GetInstance()->GetTimeCount() <= 150)
-			CursorManager::GetInstance()->WriteBuffer(50.0f + (i / 10), 0.0f, Text[2], 34);
-		
-		if (ObjectManager::GetInstance()->GetTimeCount() == 0)
-			CursorManager::GetInstance()->WriteBuffer(50.0f, 0.0f, Text[2], 0);
-	}
+	CursorManager::GetInstance()->WriteBuffer(50.0f, 0.0f, Text[2], 34);
+	//CursorManager::GetInstance()->WriteBuffer(50.0f, 0.0f, (int)ObjectManager::GetInstance()->GetTimeCount());
 }
 
 void Stage_1::Release()
