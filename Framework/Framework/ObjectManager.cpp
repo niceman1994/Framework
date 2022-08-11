@@ -49,8 +49,8 @@ void ObjectManager::AddObject(string _Key, Bridge* _Bridge, Vector3 _Position)
 	if (pObject == nullptr)
 		pObject = Prototype::GetInstance()->ProtoTypeObject(_Key)->Clone();
 
-	_Bridge->Initialize();
 	_Bridge->SetObject(pObject);
+	_Bridge->Initialize();
 	_Bridge->GetBridgeKey();
 
 	pObject->SetBridge(_Bridge);

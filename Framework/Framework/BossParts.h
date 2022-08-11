@@ -7,7 +7,6 @@ protected:
 	char* BossPartsText[16];
 	float Speed;
 	int Color;
-	int BossHit;
 public:
 	virtual void Initialize()PURE;
 	virtual int Update(Transform& Info)PURE;
@@ -16,6 +15,6 @@ public:
 
 	virtual Bridge* Clone()PURE;
 public:
-	BossParts() : Speed(0), Color(0), BossPartsText(), BossHit(0) {};
+	BossParts() : Speed(0), Color(0), BossPartsText() {};
 	virtual ~BossParts() {};
 };

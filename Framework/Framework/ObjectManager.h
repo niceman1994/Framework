@@ -3,7 +3,6 @@
 
 class Object;
 class Bridge;
-class ObjectBridge;
 class ObjectManager
 {
 private:

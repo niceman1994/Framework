@@ -1,10 +1,7 @@
 #include "BossParts_Body.h"
-#include "BossParts_LeftArms.h"
-#include "BossParts_RightArms.h"
 #include "ObjectManager.h"
 #include "CursorManager.h"
 #include "MathManager.h"
-#include "Prototype.h"
 #include "BossNormalBullet.h"
 
 BossParts_Body::BossParts_Body() {}
@@ -32,12 +29,6 @@ void BossParts_Body::Initialize()
     //BossPartsText[12] = (char*)"弛﹥﹤﹥﹤  弛";
     //BossPartsText[13] = (char*)"弛   ﹥﹤﹤ 弛";
     //BossPartsText[14] = (char*)"戌式式式式式戎";
-
-    Bridge* Left_Bridge = new BossParts_LeftArms;
-    ObjectManager::GetInstance()->AddObject("Boss", Left_Bridge, 200.0f, 20.0f);
-
-    Bridge* Right_Bridge = new BossParts_RightArms;
-    ObjectManager::GetInstance()->AddObject("Boss", Right_Bridge, 200.0f, 30.0f);
 
     Speed = -1.0f;
     Color = 15;
@@ -72,6 +63,8 @@ int BossParts_Body::Update(Transform& Info)
         ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge, Info.Position.x, Info.Position.y + 1.0f);
     }
 
+    list<Object*>* BulletList = ObjectManager::GetInstance()->GetObjectList("Bullet");
+
     return 0;
 }
 
@@ -91,4 +84,5 @@ void BossParts_Body::Render()
 
 void BossParts_Body::Release()
 {
+    
 }

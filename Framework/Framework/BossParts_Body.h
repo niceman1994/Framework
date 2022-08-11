@@ -14,8 +14,6 @@ public:
 	virtual void Release()override;
 
 	virtual Bridge* Clone()override { return new BossParts_Body(*this); }
-
-	int BossHitCount() const { return BossHit; }
 public:
 	BossParts_Body();
 	virtual ~BossParts_Body();

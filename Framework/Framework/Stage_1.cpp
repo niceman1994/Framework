@@ -17,6 +17,8 @@
 #include "FlyingEnemy.h"
 #include "RushingEnemy.h"
 #include "BossParts_Body.h"
+#include "BossParts_LeftArms.h"
+#include "BossParts_RightArms.h"
 #include "ScoreItem.h"
 #include "ShieldItem.h"
 #include "LifeUpItem.h"
@@ -52,12 +54,16 @@ void Stage_1::Initialize()
 	Object* pEnemyBullet = Prototype::GetInstance()->ProtoTypeObject("EnemyBullet");
 
 	{
-		Bridge* pBridge = new BossParts_Body;
+		Bridge* pBridge1 = new BossParts_Body;
+		Bridge* pBridge2 = new BossParts_LeftArms;
+		Bridge* pBridge3 = new BossParts_RightArms;
 		
 		pBoss = Prototype::GetInstance()->ProtoTypeObject("Boss");
 		pBoss->SetPosition(200.0f, 25.0f);
 
-		ObjectManager::GetInstance()->AddObject("Boss", pBridge, pBoss->GetPosition());
+		ObjectManager::GetInstance()->AddObject("Boss", pBridge1, pBoss->GetPosition());
+		ObjectManager::GetInstance()->AddObject("Boss", pBridge2, pBoss->GetPosition().x, pBoss->GetPosition().y + 5.0f);
+		ObjectManager::GetInstance()->AddObject("Boss", pBridge3, pBoss->GetPosition().x, pBoss->GetPosition().y - 5.0f);
 	}
 
 	//for (int i = 0; i < 20; ++i)
@@ -221,30 +227,12 @@ void Stage_1::BossCollision(Object* _Object, list<Object*>* _ObjectlistA, list<O
 							break;
 						else if (CollisionManager::Collision(*Bulletiter, *Bossiter))
 						{
-							ObjectManager::GetInstance()->AddHitCount(1);
-							Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, *Bulletiter);
-
-							if (ObjectManager::GetInstance()->GetHitCount() == 50 &&
-								ObjectManager::GetInstance()->GetObjectList("Boss")->front()->GetBridgeName() == "BossParts_LeftArms")
-							{
-								ScoreManager::GetInstance()->AddScore(2000);
-								Bossiter = ObjectManager::GetInstance()->ThrowObject(Bossiter, *Bossiter);
-								ObjectManager::GetInstance()->ResetHitCount();
-							}
-							else if (ObjectManager::GetInstance()->GetHitCount() == 50 &&
-								ObjectManager::GetInstance()->GetObjectList("Boss")->front()->GetBridgeName() == "BossParts_RightArms")
-							{
-								ScoreManager::GetInstance()->AddScore(2000);
-								Bossiter = ObjectManager::GetInstance()->ThrowObject(Bossiter, *Bossiter);
-								ObjectManager::GetInstance()->ResetHitCount();
-							}
-							else if (ObjectManager::GetInstance()->GetHitCount() == 50 &&
-								ObjectManager::GetInstance()->GetObjectList("Boss")->front()->GetBridgeName() == "BossParts_Body")
-							{
-								ScoreManager::GetInstance()->AddScore(2000);
-								Bossiter = ObjectManager::GetInstance()->ThrowObject(Bossiter, *Bossiter);
-								ObjectManager::GetInstance()->ResetHitCount();
-							}
+							//ObjectManager::GetInstance()->AddHitCount(1);
+							//Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, *Bulletiter);
+							//
+							//ScoreManager::GetInstance()->AddScore(2000);
+							//Bossiter = ObjectManager::GetInstance()->ThrowObject(Bossiter, *Bossiter);
+							//ObjectManager::GetInstance()->ResetHitCount();
 						}
 						else
 							++Bulletiter;

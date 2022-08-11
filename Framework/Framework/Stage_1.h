@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
 
+class Object;
 class Bridge;
 class Stage_1 : public Scene
 {
