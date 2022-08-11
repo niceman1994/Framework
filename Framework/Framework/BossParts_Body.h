@@ -5,8 +5,8 @@
 class BossParts_Body : public BossParts
 {
 private:
-	Object* Boss_Right = new Boss;
 	Object* Boss_Left = new Boss;
+	Object* Boss_Right = new Boss;
 public:
 	virtual void Initialize()override;
 	virtual int Update(Transform& Info)override;

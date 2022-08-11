@@ -4,6 +4,7 @@
 #include "ObjectManager.h"
 #include "CursorManager.h"
 #include "MathManager.h"
+#include "Prototype.h"
 #include "BossNormalBullet.h"
 
 BossParts_Body::BossParts_Body() {}
@@ -25,12 +26,6 @@ void BossParts_Body::Initialize()
     BossPartsText[2] = (char*)"¦¢  ¤±¤±¤±  ¦¢";
     BossPartsText[3] = (char*)"¦¢£ß£ß£ß£ß£ß¦¢";
     BossPartsText[4] = (char*)"¡¬£ß£ß£ß£ß£ß£¯";
-
-    //BossPartsText[5] = (char*)"¡¬£þ£þ£þ£¯ ";
-    //BossPartsText[6] = (char*)"¦¢£þ£þ£þ¦¢ ";
-    //BossPartsText[7] = (char*)"¦¢¤±¤±¤±¦¢ ";
-    //BossPartsText[8] = (char*)"¦¢£ß£ß£ß¦¢ ";
-    //BossPartsText[9] = (char*)"£¯£ß£ß£ß¡¬ ";
     
     //BossPartsText[10] = (char*)"¦£¦¡¦¡¦¡¦¡¦¡¦¤";
     //BossPartsText[11] = (char*)"¦¢  ¡á¡á¡à¡à¦¢";
@@ -38,10 +33,11 @@ void BossParts_Body::Initialize()
     //BossPartsText[13] = (char*)"¦¢   ¡á¡à¡à ¦¢";
     //BossPartsText[14] = (char*)"¦¦¦¡¦¡¦¡¦¡¦¡¦¥";
 
-    Boss_Left->SetBridge(new BossParts_LeftArms);
-    Boss_Left->Initialize("Boss");
-    Boss_Right->SetBridge(new BossParts_RightArms);
-    Boss_Right->Initialize("Boss");
+    Bridge* Left_Bridge = new BossParts_LeftArms;
+    ObjectManager::GetInstance()->AddObject("Boss", Left_Bridge, 200.0f, 20.0f);
+
+    Bridge* Right_Bridge = new BossParts_RightArms;
+    ObjectManager::GetInstance()->AddObject("Boss", Right_Bridge, 200.0f, 30.0f);
 
     Speed = -1.0f;
     Color = 15;
@@ -91,22 +87,6 @@ void BossParts_Body::Render()
             pObject->GetPosition().y - (pObject->GetScale().y * 0.5f) + i,
             BossPartsText[i], Color);
     }
-    
-    //for (int i = 5; i < 10; ++i)
-    //{
-    //    CursorManager::GetInstance()->WriteBuffer(
-    //        pObject->GetPosition().x,
-    //        pObject->GetPosition().y - (pObject->GetScale().y * 0.5f) - i,
-    //        BossPartsText[i], Color);
-    //}
-    //
-    //for (int i = 10; i < 15; ++i)
-    //{
-    //    CursorManager::GetInstance()->WriteBuffer(
-    //        pObject->GetPosition().x,
-    //        pObject->GetPosition().y - (pObject->GetScale().y * 0.5f) + i,
-    //        BossPartsText[i], Color);
-    //}
 }
 
 void BossParts_Body::Release()

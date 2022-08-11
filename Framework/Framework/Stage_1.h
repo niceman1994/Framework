@@ -15,7 +15,6 @@ public:
 	virtual void Release()override;
 public:
 	void CreateEnemy();
-	void MoveBoss();
 
 	void CreateItem(Object* _Object, list<Object*>* _ObjectlistA, list<Object*>* _ObjectlistB);
 

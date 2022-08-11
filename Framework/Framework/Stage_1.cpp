@@ -17,8 +17,6 @@
 #include "FlyingEnemy.h"
 #include "RushingEnemy.h"
 #include "BossParts_Body.h"
-#include "BossParts_LeftArms.h"
-#include "BossParts_RightArms.h"
 #include "ScoreItem.h"
 #include "ShieldItem.h"
 #include "LifeUpItem.h"
@@ -54,18 +52,12 @@ void Stage_1::Initialize()
 	Object* pEnemyBullet = Prototype::GetInstance()->ProtoTypeObject("EnemyBullet");
 
 	{
-		Bridge* pBridge1 = new BossParts_Body;
-
-		Object* BossBody = new Boss;
-		//Bridge* pBridge2 = new BossParts_RightArms;
-		//Bridge* pBridge3 = new BossParts_LeftArms;
+		Bridge* pBridge = new BossParts_Body;
 		
 		pBoss = Prototype::GetInstance()->ProtoTypeObject("Boss");
 		pBoss->SetPosition(200.0f, 25.0f);
 
-		ObjectManager::GetInstance()->AddObject("Boss", pBridge1, pBoss->GetPosition());
-		//ObjectManager::GetInstance()->AddObject("Boss", pBridge2, pBoss->GetPosition().x, pBoss->GetPosition().y - 5.0f);
-		//ObjectManager::GetInstance()->AddObject("Boss", pBridge3, pBoss->GetPosition().x, pBoss->GetPosition().y + 5.0f);
+		ObjectManager::GetInstance()->AddObject("Boss", pBridge, pBoss->GetPosition());
 	}
 
 	//for (int i = 0; i < 20; ++i)
@@ -99,17 +91,6 @@ void Stage_1::CreateEnemy()
 			pEnemy->SetPosition(350.0f + (i * 10), 10.0f + (i * 3));
 			ObjectManager::GetInstance()->AddObject("Enemy", pBridge, pEnemy->GetPosition());
 		}
-	}
-}
-
-void Stage_1::MoveBoss()
-{
-	if (pBoss->GetPosition().x == 150.0f)
-	{
-		pBoss->SetPosition(pBoss->GetPosition().x, pBoss->GetPosition().y - 1.0f);
-
-		if (pBoss->GetPosition().y <= 15.0f)
-			return;
 	}
 }
 
@@ -243,7 +224,22 @@ void Stage_1::BossCollision(Object* _Object, list<Object*>* _ObjectlistA, list<O
 							ObjectManager::GetInstance()->AddHitCount(1);
 							Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, *Bulletiter);
 
-							if (ObjectManager::GetInstance()->GetHitCount() == 50)
+							if (ObjectManager::GetInstance()->GetHitCount() == 50 &&
+								ObjectManager::GetInstance()->GetObjectList("Boss")->front()->GetBridgeName() == "BossParts_LeftArms")
+							{
+								ScoreManager::GetInstance()->AddScore(2000);
+								Bossiter = ObjectManager::GetInstance()->ThrowObject(Bossiter, *Bossiter);
+								ObjectManager::GetInstance()->ResetHitCount();
+							}
+							else if (ObjectManager::GetInstance()->GetHitCount() == 50 &&
+								ObjectManager::GetInstance()->GetObjectList("Boss")->front()->GetBridgeName() == "BossParts_RightArms")
+							{
+								ScoreManager::GetInstance()->AddScore(2000);
+								Bossiter = ObjectManager::GetInstance()->ThrowObject(Bossiter, *Bossiter);
+								ObjectManager::GetInstance()->ResetHitCount();
+							}
+							else if (ObjectManager::GetInstance()->GetHitCount() == 50 &&
+								ObjectManager::GetInstance()->GetObjectList("Boss")->front()->GetBridgeName() == "BossParts_Body")
 							{
 								ScoreManager::GetInstance()->AddScore(2000);
 								Bossiter = ObjectManager::GetInstance()->ThrowObject(Bossiter, *Bossiter);
@@ -323,7 +319,6 @@ void Stage_1::Update()
 	list<Object*>* pBossList = ObjectManager::GetInstance()->GetObjectList("Boss");
 
 	//CreateEnemy();
-	//MoveBoss();
 
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
