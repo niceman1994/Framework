@@ -24,7 +24,7 @@ Object* Player::Initialize(string _Key)
 	Buffer[3] = (char*)"¡ä  ¡à";
 	Buffer[4] = (char*)"    ¡ä";
 
-	TransInfo.Position = Vector3(20.0f, 25.0f);
+	TransInfo.Position = Vector3(20.0f, 15.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
 	TransInfo.Scale = Vector3(10.0f, 5.0f);
 
@@ -112,7 +112,6 @@ void Player::Render()
 	//CursorManager::GetInstance()->WriteBuffer(4.0f, 1.0f, (int)TransInfo.Position.x);
 	//CursorManager::GetInstance()->WriteBuffer(4.0f, 2.0f, (int)TransInfo.Position.y);
 	//CursorManager::GetInstance()->WriteBuffer(4.0f, 3.0f, (int)TransInfo.Rotation.x);
-	CursorManager::GetInstance()->WriteBuffer(1.0f, 49.0f, ObjectManager::GetInstance()->GetSkillCount());
 
 	for (int i = 0; i < 5; ++i)
 	{

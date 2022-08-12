@@ -59,23 +59,23 @@ void Stage_1::Initialize()
 		Bridge* pBridge3 = new BossParts_RightArms;
 		
 		pBoss = Prototype::GetInstance()->ProtoTypeObject("Boss");
-		pBoss->SetPosition(200.0f, 25.0f);
+		pBoss->SetPosition(800.0f, 25.0f);
 
 		ObjectManager::GetInstance()->AddObject("Boss", pBridge1, pBoss->GetPosition());
 		ObjectManager::GetInstance()->AddObject("Boss", pBridge2, pBoss->GetPosition().x, pBoss->GetPosition().y + 5.0f);
 		ObjectManager::GetInstance()->AddObject("Boss", pBridge3, pBoss->GetPosition().x, pBoss->GetPosition().y - 5.0f);
 	}
 
-	//for (int i = 0; i < 20; ++i)
-	//{
-	//	srand(DWORD(GetTickCount64() * (i + 1)));
-	//
-	//	Bridge* pBridge = new FlyingEnemy;
-	//	pEnemy->SetPosition(float(rand() % 150 + (80 + (i * 30))), float(rand() % 30 + 10));
-	//	pEnemyBullet->SetPosition(pEnemy->GetPosition().x, pEnemy->GetPosition().y);
-	//	ObjectManager::GetInstance()->AddObject("Enemy", pBridge, pEnemy->GetPosition());
-	//	ObjectManager::GetInstance()->AddObject("EnemyBullet");
-	//}
+	for (int i = 0; i < 20; ++i)
+	{
+		srand(DWORD(GetTickCount64() * (i + 1)));
+	
+		Bridge* pBridge = new FlyingEnemy;
+		pEnemy->SetPosition(float(rand() % 150 + (80 + (i * 30))), float(rand() % 30 + 10));
+		pEnemyBullet->SetPosition(pEnemy->GetPosition().x, pEnemy->GetPosition().y);
+		ObjectManager::GetInstance()->AddObject("Enemy", pBridge, pEnemy->GetPosition());
+		ObjectManager::GetInstance()->AddObject("EnemyBullet");
+	}
 }
 
 void Stage_1::CreateEnemy()
@@ -118,12 +118,12 @@ void Stage_1::CreateItem(Object* _Object, list<Object*>* _ObjectlistA, list<Obje
 						{
 							ScoreManager::GetInstance()->AddScore(100);
 
-							if (rand() % 30 == 1 || rand() % 30 == 2 || rand() % 30 == 3 || rand() % 30 == 4)
+							if (rand() % 30 == 1 || rand() % 30 == 2)
 							{
 								Bridge* pBridge = new ScoreItem;
 								ObjectManager::GetInstance()->AddObject("Item", pBridge, (*Enemyiter)->GetPosition());
 							}
-							else if (rand() % 30 == 5 || rand() % 30 == 6)
+							else if (rand() % 30 == 5)
 							{
 								Bridge* pBridge = new ShieldItem;
 								ObjectManager::GetInstance()->AddObject("Item", pBridge, (*Enemyiter)->GetPosition());
@@ -227,12 +227,27 @@ void Stage_1::BossCollision(Object* _Object, list<Object*>* _ObjectlistA, list<O
 							break;
 						else if (CollisionManager::Collision(*Bulletiter, *Bossiter))
 						{
-							//ObjectManager::GetInstance()->AddHitCount(1);
-							//Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, *Bulletiter);
-							//
-							//ScoreManager::GetInstance()->AddScore(2000);
-							//Bossiter = ObjectManager::GetInstance()->ThrowObject(Bossiter, *Bossiter);
-							//ObjectManager::GetInstance()->ResetHitCount();
+							ObjectManager::GetInstance()->AddHitCount();
+							Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, *Bulletiter);
+							
+							if (ObjectManager::GetInstance()->GetHitCount() == 40 && (*Bossiter)->GetBridgeName() == "BossParts_LeftArms")
+							{
+								ScoreManager::GetInstance()->AddScore(2000);
+								Bossiter = ObjectManager::GetInstance()->ThrowObject(Bossiter, *Bossiter);
+								ObjectManager::GetInstance()->ResetHitCount();
+							}
+							else if (ObjectManager::GetInstance()->GetHitCount() == 40 && (*Bossiter)->GetBridgeName() == "BossParts_RightArms")
+							{
+								ScoreManager::GetInstance()->AddScore(2000);
+								Bossiter = ObjectManager::GetInstance()->ThrowObject(Bossiter, *Bossiter);
+								ObjectManager::GetInstance()->ResetHitCount();
+							}
+							else if (ObjectManager::GetInstance()->GetHitCount() == 40 && (*Bossiter)->GetBridgeName() == "BossParts_Body")
+							{
+								ScoreManager::GetInstance()->AddScore(2000);
+								Bossiter = ObjectManager::GetInstance()->ThrowObject(Bossiter, *Bossiter);
+								ObjectManager::GetInstance()->ResetHitCount();
+							}
 						}
 						else
 							++Bulletiter;
@@ -306,7 +321,7 @@ void Stage_1::Update()
 	list<Object*>* pEnemyBulletList = ObjectManager::GetInstance()->GetObjectList("EnemyBullet");
 	list<Object*>* pBossList = ObjectManager::GetInstance()->GetObjectList("Boss");
 
-	//CreateEnemy();
+	CreateEnemy();
 
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
@@ -429,7 +444,7 @@ void Stage_1::Render()
 
 	CursorManager::GetInstance()->WriteBuffer(36.0f, 0.0f, (char*)"Special Skill", 11);
 	CursorManager::GetInstance()->WriteBuffer(50.0f, 0.0f, Text[2], 10);
-	CursorManager::GetInstance()->WriteBuffer(1.0f, 49.0f, ObjectManager::GetInstance()->GetSkillCount());
+	//CursorManager::GetInstance()->WriteBuffer(1.0f, 49.0f, ObjectManager::GetInstance()->GetSkillCount());
 }
 
 void Stage_1::Release()

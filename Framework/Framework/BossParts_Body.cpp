@@ -3,6 +3,7 @@
 #include "CursorManager.h"
 #include "MathManager.h"
 #include "BossNormalBullet.h"
+#include "BossSpecialBullet.h"
 
 BossParts_Body::BossParts_Body() {}
 
@@ -63,7 +64,24 @@ int BossParts_Body::Update(Transform& Info)
         ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge, Info.Position.x, Info.Position.y + 1.0f);
     }
 
-    list<Object*>* BulletList = ObjectManager::GetInstance()->GetObjectList("Bullet");
+    if (ObjectManager::GetInstance()->GetObjectList("Boss")->front() == ObjectManager::GetInstance()->GetObjectList("Boss")->back())
+    {
+        if (Info.Position.x <= 178.0f && rand() % 20 == 10)
+        {
+            Bridge* pBridge = new BossSpecialBullet;
+            ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge, Info.Position);
+        }
+        if (Info.Position.x <= 178.0f && rand() % 20 == 10)
+        {
+            Bridge* pBridge = new BossSpecialBullet;
+            ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge, Info.Position.x - 1.0f, Info.Position.y - 1.0f);
+        }
+        if (Info.Position.x <= 178.0f && rand() % 20 == 10)
+        {
+            Bridge* pBridge = new BossSpecialBullet;
+            ObjectManager::GetInstance()->AddObject("EnemyBullet", pBridge, Info.Position.x - 1.0f, Info.Position.y + 1.0f);
+        }
+    }
 
     return 0;
 }

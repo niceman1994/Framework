@@ -39,6 +39,10 @@ public:
 		else
 			return "";
 	}
+
+	void AddBossHitCount() { ++HitCount; }
+	int BossHitCount() const { return HitCount; }
+	void ResetBossHitCount() { HitCount = 0; }
 public:
 	Object();
 	Object(Transform _TransInfo);

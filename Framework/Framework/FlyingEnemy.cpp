@@ -18,7 +18,7 @@ void FlyingEnemy::Initialize()
 	ObjectText[3] = (char*)"  ¡á  ¡å";
 	ObjectText[4] = (char*)"  ¡å    ";
 
-	Speed = -1.0f;
+	Speed = -1.5f;
 	Color = 15;
 }
 

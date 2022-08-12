@@ -17,7 +17,7 @@ void RushingEnemy::Initialize()
 	ObjectText[3] = (char*)" ¡¬   £¯";
 	ObjectText[4] = (char*)"  ¦¡¦¡¦¡";
 
-	Speed = -3.0f;
+	Speed = -3.5f;
 	Color = 15;
 }
 

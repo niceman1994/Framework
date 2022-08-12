@@ -29,10 +29,6 @@ public:
 	list<Object*>* GetObjectList(string _strKey);
 	list<Object*>::iterator ThrowObject(list<Object*>::iterator _Where, Object* _Object);
 
-	void ResetHitCount() { HitCount = 0; }
-	void AddHitCount(int _Count) { HitCount += _Count; }
-	int GetHitCount() const { return HitCount; }
-
 	void ResetPlayerHitCount() { PlayerHitCount = 0; }
 	void AddPlayerHitCount(int _Count) { PlayerHitCount += _Count; }
 	void SubtractPlayerHitCount(int _Count) 
@@ -41,6 +37,10 @@ public:
 			PlayerHitCount -= _Count; 
 	}
 	int GetPlayerHitCount() const { return PlayerHitCount; }
+
+	void AddHitCount() { ++HitCount; }
+	int GetHitCount() const { return HitCount; }
+	void ResetHitCount() { HitCount = 0; }
 
 	void SetLife(char* _Life) { Life = _Life; }
 	char* LifeState() const { return Life; }
